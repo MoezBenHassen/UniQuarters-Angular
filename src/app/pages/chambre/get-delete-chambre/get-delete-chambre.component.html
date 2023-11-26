@@ -1,0 +1,75 @@
+<div class="container">
+
+    <h2 class="title py-4">Gestion Des Chambres
+        <button class="secondary-button " style="float:right"(click)="Add()">
+            <span class="pi pi-plus" aria-hidden="true"></span> Ajouter une chambre
+        </button>
+    </h2>
+    
+
+    <div class="card p-4">
+  
+        <p-table #dt [value]="chambreService.data" chambreService.dataKey="id" styleClass="p-chambreService.datatable"
+        [rowHover]="true" columnResizeMode="expand" [rows]="4" [showCurrentPageReport]="true" [paginator]="true"
+        currentPageReportTemplate="{totalRecords} chambre(s)" [filterDelay]="0">
+        <ng-template pTemplate="headergrouped">
+            <tr class="bg-white">
+                <th>One  </th>
+                <th>Two</th>
+                <th>Three</th>
+
+                <th> 
+                </th>
+            </tr>
+            <tr class="bg-white">
+                <th>
+
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                    <input pInputText type="text" 
+                        class="p-column-filter" placeholder="Placeholder">
+                        </span>
+                    </th>
+                <th>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                    <input pInputText type="text" 
+                        class="p-column-filter" placeholder="Placeholder"></span>
+                </th>
+                <th>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                    <input pInputText type="text" 
+                        class="p-column-filter" placeholder="Placeholder"></span>
+                </th>
+        
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr class="p-selectable-row">
+                <td>{{data.id}} </td>
+                <td>{{data.name}} </td>
+
+                  
+                  
+                <td>
+                    <p-tag >{{data.otherProperty }}</p-tag>
+                  </td>
+          
+                <td class="action">
+                    <img src="../../../../assets/icon/edit.svg" alt="edit"  (click)="Edit(data)">
+                    <img src="../../../../assets/icon/trash.svg" alt="trash" (click)="Delete(data)">
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8">application.dashboard.table.noApplications</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-confirmDialog header="Confirmation"></p-confirmDialog>
+
+    </div>
+</div>

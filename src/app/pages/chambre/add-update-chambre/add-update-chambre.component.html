@@ -1,0 +1,31 @@
+<p-progressBar class="top-progress-bar" [style]="{ height: '3px' }" mode="indeterminate"
+    *ngIf="loading"></p-progressBar>
+<div class="application mt-5">
+    <div [formGroup]="chambreService.AddOrEditChambreForm" class="form">
+        <div class="grid">
+
+            <div class="col-12">
+                <label class="label required">Nom </label>
+                <input id="name" formControlName="name" type="text" class="inputtext-sm full-width"
+                    placeholder="Saisir le nom" pInputText />
+            </div>
+            <div class="col-12">
+                <label class="label required">other Property </label>
+                <input id="otherProperty" formControlName="otherProperty" type="text" class="inputtext-sm full-width"
+                    placeholder="Saisir otherProperty" pInputText />
+            </div>
+        </div>
+        <div class="footer-popup">
+            <button  *ngIf="chambreService.AddOrEditChambreForm.value.id===null" class="primary-button mt-3" [disabled]="loading" [disabled]="!chambreService.AddOrEditChambreForm.valid"  (click)="AddChambre()">
+                Enregistrer
+
+            </button>
+            <button *ngIf="chambreService.AddOrEditChambreForm.value.id!null" class="primary-button" [disabled]="loading" (click)="UpdateChambre()">
+
+                Enregistrer
+
+
+            </button>
+        </div>
+    </div>
+</div>

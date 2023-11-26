@@ -6,6 +6,9 @@ import { NavigationComponent } from "./navigation/navigation.component";
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { SharedRoutingModule } from "./shared-routing.module";
+import {ConfirmationService, MessageService} from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+
 @NgModule({
     declarations: [
         HeaderComponent, 
@@ -16,6 +19,8 @@ import { SharedRoutingModule } from "./shared-routing.module";
     imports: [
         CommonModule,
         SharedRoutingModule,
-    ]
+    ],
+    providers: [DialogService,ConfirmationService, MessageService],
+
 })
 export class SharedModule { }

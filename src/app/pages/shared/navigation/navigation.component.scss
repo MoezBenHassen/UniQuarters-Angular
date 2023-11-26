@@ -19,7 +19,8 @@
             display: flex;
             align-items: center;
             height: 3rem;
-            color: $light-color;
+            color:$base-color;
+
             transition: all .3s ease;
 
             .navigation-link-icon {
@@ -44,8 +45,8 @@
 
     .navigation-nav-item:hover {
         .navigation-nav-link {
-            background-color: #fafafa21;
-            color: $light-color;
+            background-color: $light-purple-color;
+            color:$base-color;
         }
 
     }
