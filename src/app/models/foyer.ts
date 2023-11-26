@@ -1,4 +1,3 @@
-import { Universite } from "./universite";
 
 export class Foyer {
     id !: number;

@@ -1,0 +1,61 @@
+<div class="container">
+    <h2 class="title py-4">Gestion Des Universités
+      <button class="secondary-button" style="float:right">
+        <span class="pi pi-plus" aria-hidden="true"></span> Ajouter une université
+      </button>
+    </h2>
+  
+    <div class="card p-4">
+      <p-table #dt [value]="data"  
+        [rowHover]="true" columnResizeMode="expand" [rows]="3" styleClass="p-datatable" [showCurrentPageReport]="true" [paginator]="true"
+        currentPageReportTemplate="{totalRecords} université(s)" [filterDelay]="0"> 
+        <ng-template pTemplate="headergrouped">
+          <tr class="bg-white">
+            <th>Nom  </th>
+            <th>Adresse</th>
+            <th>Foyer</th>
+            <th>Actions</th>
+          </tr>
+          <tr class="bg-white">
+            <th>
+              <span class="p-input-icon-right">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" class="p-column-filter" placeholder="Nom">
+              </span>
+            </th>
+            <th>
+              <span class="p-input-icon-right">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" class="p-column-filter" placeholder="Adresse">
+              </span>
+            </th>
+            <th>
+              <span class="p-input-icon-right">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" class="p-column-filter" placeholder="Foyer">
+              </span>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-uni>
+          <tr class="p-selectable-row">
+            <td>{{ uni.nom }}</td>
+            <td>{{ uni.adresse }}</td>
+            <td>{{ uni.foyer ? uni.foyer.nom : 'N/A' }}</td>
+            <td class="action">
+              <img src="../../../../assets/icon/edit.svg" alt="edit">
+              <img src="../../../../assets/icon/trash.svg" alt="trash">
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4">Aucune université trouvée.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-confirmDialog header="Confirmation"></p-confirmDialog>
+    </div>
+  </div>
+  
