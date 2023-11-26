@@ -1,0 +1,23 @@
+<!-- <p-progressBar class="top-progress-bar" [style]="{ height: '3px' }" mode="indeterminate"
+    *ngIf="loading"></p-progressBar> -->
+<div class="application mt-5">
+    <form #f="ngForm" (ngSubmit)="add(f)" class="form">
+        <div class="grid">
+
+            <div class="col-12">
+                <label class="label required">Nom </label>
+                <input id="name" name="nom" [(ngModel)]="uni.nom" type="text" class="inputtext-sm full-width"
+                    placeholder="Saisir le nom" pInputText />
+            </div>
+            <div class="col-12">
+                <label class="label required">adresse </label>
+                <input id="otherProperty" name="adresse" [(ngModel)]="uni.adresse" type="text" class="inputtext-sm full-width"
+                    placeholder="Saisir adresse" pInputText />
+            </div>
+        </div>
+        <div class="footer-popup">
+            <input type="submit" class="btn btn-primary" [value]="id!==undefined? 'Update' : 'Add'" [disabled]="f.invalid">
+
+        </div>
+    </form>
+</div>

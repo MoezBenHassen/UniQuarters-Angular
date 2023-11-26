@@ -13,6 +13,7 @@ import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UniversiteModule } from './features/universite/universite.module';
 import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     NgSelectModule,
     ButtonModule,
     AutoCompleteModule,
-    UniversiteModule
+    UniversiteModule,
+    
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

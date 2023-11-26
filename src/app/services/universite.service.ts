@@ -12,4 +12,18 @@ export class UniversiteService {
   getAllUniversites():Observable<Universite[]>{
     return this._http.get<Universite[]>(this.url);
   }
+  addUniversity(body: Universite) {
+    console.log(body);
+    return this._http.post(this.url, body);
+  }
+  updateUniversity(body: Universite) {
+    return this._http.put(this.url, body);
+  }
+  deleteUniversity(id: number) {
+    console.log(this.url+"/"+  id);
+    return this._http.delete(this.url+"/"+  id);
+  }
+  fetchUserById(id: number) {
+    return this._http.get<Universite>(this.url +"/"+ id);
+  }
 }
