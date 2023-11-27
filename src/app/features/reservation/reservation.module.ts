@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ReservationRoutingModule } from './reservation-routing.module';
 import { ListReservationsComponent } from './list-reservations/list-reservations.component';
-import { FormReservationComponent } from './form-reservation/form-reservation.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TableModule } from 'primeng/table';
@@ -12,12 +11,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormsModule } from '@angular/forms';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
+import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 
 @NgModule({
-  declarations: [
-    ListReservationsComponent,
-    FormReservationComponent
-  ],
+  declarations: [ListReservationsComponent, ReservationFormComponent],
   imports: [
     ReservationRoutingModule,
     TableModule,
@@ -26,7 +23,7 @@ import { DialogModule } from 'primeng/dialog';
     CommonModule,
     FormsModule,
     ProgressBarModule,
-    DialogModule
-  ]
+    DialogModule,
+  ],
 })
-export class ReservationModule { }
+export class ReservationModule {}

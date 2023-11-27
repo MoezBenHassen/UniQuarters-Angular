@@ -1,1 +1,71 @@
-<p>list-reservations works!</p>
+<div class="container">
+  <h2 class="title py-4">Gestion Des Réservations
+      <button class="secondary-button" style="float:right" (click)="Add()">
+          <span class="pi pi-plus" aria-hidden="true"></span> Ajouter une réservation
+      </button>
+  </h2>
+
+  <div class="card p-4">
+      <p-table #dt [value]="reservations"
+          [rowHover]="true" columnResizeMode="expand" [rows]="3" styleClass="p-datatable" [showCurrentPageReport]="true"
+          [paginator]="true" currentPageReportTemplate="{totalRecords} réservation(s)" [filterDelay]="0">
+          <ng-template pTemplate="headergrouped">
+              <tr class="bg-white">
+                  <th>ID</th>
+                  <th>Année Universitaire</th>
+                  <th>Est Valide</th>
+                  <th>Etudiants</th>
+                  <th>Actions</th>
+              </tr>
+              <!-- <tr class="bg-white">
+                  <th>
+                      <span class="p-input-icon-right">
+                          <i class="pi pi-search"></i>
+                          <input pInputText type="text" class="p-column-filter" placeholder="ID">
+                      </span>
+                  </th>
+                  <th>
+                      <span class="p-input-icon-right">
+                          <i class="pi pi-search"></i>
+                          <input pInputText type="text" class="p-column-filter" placeholder="Année Universitaire">
+                      </span>
+                  </th>
+                  <th>
+                      <span class="p-input-icon-right">
+                          <i class="pi pi-search"></i>
+                          <input pInputText type="text" class="p-column-filter" placeholder="Est Valide">
+                      </span>
+                  </th>
+                  <th></th>
+                  <th></th>
+              </tr> -->
+          </ng-template>
+          <ng-template pTemplate="body" let-reservation>
+              <tr class="p-selectable-row">
+                  <td>{{ reservation.id }}</td>
+                  <td>{{ reservation.anneeUniversitaire }}</td>
+                  <td>{{ reservation.estValide ? 'Oui' : 'Non' }}</td>
+                  <td class="etudiant-column">
+                      <!-- Display CIN and Full Name for each student -->
+                      <div *ngFor="let etudiant of reservation.etudiants">
+                          <div>{{ etudiant.cin }}</div>
+                          <div>{{ etudiant.nom }} {{ etudiant.prenom }}</div>
+                      </div>
+                  </td>
+                  <td class="action">
+                      <!-- Add your edit and delete actions here -->
+                      <!-- Example: -->
+                      <img src="../../../../assets/icon/edit.svg" alt="edit" (click)="Edit(reservation.id)">
+                      <img src="../../../../assets/icon/trash.svg" alt="trash" (click)="Delete(reservation.id)">
+                  </td>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+              <tr>
+                  <td colspan="5">Aucune réservation trouvée.</td>
+              </tr>
+          </ng-template>
+      </p-table>
+      <p-confirmDialog header="Confirmation"></p-confirmDialog>
+  </div>
+</div>

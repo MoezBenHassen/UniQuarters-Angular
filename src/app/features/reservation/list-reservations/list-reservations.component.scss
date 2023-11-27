@@ -1,0 +1,14 @@
+/* list-reservations.component.scss */
+
+.etudiant-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  div {
+    margin-bottom: 5px;
+    /* Add more styling for individual items within the column */
+  }
+}
+
+/* Add additional styles as needed */
