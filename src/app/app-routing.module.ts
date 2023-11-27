@@ -1,16 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+import { LayoutComponent } from './pages/shared/layout/layout.component';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
+    path: 'home',
+    component: HomeComponent
   },
   {
-    path: 'universite',
-    loadChildren: () => import('./features/universite/universite.module').then((m) => m.UniversiteModule),
+    path: '',
+    redirectTo: '/home', pathMatch: 'full'
   },
- 
+  {
+    path: 'gestion-foyer',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'universite',
+        loadChildren: () => import('./features/universite/universite.module').then((m) => m.UniversiteModule),
+      }
+    ]
+  }
 ];
 
 @NgModule({
