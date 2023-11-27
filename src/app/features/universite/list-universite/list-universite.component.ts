@@ -53,10 +53,32 @@ export class ListUniversiteComponent   implements OnInit {
       header: "Modifier les informations de la chambre"
     });
   }
+  Delete(id:number) {
+    this.confirmationService.confirm({
+        message: 'Êtes-vous sûr de vouloir effectuer cette action ?',
+        acceptLabel: 'Supprimer',
+        rejectLabel: 'Annuler',
+        accept: () => {
+          this.uniService.deleteUniversity(id).subscribe(
+            () => {
+                
+                console.log('University deleted successfully.');
+               
+            },
+            (error) => {
+                
+                console.error('Error deleting university:', error);
+            }
+        );
+        }
+    });
+
+
+}
   
- verifId(id:number){
-  console.log(id);
- }
+//  verifId(id:number){
+//   console.log(id);
+//  }
 
  
 }
