@@ -44,7 +44,7 @@
             <td>{{ uni.adresse }}</td>
             <td>{{ uni.foyer ? uni.foyer.nom : 'N/A' }}</td>
             <td class="action">
-              <img src="../../../../assets/icon/edit.svg" alt="edit">
+              <img src="../../../../assets/icon/edit.svg" alt="edit" (click)="Edit(uni.id)">
               <img src="../../../../assets/icon/trash.svg" alt="trash">
             </td>
           </tr>

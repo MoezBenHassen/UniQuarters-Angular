@@ -8,6 +8,7 @@ import { DashboardComponent } from "../dashboard/dashboard.component";
 import { SharedRoutingModule } from "./shared-routing.module";
 import {ConfirmationService, MessageService} from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { DialogModule } from "primeng/dialog";
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { DialogService } from 'primeng/dynamicdialog';
     imports: [
         CommonModule,
         SharedRoutingModule,
+        
     ],
     providers: [DialogService,ConfirmationService, MessageService],
 

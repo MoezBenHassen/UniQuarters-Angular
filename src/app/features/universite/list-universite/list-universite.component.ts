@@ -13,10 +13,10 @@ import { UniversiteFormComponent } from '../universite-form/universite-form.comp
   templateUrl: './list-universite.component.html',
   styleUrls: ['./list-universite.component.scss']
 })
-export class ListUniversiteComponent   implements OnInit,OnChanges {
-  ngOnChanges(changes: SimpleChanges){
-
-  }
+export class ListUniversiteComponent   implements OnInit {
+ 
+   
+  
   @ViewChild('dt') table!: Table;
   
 
@@ -43,10 +43,20 @@ export class ListUniversiteComponent   implements OnInit,OnChanges {
   }
   Add(){
     this.dialogService.open(UniversiteFormComponent, {
-      header:"Ajouter une nouvelle chambre"
+      header:"Ajouter une nouvelle université"
   })
   }
- 
+  Edit(id:number) {
+   
+    this.dialogService.open(UniversiteFormComponent, {
+      data: { id },
+      header: "Modifier les informations de la chambre"
+    });
+  }
+  
+ verifId(id:number){
+  console.log(id);
+ }
 
  
 }

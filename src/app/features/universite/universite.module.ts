@@ -11,6 +11,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UniversiteFormComponent } from './universite-form/universite-form.component';
 import { FormsModule } from '@angular/forms';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     CommonModule,
     UniversiteRoutingModule,
     FormsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    DialogModule
   ],
 })
 export class UniversiteModule { }
