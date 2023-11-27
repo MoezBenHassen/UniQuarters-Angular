@@ -47,6 +47,9 @@
         .navigation-nav-link {
             background-color: $light-purple-color;
             color:$base-color;
+
+            // remove text underline
+            text-decoration: none;
         }
 
     }

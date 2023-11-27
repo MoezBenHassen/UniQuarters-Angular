@@ -28,6 +28,7 @@ export class ListReservationsComponent implements OnInit {
       (response: any) => {
         this.reservations = response.data.reservations;
         console.log(this.reservations);
+
       },
       (error) => {
         console.error('Error fetching data:', error);
@@ -35,20 +36,20 @@ export class ListReservationsComponent implements OnInit {
     );
   }
 
-  Add() {
+  add() {
     this.dialogService.open(ReservationFormComponent, {
       header: 'Ajouter une nouvelle réservation',
     });
   }
 
-  Edit(id: number) {
+  edit(id: number) {
     this.dialogService.open(ReservationFormComponent, {
       data: { id },
       header: 'Modifier les informations de la réservation',
     });
   }
 
-  Delete(id: number) {
+  cancel(id: number) {
     this.confirmationService.confirm({
       message: 'Êtes-vous sûr de vouloir effectuer cette action ?',
       acceptLabel: 'Supprimer',
@@ -56,13 +57,17 @@ export class ListReservationsComponent implements OnInit {
       accept: () => {
         this.reservationService.cancelReservation(id).subscribe(
           () => {
-            console.log('Reservation deleted successfully.');
+            console.log('Reservation cancelled successfully.');
           },
           (error) => {
-            console.error('Error deleting reservation:', error);
+            console.error('Error cancelling reservation:', error);
           }
         );
       },
     });
+  }
+
+  checkAffectedToEtudiants(reservation: Reservation): boolean {
+    return reservation.etudiants.length > 0;
   }
 }

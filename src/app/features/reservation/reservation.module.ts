@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [ListReservationsComponent, ReservationFormComponent],
@@ -24,6 +25,7 @@ import { ReservationFormComponent } from './reservation-form/reservation-form.co
     FormsModule,
     ProgressBarModule,
     DialogModule,
+    ButtonModule,
   ],
 })
 export class ReservationModule {}
