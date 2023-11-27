@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -32,7 +32,7 @@ export class UniversiteFormComponent implements OnInit {
   add(f: NgForm) {
     if (this.id!==undefined){
       this.uniService.updateUniversity(this.id,this.uni).subscribe({
-        next: () =>  this.dialogService.close()
+        
       });
       
 

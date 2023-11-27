@@ -5,7 +5,6 @@ import { UniversiteFormComponent } from './universite-form/universite-form.compo
 
 const routes: Routes = [
   {path:'', component:ListUniversiteComponent},
-  {path:'edit/:id',component:UniversiteFormComponent},
  
  
 ];

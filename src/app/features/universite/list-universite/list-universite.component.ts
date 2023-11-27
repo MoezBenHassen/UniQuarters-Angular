@@ -16,7 +16,7 @@ import { UniversiteFormComponent } from '../universite-form/universite-form.comp
 export class ListUniversiteComponent   implements OnInit {
  
    
-  
+
   @ViewChild('dt') table!: Table;
   
 
@@ -40,6 +40,7 @@ export class ListUniversiteComponent   implements OnInit {
         console.error('Error fetching data:', error);
       }
     );
+   
   }
   Add(){
     this.dialogService.open(UniversiteFormComponent, {

@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class UniversiteService {
   constructor(private _http: HttpClient) {}
   url="http://localhost:8080/universites";
+  universities:Observable<Universite[]>=this._http.get<Universite[]>(this.url);
   getAllUniversites():Observable<Universite[]>{
     return this._http.get<Universite[]>(this.url);
   }
