@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Chambre } from 'src/app/models/chambre';
 import { Etudiant } from 'src/app/models/etudiant';
 import { Reservation } from 'src/app/models/reservation';
@@ -25,7 +26,8 @@ export class ReservationFormComponent implements OnInit {
     private reservationService: ReservationService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public messageService: MessageService
+    public messageService: MessageService,
+    private dialogRef: DynamicDialogRef
   ) {}
 
   getReservation(id: String) {
@@ -120,15 +122,14 @@ export class ReservationFormComponent implements OnInit {
               });
             },
             complete: () => {
-              this.router.navigate(['/reservations']);
               console.log('completed');
-            }
+            },
           });
       } else {
         // Handle validation errors
         console.log('Form has validation errors');
       }
+      this.dialogRef.close();
     }
-    this.router.navigate(['/reservations']);
   }
 }
