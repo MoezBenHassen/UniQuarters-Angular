@@ -8,22 +8,41 @@
                 <label class="label required mt-2">Nom </label>
                 <input id="name" name="nom" required formControlName="nom" type="text" class="inputtext-sm full-width"
                     placeholder="Saisir le nom" pInputText />
+                    <div class="invalid-feedback" *ngIf="nom!.invalid && (nom!.touched || nom!.dirty)">
+                        <div *ngIf="nom!.errors!['required']"> Name is required !</div>
+                        <div *ngIf="nom!.errors!['minlength']"> Name must be at least 3 characters !</div>
+                    </div>
             </div>
 
             <div class="col-12">
                 <label class="label required mt-2">Adresse </label>
                 <input id="otherProperty" required name="adresse" formControlName="adresse" type="text"
                     class="inputtext-sm full-width" placeholder="Saisir adresse" pInputText />
+                    <div class="invalid-feedback" *ngIf="adresse!.invalid && (adresse!.touched || adresse!.dirty)">
+                        <div *ngIf="adresse!.errors!['required']"> Address is required !</div>
+                    </div>
             </div>
 
-            <div class="col-12" formGroupName="foyer">
+            <div  formGroupName="foyer">
+             <div class="col-12" >
                 <label class="label required mt-2">Nom Foyer </label>
                 <input id="otherProperty" required name="nom" formControlName="nom" type="text"
                     class="inputtext-sm full-width" placeholder="Saisir le nom du foyer" pInputText />
+                    <div class="invalid-feedback" *ngIf="foyerNom!.invalid && (foyerNom!.touched || foyerNom!.dirty)">
+                        <div *ngIf="foyerNom!.errors!['required']"> Name is required !</div>
+                        <div *ngIf="foyerNom!.errors!['minlength']"> Name must be at least 3 characters !</div>
 
+                    </div>
+            </div>
+            <div class="col-12" >
                 <label class="label required mt-2">Capacite Foyer </label>
-                <input id="otherProperty" required name="capacite" formControlName="capacite" type="text"
+                <input id="otherProperty" required name="capacite" formControlName="capacite" type="number"
                     class="inputtext-sm full-width" placeholder="Saisir la capacite du foyer" pInputText />
+                    <div class="invalid-feedback" *ngIf="capacite!.invalid && (capacite!.touched || capacite!.dirty)">
+                        <div *ngIf="capacite.errors!['required']"> Capacity is required !</div>
+                            {{capacite.errors!['required']}}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="footer-popup mt-4">

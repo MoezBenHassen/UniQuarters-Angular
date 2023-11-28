@@ -37,11 +37,11 @@ export class UniversiteFormComponent implements OnInit {
 
     }
     this.fbUni = this.fb.group({
-      nom: ['', [Validators.required]],
+      nom: ['', [Validators.required,Validators.minLength(3)]],
       adresse: ['', [Validators.required]],
       foyer: this.fb.group({
-        nom: [''],
-        capacite: [''],
+        nom: ['',[Validators.required,Validators.minLength(3)]],
+        capacite: ['',[Validators.required]],
       }),
     })
   }
@@ -115,6 +115,9 @@ export class UniversiteFormComponent implements OnInit {
   }
   get foyerNom() {
     return this.fbUni.get('foyer.nom')!.value
+  }
+  get capacite() {
+    return this.fbUni.get('foyer.capacite')!.value
   }
   get foyerCapacite() {
     return this.fbUni.get('foyer.capacite')!.value
