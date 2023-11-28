@@ -13,6 +13,7 @@ import { UniversiteService } from 'src/app/services/universite.service';
 })
 export class UniversiteFormComponent implements OnInit {
   id:number=0;
+  data: Universite[]=[];
   constructor(private uniService:UniversiteService,private router:Router, private ac:ActivatedRoute,private readonly dialogService: DynamicDialogRef, private config: DynamicDialogConfig,
     public messageService: MessageService,
     private confirmationService: ConfirmationService,){}
@@ -32,13 +33,13 @@ export class UniversiteFormComponent implements OnInit {
   add(f: NgForm) {
     if (this.id!==undefined){
       this.uniService.updateUniversity(this.id,this.uni).subscribe({
-        
       });
       
 
     } else {
     
       this.uniService.addUniversity(this.uni).subscribe({
+
        
       });
       this.messageService.add({
