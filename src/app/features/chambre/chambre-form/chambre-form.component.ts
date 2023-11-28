@@ -5,11 +5,11 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ChambreService } from 'src/app/services/chambre.service';
 
 @Component({
-  selector: 'app-add-update-chambre',
-  templateUrl: './add-update-chambre.component.html',
-  styleUrls: ['./add-update-chambre.component.scss']
+  selector: 'app-chambre-form',
+  templateUrl: './chambre-form.component.html',
+  styleUrls: ['./chambre-form.component.scss']
 })
-export class AddUpdateChambreComponent implements OnInit {
+export class ChambreFormComponent implements OnInit {
   loading: boolean = false;
   submitted = false;
   private idCounter = this.chambreService.data.length + 1;

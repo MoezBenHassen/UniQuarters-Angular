@@ -2,15 +2,15 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { ChambreService } from 'src/app/services/chambre.service';
-import { AddUpdateChambreComponent } from '../add-update-chambre/add-update-chambre.component';
+import { ChambreFormComponent } from '../chambre-form/chambre-form.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-get-delete-chambre',
-  templateUrl: './get-delete-chambre.component.html',
-  styleUrls: ['./get-delete-chambre.component.scss']
+  selector: 'app-list-chambre',
+  templateUrl: './list-chambre.component.html',
+  styleUrls: ['./list-chambre.component.scss']
 })
-export class GetDeleteChambreComponent implements OnInit {
+export class ListChambreComponent implements OnInit {
   @ViewChild('dt') table!: Table;
   data = [
     { id: 1, name: 'Item 1', otherProperty: 'Value 1' },
@@ -32,14 +32,14 @@ export class GetDeleteChambreComponent implements OnInit {
   }
   Add(){
     this.chambreService.AddOrEditChambreForm.reset()
-     this.dialogService.open(AddUpdateChambreComponent, {
+     this.dialogService.open(ChambreFormComponent, {
           header:"Ajouter une nouvelle chambre"
       })
   
   }
   Edit(data: any) {
     this.populateForm(data);
-    this.dialogService.open(AddUpdateChambreComponent, {
+    this.dialogService.open(ChambreFormComponent, {
       data: { data },
       header: "Modifier les informations de la chambre"
     });

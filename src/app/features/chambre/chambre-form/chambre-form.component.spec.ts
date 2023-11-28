@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddUpdateChambreComponent } from './add-update-chambre.component';
+import { ChambreFormComponent } from './chambre-form.component';
 
-describe('AddUpdateChambreComponent', () => {
-  let component: AddUpdateChambreComponent;
-  let fixture: ComponentFixture<AddUpdateChambreComponent>;
+describe('ChambreFormComponent', () => {
+  let component: ChambreFormComponent;
+  let fixture: ComponentFixture<ChambreFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddUpdateChambreComponent ]
+      declarations: [ ChambreFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddUpdateChambreComponent);
+    fixture = TestBed.createComponent(ChambreFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

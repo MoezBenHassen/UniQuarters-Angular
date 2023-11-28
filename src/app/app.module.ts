@@ -12,16 +12,9 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UniversiteModule } from './features/universite/universite.module';
-import { HttpClientModule } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
-import { AddUpdateChambreComponent } from './pages/chambre/add-update-chambre/add-update-chambre.component';
-import { GetDeleteChambreComponent } from './pages/chambre/get-delete-chambre/get-delete-chambre.component';
-import { HomeComponent } from './pages/home/home.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { LayoutComponent } from './pages/shared/layout/layout.component';
-import { NavigationComponent } from './pages/shared/navigation/navigation.component';
-import { FooterComponent } from './pages/shared/footer/footer.component';
-import { HeaderComponent } from './pages/shared/header/header.component';
+import { DividerModule } from 'primeng/divider';
+
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { StepsModule } from 'primeng/steps';
@@ -29,7 +22,17 @@ import { DialogModule } from 'primeng/dialog';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule } from "@angular/forms";
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {  HttpClientModule } from '@angular/common/http';
+import { ListChambreComponent } from './features/chambre/list-chambre/list-chambre.component';
+import { ChambreFormComponent } from './features/chambre/chambre-form/chambre-form.component';
+import { HomeComponent } from './features/home/home.component';
+import { LayoutComponent } from './features/shared/layout/layout.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { NavigationComponent } from './features/shared/navigation/navigation.component';
+import { FooterComponent } from './features/shared/footer/footer.component';
+import { HeaderComponent } from './features/shared/header/header.component';
+import { LoginComponent } from './features/login/login.component';
+import { ChambreModule } from './features/chambre/chambre.module';
 
 @NgModule({
   declarations: [
@@ -40,10 +43,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     AppComponent,
     HomeComponent,
-    GetDeleteChambreComponent,
-    AddUpdateChambreComponent
+    LoginComponent
   ],
   imports: [
+    
+    UniversiteModule,
+    ChambreModule,
     TagModule,
     TableModule,
     ReactiveFormsModule,
@@ -58,11 +63,13 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     NgSelectModule,
     ButtonModule,
     AutoCompleteModule,
-    UniversiteModule,
     ConfirmDialogModule,
     StepsModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    DividerModule,
+
+
   ],
   providers: [DialogService,ConfirmationService, MessageService],
   bootstrap: [AppComponent]
