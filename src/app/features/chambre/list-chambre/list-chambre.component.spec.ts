@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GetDeleteChambreComponent } from './get-delete-chambre.component';
+import { ListChambreComponent } from './list-chambre.component';
 
-describe('GetDeleteChambreComponent', () => {
-  let component: GetDeleteChambreComponent;
-  let fixture: ComponentFixture<GetDeleteChambreComponent>;
+describe('ListChambreComponent', () => {
+  let component: ListChambreComponent;
+  let fixture: ComponentFixture<ListChambreComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GetDeleteChambreComponent ]
+      declarations: [ ListChambreComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GetDeleteChambreComponent);
+    fixture = TestBed.createComponent(ListChambreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -28,13 +28,12 @@ export class ListUniversiteComponent   implements OnInit {
     private confirmationService: ConfirmationService,
   ) { }
 
-  data : Universite[]=[];
   
   ngOnInit(): void {
     this.uniService.getAllUniversites().subscribe(
       (response: any) => {
-        this.data = response.data.universities;
-        console.log(this.data)
+        this.uniService.data = response.data.universities;
+        console.log(this.uniService.data)
       },
       (error) => {
         console.error('Error fetching data:', error);
@@ -60,12 +59,19 @@ export class ListUniversiteComponent   implements OnInit {
         acceptLabel: 'Supprimer',
         rejectLabel: 'Annuler',
         accept: () => {
-          this.uniService.deleteUniversity(id).subscribe(
-            () => {
-                
-                console.log('University deleted successfully.');
-               
-            },
+          this.uniService.deleteUniversity(id).subscribe((data)=>{
+            this.uniService.getAllUniversites().subscribe(
+              (response: any) => {
+                this.uniService.data = response.data.universities;
+                console.log(this.uniService.data)
+              },
+              (error) => {
+                console.error('Error fetching data:', error);
+              }
+    
+              
+            );
+          },
             (error) => {
                 
                 console.error('Error deleting university:', error);

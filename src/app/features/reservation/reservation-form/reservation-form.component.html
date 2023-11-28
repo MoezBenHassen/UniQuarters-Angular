@@ -1,0 +1,48 @@
+
+<div class="application">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form">
+    <div class="grid">
+      <div class="col-12">
+        <label class="label required">Etudiant</label>
+        <p-dropdown
+          id="etudiants"
+          [(ngModel)]="selectedEtudiant"
+          name="selectedEtudiant"
+          [options]="etudiants"
+          optionLabel="nom"
+          placeholder="Select an etudiant"
+          [required]="true"
+        ></p-dropdown>
+        <div
+          *ngIf="f.controls['selectedEtudiant'].hasError('required')"
+          class="error-message"
+        >
+          Etudiant is required.
+        </div>
+      </div>
+      <div class="col-12">
+        <label class="label required">Chambre</label>
+        <p-dropdown
+          id="chambres"
+          [(ngModel)]="selectedChambre"
+          name="selectedChambre"
+          [options]="chambres"
+          optionLabel="numero"
+          placeholder="Select a chambre"
+          [required]="true"
+        ></p-dropdown>
+        <div
+          *ngIf="f.controls['selectedChambre'].hasError('required')"
+          class="error-message"
+        >
+          Chambre is required.
+        </div>
+      </div>
+    </div>
+    <div class="footer-popup">
+      <button type="submit" class="primary-button" [disabled]="f.invalid">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

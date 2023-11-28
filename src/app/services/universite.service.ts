@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Universite } from '../models/universite';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UniversiteService {
+  data : Universite[]=[];
+
   constructor(private _http: HttpClient) {}
-  url="http://localhost:8080/universites";
-  universities:Observable<Universite[]>=this._http.get<Universite[]>(this.url);
+  url=environment.uniQuartersUri+"/universites";
   getAllUniversites():Observable<Universite[]>{
     return this._http.get<Universite[]>(this.url);
   }

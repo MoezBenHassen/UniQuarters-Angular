@@ -5,27 +5,27 @@
         <div class="grid">
 
             <div class="col-12">
-                <label class="label required" >Nom </label>
+                <label class="label required mt-2" >Nom </label>
                 <input id="name" name="nom" required minlength="3" #nom="ngModel" [(ngModel)]="uni.nom" type="text" class="inputtext-sm full-width"
                     placeholder="Saisir le nom" pInputText />
-                    <div *ngIf="nom.dirty && nom.errors?.['required']" class="alert alert-danger" role="alert">
+                    <div *ngIf="nom.dirty && nom.errors?.['required']" class="invalid-feedback" >
                         Le nom est obligatoire    
                       </div>
-                      <div *ngIf="nom.dirty && nom.errors?.['minlength']" class="alert alert-danger" role="alert">
+                      <div *ngIf="nom.dirty && nom.errors?.['minlength']" class="invalid-feedback">
                       Le nom doit contenir 3 caractères minimum          
                       </div>
             </div>
             <div class="col-12">
-                <label class="label required">adresse </label>
+                <label class="label required mt-2">adresse </label>
                 <input id="otherProperty" required  #adresse="ngModel" name="adresse" [(ngModel)]="uni.adresse" type="text" class="inputtext-sm full-width"
                     placeholder="Saisir adresse" pInputText />
-                    <div *ngIf="adresse.dirty && adresse.errors?.['required']" class="alert alert-danger" role="alert">
+                    <div *ngIf="adresse.dirty && adresse.errors?.['required']" class="invalid-feedback">
                         L'adresse est obligatoire    
                       </div>
                      
             </div>
         </div>
-        <div class="footer-popup">
+        <div class="footer-popup mt-4">
             <input type="submit" class="primary-button"  [value]="id!==undefined? 'Update' : 'Add'" [disabled]="f.invalid">
 
         </div>

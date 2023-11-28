@@ -12,15 +12,48 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UniversiteModule } from './features/universite/universite.module';
-import { HttpClientModule } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
-
+import { DividerModule } from 'primeng/divider';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { StepsModule } from 'primeng/steps';
+import { DialogModule } from 'primeng/dialog';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ReactiveFormsModule } from "@angular/forms";
+import {  HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './features/home/home.component';
+import { LayoutComponent } from './features/shared/layout/layout.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { NavigationComponent } from './features/shared/navigation/navigation.component';
+import { FooterComponent } from './features/shared/footer/footer.component';
+import { HeaderComponent } from './features/shared/header/header.component';
+import { LoginComponent } from './features/login/login.component';
+import { ChambreModule } from './features/chambre/chambre.module';
+import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
+import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    HeaderComponent, 
+    FooterComponent, 
+    NavigationComponent, 
+    LayoutComponent,
+    DashboardComponent,
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+
   ],
   imports: [
+    
+    UniversiteModule,
+    ChambreModule,
+    TagModule,
+    TableModule,
+    ReactiveFormsModule,
+    ProgressBarModule,
+    ProgressSpinnerModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
@@ -30,11 +63,15 @@ import { FormsModule } from '@angular/forms';
     NgSelectModule,
     ButtonModule,
     AutoCompleteModule,
-    UniversiteModule,
-    
-    FormsModule
+    ConfirmDialogModule,
+    StepsModule,
+    DialogModule,
+    FormsModule,
+    DividerModule,
+
+
   ],
-  providers: [],
+  providers: [DialogService,ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

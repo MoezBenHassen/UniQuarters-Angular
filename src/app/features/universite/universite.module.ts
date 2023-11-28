@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { UniversiteRoutingModule } from './universite-routing.module';
 import { ListUniversiteComponent } from './list-universite/list-universite.component';
-import { DialogService } from 'primeng/dynamicdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -12,6 +10,10 @@ import { UniversiteFormComponent } from './universite-form/universite-form.compo
 import { FormsModule } from '@angular/forms';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -27,7 +29,12 @@ import { DialogModule } from 'primeng/dialog';
     UniversiteRoutingModule,
     FormsModule,
     ProgressBarModule,
-    DialogModule
+    DialogModule,
+    InputTextModule,
+    ToastModule,
+
   ],
+  providers: [DialogService,ConfirmationService, MessageService],
+
 })
 export class UniversiteModule { }
