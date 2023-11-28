@@ -13,15 +13,15 @@ export class ReservationService {
     return this._http.get(this.apiUrl);
   }
 
-  getReservation(id: number) {
+  getReservation(id: String) {
     return this._http.get(`${this.apiUrl}/${id}`);
   }
 
-  addReservation(idChambre: number, idClient: number) {
-    return this._http.post(`${this.apiUrl}/${idChambre}/${idClient}`, {});
+  addReservation(idChambre: number, cinEtudiant: number) {
+    return this._http.post(`${this.apiUrl}/${idChambre}/${cinEtudiant}`, {});
   }
 
-  updateReservation(id: number) {
+  updateReservation(id: String) {
     return this._http.put(`${this.apiUrl}/${id}`, {});
   }
 
@@ -29,11 +29,11 @@ export class ReservationService {
     return this._http.delete(`${this.apiUrl}/${cinEtudiant}`);
   }
 
-  getEtudiants(){
+  getEtudiants() {
     return this._http.get(environment.baseUrl + '/etudiants');
   }
 
-  getChambres(){
+  getChambres() {
     return this._http.get(environment.baseUrl + '/chambres');
   }
 }

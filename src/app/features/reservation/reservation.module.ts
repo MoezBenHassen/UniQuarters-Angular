@@ -14,6 +14,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [ListReservationsComponent, ReservationFormComponent],
@@ -28,6 +29,7 @@ import { ToastModule } from 'primeng/toast';
     DialogModule,
     ButtonModule,
     ToastModule,
+    DropdownModule
   ],
   providers: [DialogService, ConfirmationService, MessageService],
 })

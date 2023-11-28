@@ -1,11 +1,6 @@
-interface Etudiant {
-  id: number;
-  nom: string;
-  prenom: string;
-  cin: number;
-  ecole: string;
-  dateNaissance: string;
-}
+import { Etudiant } from "./etudiant";
+
+
 export interface Reservation {
   id: string;
   anneeUniversitaire: string;
