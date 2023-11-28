@@ -1,5 +1,10 @@
-export class RoutePaths{
-    dashboard='dashboard';
-    home='home'
+export enum RoutePaths{
+    DASHBOARD='dashboard',
+    HOME='home',
+    LOGIN='login',
+    UNIVERSITE='universite',
+    CHAMBRE='chambre',
+    RESERVATION='reservation',
+    GESTION='gestion',
 
 }

@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
+import { RoutePaths } from 'src/app/models/routepaths';
 
 @Component({
   selector: 'app-navigation',
@@ -21,17 +22,24 @@ import { Component, Input } from '@angular/core';
 export class NavigationComponent {
   @Input() active!: boolean;
   navData = navbarData;
+  routes=RoutePaths
 }
 
 export const navbarData = [
   {
     icon: 'pi pi-home',
     label: 'Dashboard',
-    routerLink: '/',
+    routeLink: `/${RoutePaths.GESTION}/${RoutePaths.DASHBOARD}`,
   },
   {
     icon: 'pi pi-calendar-plus',
-    label: 'Réservations',
-    routerLink: '/reservations',
+    label: 'Universités',
+    routeLink: `/${RoutePaths.GESTION}/${RoutePaths.UNIVERSITE}`,
+  },
+
+  {
+    icon: 'pi pi-calendar-plus',
+    label: 'Chambres',
+    routeLink: `/${RoutePaths.GESTION}/${RoutePaths.CHAMBRE}`,
   }
 ];

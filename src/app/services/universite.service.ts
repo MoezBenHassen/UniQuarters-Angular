@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UniversiteService {
+  data : Universite[]=[];
+
   constructor(private _http: HttpClient) {}
   url="http://localhost:8080/universites";
   getAllUniversites():Observable<Universite[]>{

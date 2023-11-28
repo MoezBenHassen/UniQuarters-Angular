@@ -1,39 +1,39 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservationService {
-  apiUrl = environment.baseUrl + '/reservations';
+  uniQuartersUri = environment.uniQuartersUri + '/reservations';
   constructor(private _http: HttpClient) {}
 
   getReservations() {
-    return this._http.get(this.apiUrl);
+    return this._http.get(this.uniQuartersUri);
   }
 
   getReservation(id: String) {
-    return this._http.get(`${this.apiUrl}/${id}`);
+    return this._http.get(`${this.uniQuartersUri}/${id}`);
   }
 
   addReservation(idChambre: number, cinEtudiant: number) {
-    return this._http.post(`${this.apiUrl}/${idChambre}/${cinEtudiant}`, {});
+    return this._http.post(`${this.uniQuartersUri}/${idChambre}/${cinEtudiant}`, {});
   }
 
   updateReservation(id: String) {
-    return this._http.put(`${this.apiUrl}/${id}`, {});
+    return this._http.put(`${this.uniQuartersUri}/${id}`, {});
   }
 
   cancelReservation(cinEtudiant: number) {
-    return this._http.delete(`${this.apiUrl}/${cinEtudiant}`);
+    return this._http.delete(`${this.uniQuartersUri}/${cinEtudiant}`);
   }
 
   getEtudiants() {
-    return this._http.get(environment.baseUrl + '/etudiants');
+    return this._http.get(environment.uniQuartersUri + '/etudiants');
   }
 
   getChambres() {
-    return this._http.get(environment.baseUrl + '/chambres');
+    return this._http.get(environment.uniQuartersUri + '/chambres');
   }
 }

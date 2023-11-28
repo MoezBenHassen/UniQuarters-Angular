@@ -82,7 +82,6 @@ export class ListReservationsComponent implements OnInit {
       (response: any) => {
         this.reservations = response.data.reservations;
         console.log(this.reservations);
-        console.log(this.checkAffectedToEtudiants(this.reservations[0]));
 
       },
       (error) => {

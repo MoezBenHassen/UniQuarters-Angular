@@ -9,6 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ListChambreComponent } from './list-chambre/list-chambre.component';
 import { ChambreFormComponent } from './chambre-form/chambre-form.component';
 import { ChambreRoutingModule } from './chambre-routing.module';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { ChambreRoutingModule } from './chambre-routing.module';
         ProgressBarModule,
         DialogModule,
         ReactiveFormsModule,
-
+        InputTextModule
     ],
 })
 export class ChambreModule { }

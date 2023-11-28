@@ -12,7 +12,6 @@ import { ChambreService } from 'src/app/services/chambre.service';
 export class ChambreFormComponent implements OnInit {
   loading: boolean = false;
   submitted = false;
-  private idCounter = this.chambreService.data.length + 1;
 
   constructor(
     public chambreService: ChambreService,
@@ -29,15 +28,9 @@ export class ChambreFormComponent implements OnInit {
     this.submitted = true;
   
     if (this.chambreService.AddOrEditChambreForm.valid) {
-      this.chambreService.AddOrEditChambreForm.value.id = this.idCounter++;
       this.loading = true;
-      const chambre = this.chambreService.AddOrEditChambreForm.value as any as {
-        id: number;
-        name: string;
-        otherProperty: string;
-      };
+
   
-      this.chambreService.data.push(chambre);
   
       this.messageService.add({
         severity: 'success',
@@ -70,10 +63,9 @@ export class ChambreFormComponent implements OnInit {
         otherProperty: string;
       };
   
-      const index = this.chambreService.data.findIndex(item => item.id === chambre.id);
   
-      if (index !== -1) {
-        this.chambreService.data[index] = chambre;
+      if (true) {
+      
   
         this.messageService.add({
           severity: 'success',

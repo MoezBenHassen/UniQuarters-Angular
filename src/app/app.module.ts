@@ -14,7 +14,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UniversiteModule } from './features/universite/universite.module';
 import { FormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
-
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { StepsModule } from 'primeng/steps';
@@ -23,8 +22,6 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule } from "@angular/forms";
 import {  HttpClientModule } from '@angular/common/http';
-import { ListChambreComponent } from './features/chambre/list-chambre/list-chambre.component';
-import { ChambreFormComponent } from './features/chambre/chambre-form/chambre-form.component';
 import { HomeComponent } from './features/home/home.component';
 import { LayoutComponent } from './features/shared/layout/layout.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -33,6 +30,8 @@ import { FooterComponent } from './features/shared/footer/footer.component';
 import { HeaderComponent } from './features/shared/header/header.component';
 import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
+import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
+import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,8 @@ import { ChambreModule } from './features/chambre/chambre.module';
     DashboardComponent,
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+
   ],
   imports: [
     

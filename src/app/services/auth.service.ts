@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.dev';
 import { LoginUser } from '../models/loginUser';
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
+import { environment } from 'src/environments/environment';
 
-const apiUrl = environment.apiURL+"/auth";
+const uniQuartersUri = environment.uniQuartersUri+"/auth";
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +19,7 @@ export class AuthService {
         ) {}
 
     login(u: LoginUser): Observable<any> {
-        return this.http.post(apiUrl + "/authenticate", u);
+        return this.http.post(uniQuartersUri + "/authenticate", u);
     }
 
     logout() {

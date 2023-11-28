@@ -55,7 +55,6 @@
         line-height: 70px;
         text-align: center;
         transition: background-color  .2s;
-        cursor: pointer;
 
         i {
             font-size: 24px;
@@ -134,13 +133,15 @@ td.action {
 
 
 .primary-button {
+    cursor: alias;
+
     font-family: $font-family !important;
     color: $white-color;
     background: $purple-color;
     border: 1px solid $purple-color;
     font-size: 15px;
     padding: 12px 20px;
-    border-radius: 12px;
+    border-radius: 12px!important;
     font-weight: 600;
 
     span {
@@ -186,4 +187,20 @@ td.action {
     font-size: 12px!important;
     font-weight: 400!important;
     margin-right: 1px;
+}
+
+.invalid-feedback {
+    color: $danger-color;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+.p-button {
+    color: #ffffff;
+    background: $purple-color!important;
+    border: 1px solid $purple-color!important;
+    &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $light-purple-color!important;
+    }
 }

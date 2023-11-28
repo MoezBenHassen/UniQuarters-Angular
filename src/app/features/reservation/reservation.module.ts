@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ReservationRoutingModule } from './reservation-routing.module';
 import { ListReservationsComponent } from './list-reservations/list-reservations.component';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -15,6 +14,7 @@ import { ReservationFormComponent } from './reservation-form/reservation-form.co
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [ListReservationsComponent, ReservationFormComponent],
@@ -29,8 +29,9 @@ import { DropdownModule } from 'primeng/dropdown';
     DialogModule,
     ButtonModule,
     ToastModule,
-    DropdownModule
+    DropdownModule,
+    InputTextModule
   ],
   providers: [DialogService, ConfirmationService, MessageService],
 })
-export class ReservationModule {}
+export class ReservationModule { }
