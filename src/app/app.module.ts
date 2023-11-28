@@ -74,4 +74,4 @@ import { ChambreModule } from './features/chambre/chambre.module';
   providers: [DialogService,ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
