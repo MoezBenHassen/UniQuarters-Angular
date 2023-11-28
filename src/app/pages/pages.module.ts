@@ -17,11 +17,14 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule } from "@angular/forms";
+import { LoginComponent } from './login/login.component';
+import { DividerModule } from 'primeng/divider';
 @NgModule({
     declarations: [
     HomeComponent,
     GetDeleteChambreComponent,
-    AddUpdateChambreComponent
+    AddUpdateChambreComponent,
+    LoginComponent
   ],
     imports: [
       CommonModule,
@@ -37,7 +40,8 @@ import { ReactiveFormsModule } from "@angular/forms";
       ConfirmDialogModule,
       ProgressBarModule,
       ProgressSpinnerModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      DividerModule
     ],
 
 })
