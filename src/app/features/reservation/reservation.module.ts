@@ -13,6 +13,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [ListReservationsComponent, ReservationFormComponent],
@@ -26,6 +27,8 @@ import { ButtonModule } from 'primeng/button';
     ProgressBarModule,
     DialogModule,
     ButtonModule,
+    ToastModule,
   ],
+  providers: [DialogService, ConfirmationService, MessageService],
 })
 export class ReservationModule {}

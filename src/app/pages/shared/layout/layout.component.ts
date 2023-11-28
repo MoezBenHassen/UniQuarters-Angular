@@ -24,7 +24,7 @@ export class LayoutComponent {
   onMaskClick() {
     this.hideMenu();
   }
-  
+
   hideMenu() {
     this.menuActive = false;
     this.removeClass(document.body, 'blocked-scroll');

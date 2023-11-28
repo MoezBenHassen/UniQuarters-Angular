@@ -79,7 +79,7 @@
               type="button"
               icon="pi pi-trash"
               (click)="cancel(reservation.etudiants[0].cin)"
-              (disabled)="!checkAffectedToEtudiants(reservation.etudiants[0].id)"
+              [disabled]="reservation.etudiants.length === 0"
             ></button>
           </td>
         </tr>
