@@ -7,7 +7,7 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UniversiteFormComponent } from './universite-form/universite-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -32,6 +32,7 @@ import { ToastModule } from 'primeng/toast';
     DialogModule,
     InputTextModule,
     ToastModule,
+    ReactiveFormsModule
 
   ],
   providers: [DialogService,ConfirmationService, MessageService],

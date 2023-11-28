@@ -1,32 +1,34 @@
 <!-- <p-progressBar class="top-progress-bar" [style]="{ height: '3px' }" mode="indeterminate"
     *ngIf="loading"></p-progressBar> -->
 <div class="application mt-5">
-    <form #f="ngForm" (ngSubmit)="add(f)" class="form">
+    <form [formGroup]="fbUni" (ngSubmit)="add()" class="form">
         <div class="grid">
 
             <div class="col-12">
-                <label class="label required mt-2" >Nom </label>
-                <input id="name" name="nom" required minlength="3" #nom="ngModel" [(ngModel)]="uni.nom" type="text" class="inputtext-sm full-width"
+                <label class="label required mt-2">Nom </label>
+                <input id="name" name="nom" required formControlName="nom" type="text" class="inputtext-sm full-width"
                     placeholder="Saisir le nom" pInputText />
-                    <div *ngIf="nom.dirty && nom.errors?.['required']" class="invalid-feedback" >
-                        Le nom est obligatoire    
-                      </div>
-                      <div *ngIf="nom.dirty && nom.errors?.['minlength']" class="invalid-feedback">
-                      Le nom doit contenir 3 caractères minimum          
-                      </div>
             </div>
+
             <div class="col-12">
-                <label class="label required mt-2">adresse </label>
-                <input id="otherProperty" required  #adresse="ngModel" name="adresse" [(ngModel)]="uni.adresse" type="text" class="inputtext-sm full-width"
-                    placeholder="Saisir adresse" pInputText />
-                    <div *ngIf="adresse.dirty && adresse.errors?.['required']" class="invalid-feedback">
-                        L'adresse est obligatoire    
-                      </div>
-                     
+                <label class="label required mt-2">Adresse </label>
+                <input id="otherProperty" required name="adresse" formControlName="adresse" type="text"
+                    class="inputtext-sm full-width" placeholder="Saisir adresse" pInputText />
+            </div>
+
+            <div class="col-12" formGroupName="foyer">
+                <label class="label required mt-2">Nom Foyer </label>
+                <input id="otherProperty" required name="nom" formControlName="nom" type="text"
+                    class="inputtext-sm full-width" placeholder="Saisir le nom du foyer" pInputText />
+
+                <label class="label required mt-2">Capacite Foyer </label>
+                <input id="otherProperty" required name="capacite" formControlName="capacite" type="text"
+                    class="inputtext-sm full-width" placeholder="Saisir la capacite du foyer" pInputText />
             </div>
         </div>
         <div class="footer-popup mt-4">
-            <input type="submit" class="primary-button"  [value]="id!==undefined? 'Update' : 'Add'" [disabled]="f.invalid">
+            <input type="submit" class="primary-button" [value]="id!==undefined? 'Update' : 'Add'"
+                [disabled]="fbUni.invalid">
 
         </div>
     </form>

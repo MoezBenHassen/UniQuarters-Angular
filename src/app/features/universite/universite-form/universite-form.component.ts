@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -15,26 +15,76 @@ import { UniversiteService } from 'src/app/services/universite.service';
 export class UniversiteFormComponent implements OnInit {
 
   id: number = 0;
-  constructor(private uniService: UniversiteService, private router: Router, private ac: ActivatedRoute, private readonly dialogService: DynamicDialogRef, private config: DynamicDialogConfig,
-    public messageService: MessageService,
-    private confirmationService: ConfirmationService,) { }
+  fbUni: FormGroup = new FormGroup({});
+
+  constructor(private uniService: UniversiteService,
+    private fb: FormBuilder,
+    private readonly dialogService: DynamicDialogRef,
+    private config: DynamicDialogConfig,
+    public messageService: MessageService,) { }
+
+
+
   ngOnInit(): void {
     this.id = this.config.data?.id;
     console.log(this.id);
     if (this.id != undefined) {
       this.uniService.fetchUserById(this.id).subscribe({
-        next: (data: any) => { this.uni = data.data.university; }
-        ,
-      });
-    }
 
+        next: (data: any) => this.onUniExist(data.data.university)
+
+      });
+
+    }
+    this.fbUni = this.fb.group({
+      nom: ['', [Validators.required]],
+      adresse: ['', [Validators.required]],
+      foyer: this.fb.group({
+        nom: [''],
+        capacite: [''],
+      }),
+    })
   }
 
+
   uni: Universite = new Universite();
-  add(f: NgForm) {
+
+  add() {
 
     if (this.id !== undefined) {
-      this.uniService.updateUniversity(this.id, this.uni).subscribe((data)=>{
+      this.uniService.updateUniversity(this.id, this.fbUni.getRawValue()).subscribe((data) => {
+        this.uniService.getAllUniversites().subscribe(
+          (response: any) => {
+            this.uniService.data = response.data.universities;
+          },
+          (error) => {
+            console.error('Error fetching data:', error);
+          }
+
+
+        );
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Yessss',
+          detail: 'Successfully Updated ',
+          life: 5000,
+        });
+        this.dialogService.close();
+        this.fbUni.reset();
+      });
+
+
+    }
+    else {
+      this.uniService.addUniversity(this.fbUni.getRawValue()).subscribe((data) => {
+        console.log(this.fbUni.getRawValue())
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Yessss',
+          detail: 'Successfully Added ',
+          life: 5000,
+        });
+
         this.uniService.getAllUniversites().subscribe(
           (response: any) => {
             this.uniService.data = response.data.universities;
@@ -43,57 +93,37 @@ export class UniversiteFormComponent implements OnInit {
           (error) => {
             console.error('Error fetching data:', error);
           }
-
-          
         );
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Yessss',
-          detail: 'Successfully Updated ',
-          life: 5000,
-        });   
-        this.dialogService.close();
-        f.reset()
+
       });
-
-
-    } else {
-
-
-      this.uniService.addUniversity(this.uni).subscribe((data)=> 
-        {
-          console.log(data)
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Yessss',
-            detail: 'Successfully Added ',
-            life: 5000,
-          });      
-        
-          this.uniService.getAllUniversites().subscribe(
-            (response: any) => {
-              this.uniService.data = response.data.universities;
-              console.log(this.uniService.data)
-            },
-            (error) => {
-              console.error('Error fetching data:', error);
-            }
-
-            
-          );
-
-        }
-        );
-        this.dialogService.close();
-        f.reset()
-
-
-
-     
-
+      this.dialogService.close();
+      this.fbUni.reset();
     }
 
+  }
+  onUniExist(uni: Universite) {
+    this.fbUni.patchValue({
+      nom: uni.nom,
+      adresse: uni.adresse,
 
+
+    });
+    this.fbUni.get('foyer')?.patchValue({
+      nom: uni.foyer.nom,
+      capacite: uni.foyer.capacite
+    })
+  }
+  get foyerNom() {
+    return this.fbUni.get('foyer.nom')!.value
+  }
+  get foyerCapacite() {
+    return this.fbUni.get('foyer.capacite')!.value
+  }
+  get nom() {
+    return this.fbUni.get('nom');
+  }
+  get adresse() {
+    return this.fbUni.get('adresse');
   }
 
 }
