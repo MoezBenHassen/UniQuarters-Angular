@@ -14,12 +14,17 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
+import { UniversiteDetailsComponent } from './universite-details/universite-details.component';
+import { CardModule } from 'primeng/card';
+import { ListUniversiteFilteredComponent } from './list-universite-filtered/list-universite-filtered.component';
 
 
 @NgModule({
   declarations: [
     ListUniversiteComponent,
-    UniversiteFormComponent
+    UniversiteFormComponent,
+    UniversiteDetailsComponent,
+    ListUniversiteFilteredComponent
   ],
   imports: [
     TableModule,
@@ -32,7 +37,8 @@ import { ToastModule } from 'primeng/toast';
     DialogModule,
     InputTextModule,
     ToastModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CardModule
 
   ],
   providers: [DialogService,ConfirmationService, MessageService],

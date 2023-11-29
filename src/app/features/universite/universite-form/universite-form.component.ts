@@ -16,7 +16,7 @@ export class UniversiteFormComponent implements OnInit {
 
   id: number = 0;
   fbUni: FormGroup = new FormGroup({});
-
+  gouvernorats: string[] = this.uniService.getGouvernorats();
   constructor(private uniService: UniversiteService,
     private fb: FormBuilder,
     private readonly dialogService: DynamicDialogRef,
@@ -29,7 +29,7 @@ export class UniversiteFormComponent implements OnInit {
     this.id = this.config.data?.id;
     console.log(this.id);
     if (this.id != undefined) {
-      this.uniService.fetchUserById(this.id).subscribe({
+      this.uniService.fetchUniById(this.id).subscribe({
 
         next: (data: any) => this.onUniExist(data.data.university)
 
@@ -128,5 +128,7 @@ export class UniversiteFormComponent implements OnInit {
   get adresse() {
     return this.fbUni.get('adresse');
   }
+ 
+
 
 }
