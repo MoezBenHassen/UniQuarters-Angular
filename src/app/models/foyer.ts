@@ -4,5 +4,7 @@ export class Foyer {
     nom! : string;
     capacite! : number;
     idUniversite !: number;
+    lat!:number;
+    lng!:number;
    
 }

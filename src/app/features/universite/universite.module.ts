@@ -17,6 +17,8 @@ import { ToastModule } from 'primeng/toast';
 import { UniversiteDetailsComponent } from './universite-details/universite-details.component';
 import { CardModule } from 'primeng/card';
 import { ListUniversiteFilteredComponent } from './list-universite-filtered/list-universite-filtered.component';
+import { UniversiteLocationComponent } from './universite-location/universite-location.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { ListUniversiteFilteredComponent } from './list-universite-filtered/list
     ListUniversiteComponent,
     UniversiteFormComponent,
     UniversiteDetailsComponent,
-    ListUniversiteFilteredComponent
+    ListUniversiteFilteredComponent,
+    UniversiteLocationComponent
   ],
   imports: [
     TableModule,
@@ -38,7 +41,7 @@ import { ListUniversiteFilteredComponent } from './list-universite-filtered/list
     InputTextModule,
     ToastModule,
     ReactiveFormsModule,
-    CardModule
+    CardModule, LeafletModule
 
   ],
   providers: [DialogService,ConfirmationService, MessageService],

@@ -1,7 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Universite } from 'src/app/models/universite';
 import { UniversiteService } from 'src/app/services/universite.service';
+import { UniversiteLocationComponent } from '../universite-location/universite-location.component';
 
 @Component({
   selector: 'app-list-universite-filtered',
@@ -11,7 +13,8 @@ import { UniversiteService } from 'src/app/services/universite.service';
 export class ListUniversiteFilteredComponent implements OnInit {
   address!:String;
   universities:Universite[]=[];
-  constructor(private ac:ActivatedRoute,private uniService:UniversiteService){}
+  constructor(private ac:ActivatedRoute,private uniService:UniversiteService,    private readonly dialogService: DialogService,
+    ){}
   ngOnInit(): void {
     this.ac.params.subscribe((param) => {
       this.address = param['address']; });
@@ -20,5 +23,12 @@ export class ListUniversiteFilteredComponent implements OnInit {
 
     }
 
+showLocation(uni:Universite){
+  console.log(uni)
+  this.dialogService.open(UniversiteLocationComponent, {
+    data: { uni },
+    header: "Localisation Foyer"
+  });
 
+}
 }

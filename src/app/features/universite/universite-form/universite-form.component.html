@@ -16,14 +16,15 @@
 
             <div class="col-12">
                 <label class="label required mt-2">Adresse </label>
-                <select id="otherProperty" required name="adresse" formControlName="adresse"  class="inputtext-sm full-width" placeholder="Saisir adresse" pInputText >
-                <option *ngFor="let gouvernorat of gouvernorats" [value]="gouvernorat">{{ gouvernorat }}</option>
+                <select id="otherProperty" required name="adresse" formControlName="adresse"
+                    class="inputtext-sm full-width" placeholder="Saisir adresse" pInputText>
+                    <option *ngFor="let gouvernorat of gouvernorats" [value]="gouvernorat">{{ gouvernorat }}</option>
                 </select>
                 <div class="invalid-feedback" *ngIf="adresse!.invalid && (adresse!.touched || adresse!.dirty)">
                     <div *ngIf="adresse!.errors!['required']"> Address is required !</div>
                 </div>
             </div>
-            
+
 
             <div formGroupName="foyer">
                 <div class="col-12">
@@ -36,16 +37,35 @@
 
                     </div>
                 </div>
+                <div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"
+                    (leafletClick)="mapClicked($event)">
+                </div>
                 <div class="col-12">
                     <label class="label required mt-2">Capacite Foyer </label>
                     <input id="otherProperty" required name="capacite" formControlName="capacite" type="number"
                         class="inputtext-sm full-width" placeholder="Saisir la capacite du foyer" pInputText />
                     <div class="invalid-feedback" *ngIf="capacite!.invalid && (capacite!.touched || capacite!.dirty)">
                         <div *ngIf="capacite.errors!['required']"> Capacity is required !</div>
-                        {{capacite.errors!['required']}}
+
                     </div>
                 </div>
-               
+                <div class="col-12">
+                    <label  class="label required mt-2" for="latitude">Latitude:</label>
+                    <input  class="inputtext-sm full-width" type="text" formControlName="lat" readonly pInputText>
+                    <div class="invalid-feedback" *ngIf="foyerLat!.invalid ">
+                        <div *ngIf="foyerLat.errors!['required']"> Latitude is required !</div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label  class="label required mt-2" for="longitude">Longitude:</label>
+                    <input  class="inputtext-sm full-width"type="text" formControlName="lng" readonly pInputText>
+                    <div class="invalid-feedback" *ngIf="foyerLng!.invalid">
+                        <div *ngIf="foyerLng.errors!['required']"> Longitude is required !</div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="footer-popup mt-4">

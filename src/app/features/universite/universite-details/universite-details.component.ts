@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input,Output,EventEmitter } from '@angular/core';
 import { Universite } from 'src/app/models/universite';
 
 @Component({
@@ -8,5 +8,9 @@ import { Universite } from 'src/app/models/universite';
 })
 export class UniversiteDetailsComponent {
   @Input() uni!:Universite;
-
+  @Output() showUniv = new EventEmitter<Universite>();
+  showLocation(univ:Universite){
+    this.showUniv.emit(univ);
+   // console.log(univ)
+  }
 }

@@ -14,8 +14,11 @@
 <div class="home">
     <h2 class="title py-4">Universite Par Région : {{address}}</h2>
 
-   
-        <app-universite-details *ngFor="let uni of universities" class="col-4" [uni]="uni"></app-universite-details>
-   
-
+    <div class="container">
+        <div class="row">
+            <div class="col-4"  *ngFor="let uni of universities">
+                <app-universite-details (showUniv)="showLocation($event)" [uni]="uni"></app-universite-details>
+            </div>
+        </div>
+    </div>
 </div>
