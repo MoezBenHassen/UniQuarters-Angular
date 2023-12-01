@@ -57,4 +57,7 @@ export class UniversiteService {
   fetchUnisByFoyer(nom: String) {
     return this._http.get<Universite>(this.url + "/foyerNom/" + nom);
   }
+  search(nom: String,add:String) {
+    return this._http.get<Universite>(this.url + "/search/" + nom +"/" +add);
+  }
 }

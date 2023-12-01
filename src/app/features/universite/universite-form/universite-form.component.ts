@@ -65,6 +65,7 @@ export class UniversiteFormComponent implements OnInit {
         lng: ['', Validators.required],
       }),
     })
+  
   }
 
 
@@ -137,16 +138,14 @@ export class UniversiteFormComponent implements OnInit {
       lng: uni.foyer.lng
     })
   }
-  mapClicked(event: any) {
-    const lat = event.latlng.lat;
-    const lng = event.latlng.lng;
-    console.log(lat, lng)
+  // mapClicked(event:any) {
+  //   console.log("clicked")
+  //   const lat = event.latlng.lat;
+  //   const lng = event.latlng.lng;
+  //   console.log(lat, lng)
 
-    this.fbUni.get('foyer')!.patchValue({
-      lat: lat,
-      lng: lng
-    });
-  }
+  
+  // }
 
 
   initMarkers(lat: number, lng: number) {
@@ -177,6 +176,18 @@ export class UniversiteFormComponent implements OnInit {
       this.initMarkers(33.892166,9.561555);
 
     }
+   this.map.on('dblclick', (event) => {
+    const lat = event.latlng.lat;
+    const lng = event.latlng.lng;
+
+    console.log('Latitude:', lat);
+    console.log('Longitude:', lng);
+
+    this.fbUni.get('foyer')!.patchValue({
+      lat: lat,
+      lng: lng
+    });
+  });
     
 
   }

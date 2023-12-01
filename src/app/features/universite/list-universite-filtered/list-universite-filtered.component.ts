@@ -31,4 +31,17 @@ showLocation(uni:Universite){
   });
 
 }
+onSearch(query: string ) {
+  if (query === '') {
+    this.uniService.fetchUnisByAddress(this.address).subscribe((data:any)=>
+    this.universities=data.data.universities);
+
+  } else {
+    this.uniService.search(query,this.address).subscribe((data:any)=>
+    this.universities=data.data.universities);
+
+
+  }
+
+}
 }
