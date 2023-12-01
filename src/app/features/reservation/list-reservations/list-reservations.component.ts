@@ -113,8 +113,14 @@ export class ListReservationsComponent implements OnInit {
     console.log('Getting reservations...');
     this.reservationService.getReservations().subscribe(
       (response: any) => {
-        this.reservations = response.data.reservations;
-        console.log(this.reservations);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Succès',
+          detail: `${response.data.reservations.length} réservations récupérées avec succès.`,
+        });
+        console.log('response:', response);
+        console.log('parsed', this.parseData(response));
+        this.reservations = this.parseData(response);
         console.log(this.checkAffectedToEtudiants(this.reservations[0]));
       },
       (error) => {
@@ -128,5 +134,14 @@ export class ListReservationsComponent implements OnInit {
         console.error('Error fetching data:', error);
       }
     );
+  }
+  private parseData(response: any): Reservation[] {
+    response.data.reservations.forEach((reservation: any) => {
+      const chambre = response.data.chambres.find(
+        (chambre: any) => chambre.idReservation === reservation.id
+      );
+      reservation.chambre = chambre;
+    });
+    return response.data.reservations;
   }
 }

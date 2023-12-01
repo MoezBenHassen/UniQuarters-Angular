@@ -28,6 +28,8 @@
           <th>Année Universitaire</th>
           <th>Est Valide</th>
           <th>Etudiants</th>
+          <th>Chambre</th>
+          <th>Bloc</th>
           <th>Actions</th>
         </tr>
         <!-- <tr class="bg-white">
@@ -67,7 +69,17 @@
             </div>
           </td>
           <td *ngIf="reservation.etudiants.length === 0">Aucun étudiant</td>
-
+          <td>
+            <div>
+              {{ reservation.chambre.numero }}, {{ reservation.chambre.type }}
+            </div>
+          </td>
+          <td>
+            <div>
+              {{ reservation.chambre.bloc.nom }},
+              {{ reservation.chambre.bloc.capacite }}
+            </div>
+          </td>
           <!-- Action column -->
           <td class="button-column">
             <!-- Edit button -->
