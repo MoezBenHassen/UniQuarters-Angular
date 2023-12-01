@@ -129,6 +129,7 @@ export class ReservationFormComponent implements OnInit {
         // Handle validation errors
         console.log('Form has validation errors');
       }
+      this.router.navigate(['/reservations']);
       this.dialogRef.close();
     }
   }
