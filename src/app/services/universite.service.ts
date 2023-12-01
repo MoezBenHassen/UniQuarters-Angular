@@ -51,4 +51,10 @@ export class UniversiteService {
   fetchUnisByAddress(add: String) {
     return this._http.get<Universite>(this.url + "/filtre/" + add);
   }
+  fetchUnisByName(nom: String) {
+    return this._http.get<Universite>(this.url + "/nom/" + nom);
+  }
+  fetchUnisByFoyer(nom: String) {
+    return this._http.get<Universite>(this.url + "/foyerNom/" + nom);
+  }
 }

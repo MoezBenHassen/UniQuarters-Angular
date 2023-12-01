@@ -94,6 +94,62 @@ export class ListUniversiteComponent   implements OnInit {
 //  verifId(id:number){
 //   console.log(id);
 //  }
+onSearchByNom(query: string ) {
+  if (query === '') {
+    this.uniService.getAllUniversites().subscribe(
+      (response: any) => {
+        this.uniService.data = response.data.universities;
+        console.log(this.uniService.data)
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  } else {
+    this.uniService.fetchUnisByName(query).subscribe((data:any)=>
+    this.uniService.data=data.data.universities);
 
+
+  }
+
+}
+onSearchByAddress(query: string ) {
+  if (query === '') {
+    this.uniService.getAllUniversites().subscribe(
+      (response: any) => {
+        this.uniService.data = response.data.universities;
+        console.log(this.uniService.data)
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  } else {
+    this.uniService.fetchUnisByAddress(query).subscribe((data:any)=>
+    this.uniService.data=data.data.universities);
+
+
+  }
+
+}
+onSearchByFoyer(query: string ) {
+  if (query === '') {
+    this.uniService.getAllUniversites().subscribe(
+      (response: any) => {
+        this.uniService.data = response.data.universities;
+        console.log(this.uniService.data)
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  } else {
+    this.uniService.fetchUnisByFoyer(query).subscribe((data:any)=>
+    this.uniService.data=data.data.universities);
+
+
+  }
+
+}
  
 }
