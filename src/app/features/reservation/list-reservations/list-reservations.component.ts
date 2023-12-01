@@ -43,8 +43,8 @@ export class ListReservationsComponent implements OnInit {
 
   cancel(id: number) {
     this.confirmationService.confirm({
-      message: 'Êtes-vous sûr de vouloir effectuer cette action ?',
-      acceptLabel: 'Cancel',
+      message: 'Êtes-vous sûr de vouloir annuler la réservation ?',
+      acceptLabel: 'Cancel Reservation',
       rejectLabel: 'Annuler',
       accept: () => {
         this.reservationService.cancelReservation(id).subscribe(
@@ -64,7 +64,40 @@ export class ListReservationsComponent implements OnInit {
               severity: 'error',
               summary: 'Erreur',
               detail:
+                error?.error?.message ||
                 "Une erreur est survenue lors de l'annulation de la réservation.",
+            });
+          }
+        );
+      },
+    });
+  }
+
+  validate(id: String) {
+    this.confirmationService.confirm({
+      message: 'Êtes-vous sûr de valider la réservation ?',
+      acceptLabel: 'Valider',
+      rejectLabel: 'Annuler',
+      accept: () => {
+        this.reservationService.validateReservation(id).subscribe(
+          () => {
+            console.log('Reservation validated successfully.');
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Succès',
+              detail: 'La réservation a été validée avec succès.',
+            });
+
+            this.getReservations();
+          },
+          (error) => {
+            console.error('Error validating reservation:', error);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erreur',
+              detail:
+                error?.error?.message ||
+                'Une erreur est survenue lors de la validation de la réservation.',
             });
           }
         );
@@ -77,15 +110,21 @@ export class ListReservationsComponent implements OnInit {
   }
 
   private getReservations() {
-    console.log("Getting reservations...");
+    console.log('Getting reservations...');
     this.reservationService.getReservations().subscribe(
       (response: any) => {
         this.reservations = response.data.reservations;
         console.log(this.reservations);
         console.log(this.checkAffectedToEtudiants(this.reservations[0]));
-
       },
       (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erreur',
+          detail:
+            error?.error?.message ||
+            'Une erreur est survenue lors de la validation de la réservation.',
+        });
         console.error('Error fetching data:', error);
       }
     );

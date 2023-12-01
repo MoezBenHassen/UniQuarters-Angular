@@ -25,6 +25,10 @@ export class ReservationService {
     return this._http.put(`${this.apiUrl}/${id}`, {});
   }
 
+  validateReservation(id: String) {
+    return this._http.put(`${this.apiUrl}/valider/${id}`, {});
+  }
+
   cancelReservation(cinEtudiant: number) {
     return this._http.delete(`${this.apiUrl}/${cinEtudiant}`);
   }

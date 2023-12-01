@@ -58,34 +58,48 @@
           <td>{{ reservation.id }}</td>
           <td>{{ reservation.anneeUniversitaire }}</td>
           <td>{{ reservation.estValide ? "Oui" : "Non" }}</td>
+
+          <!-- Etudiant column -->
           <td *ngIf="reservation.etudiants.length > 0" class="etudiant-column">
-            <!-- Display CIN and Full Name for each student -->
             <div *ngFor="let etudiant of reservation.etudiants">
               <div>{{ etudiant.cin }}</div>
               <div>{{ etudiant.nom }} {{ etudiant.prenom }}</div>
             </div>
-            <!-- if no etudiants. print someting -->
           </td>
-          <td *ngIf="reservation.etudiants.length == 0">Aucun étudiant</td>
-          <td class="action">
-            <!-- Add your edit and delete actions here -->
-            <!-- Example: -->
+          <td *ngIf="reservation.etudiants.length === 0">Aucun étudiant</td>
+
+          <!-- Action column -->
+          <td class="button-column">
+            <!-- Edit button -->
+
+            <button
+              pButton
+              type="button"
+              icon="pi pi-check"
+              (click)="validate(reservation.id)"
+              [disabled]="reservation.estValide"
+              class="p-button-success"
+            ></button>
+
             <button
               pButton
               type="button"
               icon="pi pi-pencil"
               (click)="edit(reservation.id)"
             ></button>
+
             <button
               pButton
               type="button"
-              icon="pi pi-trash"
+              icon="pi pi-times"
               (click)="cancel(reservation.etudiants[0].cin)"
               [disabled]="reservation.etudiants.length === 0"
+              class="p-button-danger"
             ></button>
           </td>
         </tr>
       </ng-template>
+
       <ng-template pTemplate="emptymessage">
         <tr>
           <td colspan="5">Aucune réservation trouvée.</td>
