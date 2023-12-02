@@ -18,8 +18,8 @@ export class ReservationFormComponent implements OnInit {
 
   reservation: Reservation = {} as Reservation;
 
-  selectedEtudiant: Etudiant = {} as Etudiant;
-  selectedChambre: Chambre = {} as Chambre;
+  selectedEtudiant: Etudiant | null = null;
+  selectedChambre: Chambre | null = null;
   chambres: Chambre[] = [];
   etudiants: Etudiant[] = [];
   constructor(
@@ -74,6 +74,9 @@ export class ReservationFormComponent implements OnInit {
     this.getEtudiants();
     this.getChambres();
 
+    console.log('selectedEtudiant', this.selectedEtudiant);
+    console.log('selectedChambre', this.selectedChambre);
+
     if (this.getMode() === 'Edit') {
       this.getReservation(this.id);
     }
@@ -83,6 +86,8 @@ export class ReservationFormComponent implements OnInit {
     return this.id ? 'Edit' : 'Add';
   }
   onSubmit(form: NgForm) {
+    console.log(form);
+
     if (this.getMode() === 'Edit') {
       this.reservationService.updateReservation(this.id);
     } else {
@@ -122,5 +127,17 @@ export class ReservationFormComponent implements OnInit {
       }
       this.dialogRef.close();
     }
+  }
+
+  isFormControlInvalid(form: NgForm, controlName: string): boolean {
+    const control = form.controls[controlName];
+    console.log('🚀 ~ control:', control);
+    //return control && control.invalid && (control.dirty || control.touched);
+    const result = control && control.invalid && control.touched;
+    console.log('control.invalid', control.invalid);
+    console.log('control.touched', control.touched);
+
+    console.log('🚀 ~ result:', result);
+    return result;
   }
 }

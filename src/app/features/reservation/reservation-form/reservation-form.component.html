@@ -1,4 +1,3 @@
-
 <div class="application">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form">
     <div class="grid">
@@ -12,14 +11,16 @@
           optionLabel="nom"
           placeholder="Select an etudiant"
           [required]="true"
+          #etudiantDropdown="ngModel"
         ></p-dropdown>
         <div
-          *ngIf="f.controls['selectedEtudiant'].hasError('required')"
+          *ngIf="etudiantDropdown.touched && !selectedEtudiant"
           class="error-message"
         >
           Etudiant is required.
         </div>
       </div>
+
       <div class="col-12">
         <label class="label required">Chambre</label>
         <p-dropdown
@@ -30,9 +31,11 @@
           optionLabel="numero"
           placeholder="Select a chambre"
           [required]="true"
+          #chambreDropdown="ngModel"
         ></p-dropdown>
+
         <div
-          *ngIf="f.controls['selectedChambre'].hasError('required')"
+          *ngIf="chambreDropdown.touched && !selectedChambre"
           class="error-message"
         >
           Chambre is required.
@@ -40,7 +43,11 @@
       </div>
     </div>
     <div class="footer-popup">
-      <button type="submit" class="primary-button" [disabled]="f.invalid">
+      <button
+        type="submit"
+        class="primary-button"
+        [disabled]="!selectedChambre || !selectedEtudiant"
+      >
         Submit
       </button>
     </div>
