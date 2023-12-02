@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
@@ -8,12 +9,46 @@ import { Reservation } from '../models/reservation';
 })
 export class ReservationService {
   apiUrl = environment.baseUrl + '/reservations';
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    public messageService: MessageService
+  ) {}
 
   data: Reservation[] = [];
 
+  private parseData(response: any): Reservation[] {
+    response.data.reservations.forEach((reservation: any) => {
+      const chambre = response.data.chambres.find(
+        (chambre: any) => chambre.idReservation === reservation.id
+      );
+      reservation.chambre = chambre;
+    });
+    return response.data.reservations;
+  }
   getReservations() {
-    return this._http.get(this.apiUrl);
+    this._http.get(this.apiUrl).subscribe(
+      (response: any) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Succès',
+          detail: `${response.data.reservations.length} réservations récupérées avec succès.`,
+        });
+        console.log('response:', response);
+        console.log('parsed', this.parseData(response));
+        this.data = this.parseData(response);
+        console.log('🚀 ~ reservations:', this.data);
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erreur',
+          detail:
+            error?.error?.message ||
+            'Une erreur est survenue lors de la validation de la réservation.',
+        });
+        console.error('Error fetching data:', error);
+      }
+    );
   }
 
   getReservation(id: String) {

@@ -45,10 +45,7 @@ export class ReservationFormComponent implements OnInit {
     this.reservationService.getEtudiants().subscribe({
       next: (response: any) => {
         this.etudiants = response.data.etudiants as Etudiant[];
-        console.log(
-          '🚀 ~ file: reservation-form.component.ts:42 ~ ReservationFormComponent ~ this.reservationService.getEtudiants ~ this.etudiants:',
-          this.etudiants
-        );
+        console.log('🚀 ~  this.etudiants:', this.etudiants);
       },
       error: (err) => {
         console.log(err);
@@ -64,10 +61,7 @@ export class ReservationFormComponent implements OnInit {
     this.reservationService.getChambres().subscribe({
       next: (response: any) => {
         this.chambres = response.data.chambres as Chambre[];
-        console.log(
-          '🚀 ~ file: reservation-form.component.ts:53 ~ ReservationFormComponent ~ this.reservationService.getChambres ~ this.chambres:',
-          this.chambres
-        );
+        console.log('🚀 ~ this.chambres:', this.chambres);
       },
       error: (err) => {
         console.log(err);
@@ -93,7 +87,6 @@ export class ReservationFormComponent implements OnInit {
       this.reservationService.updateReservation(this.id);
     } else {
       if (form.valid) {
-        // Process the form data
         const {
           selectedChambre: { id: chambreId },
           selectedEtudiant: { cin: etudiantCin },
@@ -103,16 +96,13 @@ export class ReservationFormComponent implements OnInit {
           .addReservation(chambreId, etudiantCin)
           .subscribe({
             next: (response: any) => {
-              console.log(
-                '🚀 ~ file: reservation-form.component.ts:82 ~ ReservationFormComponent ~ this.reservationService.addReservation ~ response',
-                response
-              );
+              console.log('🚀 ~ response', response);
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
                 detail: 'Reservation added successfully',
               });
-              this.getReservations();
+              this.reservationService.getReservations();
             },
             error: (err) => {
               console.log(err);
@@ -130,46 +120,7 @@ export class ReservationFormComponent implements OnInit {
         // Handle validation errors
         console.log('Form has validation errors');
       }
-      console.log("heeeeeeeeeeeey im reloading");
-
       this.dialogRef.close();
     }
-  }
-  private getReservations() {
-    console.log('Getting reservations...');
-    this.reservationService.getReservations().subscribe(
-      (response: any) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Succès',
-          detail: `${response.data.reservations.length} réservations récupérées avec succès.`,
-        });
-        console.log('response:', response);
-        console.log('parsed', this.parseData(response));
-        this.reservationService.data = this.parseData(response);
-        console.log('🚀 ~ reservations:', this.reservationService.data);
-        console.log(
-        );
-      },
-      (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erreur',
-          detail:
-            error?.error?.message ||
-            'Une erreur est survenue lors de la validation de la réservation.',
-        });
-        console.error('Error fetching data:', error);
-      }
-    );
-  }
-  private parseData(response: any): Reservation[] {
-    response.data.reservations.forEach((reservation: any) => {
-      const chambre = response.data.chambres.find(
-        (chambre: any) => chambre.idReservation === reservation.id
-      );
-      reservation.chambre = chambre;
-    });
-    return response.data.reservations;
   }
 }

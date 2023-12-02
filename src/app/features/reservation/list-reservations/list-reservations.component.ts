@@ -23,7 +23,7 @@ export class ListReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getReservations();
+    this.reservationService.getReservations();
   }
 
   add() {
@@ -54,7 +54,7 @@ export class ListReservationsComponent implements OnInit {
               detail: 'La réservation a été annulée avec succès.',
             });
 
-            this.getReservations();
+            this.reservationService.getReservations();
           },
           (error) => {
             console.error('Error cancelling reservation:', error);
@@ -86,7 +86,7 @@ export class ListReservationsComponent implements OnInit {
               detail: 'La réservation a été validée avec succès.',
             });
 
-            this.getReservations();
+            this.reservationService.getReservations();
           },
           (error) => {
             console.error('Error validating reservation:', error);
@@ -105,44 +105,5 @@ export class ListReservationsComponent implements OnInit {
 
   checkAffectedToEtudiants(reservation: Reservation): boolean {
     return reservation.etudiants.length > 0;
-  }
-
-  private getReservations() {
-    console.log('Getting reservations...');
-    this.reservationService.getReservations().subscribe(
-      (response: any) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Succès',
-          detail: `${response.data.reservations.length} réservations récupérées avec succès.`,
-        });
-        console.log('response:', response);
-        console.log('parsed', this.parseData(response));
-        this.reservationService.data = this.parseData(response);
-        console.log('🚀 ~ reservations:', this.reservationService.data);
-        console.log(
-          this.checkAffectedToEtudiants(this.reservationService.data[0])
-        );
-      },
-      (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erreur',
-          detail:
-            error?.error?.message ||
-            'Une erreur est survenue lors de la validation de la réservation.',
-        });
-        console.error('Error fetching data:', error);
-      }
-    );
-  }
-  private parseData(response: any): Reservation[] {
-    response.data.reservations.forEach((reservation: any) => {
-      const chambre = response.data.chambres.find(
-        (chambre: any) => chambre.idReservation === reservation.id
-      );
-      reservation.chambre = chambre;
-    });
-    return response.data.reservations;
   }
 }
