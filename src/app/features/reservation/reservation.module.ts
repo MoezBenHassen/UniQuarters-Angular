@@ -17,6 +17,7 @@ import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReservationService } from 'src/app/services/reservation.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [ListReservationsComponent, ReservationFormComponent],
@@ -33,6 +34,7 @@ import { ReservationService } from 'src/app/services/reservation.service';
     ToastModule,
     DropdownModule,
     TooltipModule,
+    ProgressSpinnerModule
   ],
   providers: [
     DialogService,

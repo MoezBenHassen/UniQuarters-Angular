@@ -8,6 +8,11 @@
       réservation
     </button>
   </h2>
+  <p-progressBar
+    *ngIf="reservationService.isLoading || isLoading"
+    mode="indeterminate"
+    [style]="{ height: '6px' }"
+  ></p-progressBar>
 
   <div class="card p-4">
     <p-table
@@ -124,12 +129,12 @@
               class="p-button-success"
             ></button>
 
-            <button
+            <!-- <button
               pButton
               type="button"
               icon="pi pi-pencil"
               (click)="edit(reservation.id)"
-            ></button>
+            ></button> -->
 
             <button
               pButton

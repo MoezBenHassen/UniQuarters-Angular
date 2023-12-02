@@ -14,6 +14,7 @@ export class ReservationService {
     public messageService: MessageService
   ) {}
 
+  isLoading = false;
   data: Reservation[] = [];
 
   private parseData(response: any): Reservation[] {
@@ -26,27 +27,32 @@ export class ReservationService {
     return response.data.reservations;
   }
   getReservations() {
+    this.isLoading = true;
     this._http.get(this.apiUrl).subscribe(
-      (response: any) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Succès',
-          detail: `${response.data.reservations.length} réservations récupérées avec succès.`,
-        });
-        console.log('response:', response);
-        console.log('parsed', this.parseData(response));
-        this.data = this.parseData(response);
-        console.log('🚀 ~ reservations:', this.data);
-      },
-      (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erreur',
-          detail:
-            error?.error?.message ||
-            'Une erreur est survenue lors de la validation de la réservation.',
-        });
-        console.error('Error fetching data:', error);
+      {
+        next: (response: any) => {
+          this.isLoading = false;
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Succès',
+            detail: `${response.data.reservations.length} réservations récupérées avec succès.`,
+          });
+          console.log('response:', response);
+          console.log('parsed', this.parseData(response));
+          this.data = this.parseData(response);
+          console.log('🚀 ~ reservations:', this.data);
+        },
+        error: (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erreur',
+            detail:
+              error?.error?.message ||
+              'Une erreur est survenue lors de la validation de la réservation.',
+          });
+          console.error('Error fetching data:', error);
+        },
+
       }
     );
   }

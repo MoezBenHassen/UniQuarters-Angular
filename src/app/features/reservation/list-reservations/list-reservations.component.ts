@@ -15,6 +15,7 @@ import { ReservationFormComponent } from '../reservation-form/reservation-form.c
 export class ListReservationsComponent implements OnInit {
   @ViewChild('dt') table!: Table;
 
+  isLoading = false;
   constructor(
     public reservationService: ReservationService,
     private readonly dialogService: DialogService,
@@ -45,18 +46,21 @@ export class ListReservationsComponent implements OnInit {
       acceptLabel: 'Cancel Reservation',
       rejectLabel: 'Annuler',
       accept: () => {
+        this.isLoading = true;
         this.reservationService.cancelReservation(id).subscribe(
-          () => {
+          (response: any) => {
+            this.isLoading = false;
             console.log('Reservation cancelled successfully.');
             this.messageService.add({
               severity: 'success',
               summary: 'Succès',
-              detail: 'La réservation a été annulée avec succès.',
+              detail: response.message || 'La réservation a été annulée avec succées.',
             });
 
             this.reservationService.getReservations();
           },
           (error) => {
+            this.isLoading = false;
             console.error('Error cancelling reservation:', error);
             this.messageService.add({
               severity: 'error',
@@ -77,18 +81,22 @@ export class ListReservationsComponent implements OnInit {
       acceptLabel: 'Valider',
       rejectLabel: 'Annuler',
       accept: () => {
+        this.isLoading = true;
         this.reservationService.validateReservation(id).subscribe(
-          () => {
+          (response: any) => {
+            this.isLoading = false;
             console.log('Reservation validated successfully.');
             this.messageService.add({
               severity: 'success',
               summary: 'Succès',
-              detail: 'La réservation a été validée avec succès.',
+              detail:
+                response.message || 'La réservation a été validée avec succès.',
             });
 
             this.reservationService.getReservations();
           },
           (error) => {
+            this.isLoading = false;
             console.error('Error validating reservation:', error);
             this.messageService.add({
               severity: 'error',
