@@ -105,7 +105,7 @@ export class ReservationFormComponent implements OnInit {
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
-                detail: 'Reservation added successfully',
+                detail: response.message || 'Reservation added successfully',
               });
               this.reservationService.getReservations();
             },
