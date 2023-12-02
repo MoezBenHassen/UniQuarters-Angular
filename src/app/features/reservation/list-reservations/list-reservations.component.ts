@@ -121,6 +121,7 @@ export class ListReservationsComponent implements OnInit {
         console.log('response:', response);
         console.log('parsed', this.parseData(response));
         this.reservations = this.parseData(response);
+        console.log("🚀 ~ file: list-reservations.component.ts:124 ~ ListReservationsComponent ~ getReservations ~ this.reservations:", this.reservations)
         console.log(this.checkAffectedToEtudiants(this.reservations[0]));
       },
       (error) => {

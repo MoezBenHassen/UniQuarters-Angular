@@ -58,27 +58,58 @@
       <ng-template pTemplate="body" let-reservation>
         <tr class="p-selectable-row">
           <td>{{ reservation.id }}</td>
-          <td>{{ reservation.anneeUniversitaire }}</td>
+          <td>{{ reservation.anneeUniversitaire.slice(0, 4) }}</td>
           <td>{{ reservation.estValide ? "Oui" : "Non" }}</td>
 
           <!-- Etudiant column -->
           <td *ngIf="reservation.etudiants.length > 0" class="etudiant-column">
             <div *ngFor="let etudiant of reservation.etudiants">
-              <div>{{ etudiant.cin }}</div>
-              <div>{{ etudiant.nom }} {{ etudiant.prenom }}</div>
+              <div
+                [pTooltip]="
+                  'id: ' +
+                  etudiant.id +
+                  ', Cin: ' +
+                  etudiant.cin +
+                  ', Ecole: ' +
+                  etudiant.ecole +
+                  ', Date Naissance: ' +
+                  etudiant.dateNaissance
+                "
+              >
+                {{ etudiant.nom }} {{ etudiant.prenom }}
+              </div>
             </div>
           </td>
           <td *ngIf="reservation.etudiants.length === 0">Aucun étudiant</td>
           <td>
-            <div>
-              {{ reservation.chambre.numero }}, {{ reservation.chambre.type }}
+            <div
+              *ngIf="reservation?.chambre"
+              [pTooltip]="
+                'id: ' +
+                reservation.chambre.id +
+                ', Type: ' +
+                reservation.chambre.type
+              "
+            >
+              {{ reservation.chambre.numero }}
             </div>
+            <div *ngIf="!reservation.chambre">Aucune chambre</div>
           </td>
           <td>
-            <div>
-              {{ reservation.chambre.bloc.nom }},
-              {{ reservation.chambre.bloc.capacite }}
+            <div
+              *ngIf="reservation.chambre?.bloc"
+              [pTooltip]="
+                'id: ' +
+                reservation.chambre.bloc.id +
+                ', Capacité: ' +
+                reservation.chambre.bloc.capacite +
+                ', foyer: ' +
+                reservation.chambre.bloc.foyer
+              "
+            >
+              {{ reservation.chambre.bloc.nom }}
             </div>
+            <div *ngIf="!reservation.chambre?.bloc">Aucun bloc</div>
           </td>
           <!-- Action column -->
           <td class="button-column">
