@@ -1,14 +1,15 @@
 @import "src/app/styles/variables.scss";
 
+
 h1 {
   font-weight: 900;
   color: #36417d;
 }
 
-// .container {
-//   align-items: center;
+.container {
+  align-items: center;
 
-// }
+}
 
 .search {
   max-width: 592px;
@@ -20,140 +21,133 @@ h1 {
 
 }
 
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 
-// .image-container img {
-//   max-width: 100%;
-//   height: auto;
-//   border-radius: 8px;
-
-//   @media only screen and (max-width: 1200px) {
-//     display: none
-//   }
-// }
-h2.title.py-4{
-  
-    display: flex;
-    justify-content:center; 
+  @media only screen and (max-width: 1200px) {
+    display: none
+  }
 }
 
-// .home {
-  
-//   &-banner {
-//     height: 580px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     background-color: $light-purple-color;
+.home {
+  &-banner {
+    height: 580px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $light-purple-color;
 
-//     .intro {
-//       margin-left: 45% !important;
+    .intro {
+      margin-left: 45% !important;
 
-//       .into-label {
-//         font-size: 36px;
-//         color: $base-color;
-//         text-transform: uppercase;
+      .into-label {
+        font-size: 36px;
+        color: $base-color;
+        text-transform: uppercase;
 
-//         @media only screen and (min-width: $lg-screen) and (max-width: 1199px) {
-//           font-size: 28px;
-//         }
+        @media only screen and (min-width: $lg-screen) and (max-width: 1199px) {
+          font-size: 28px;
+        }
 
-//         @media only screen and (max-width: $md-screen) {
-//           font-size: 17px;
-//         }
+        @media only screen and (max-width: $md-screen) {
+          font-size: 17px;
+        }
 
-//         @media only screen and (max-width: $xs-screen) {
-//           font-size: 16px;
-//         }
-//       }
+        @media only screen and (max-width: $xs-screen) {
+          font-size: 16px;
+        }
+      }
 
-//       @media only screen and (max-width: $lg-screen) {
-//         margin-left: 40% !important;
-//       }
+      @media only screen and (max-width: $lg-screen) {
+        margin-left: 40% !important;
+      }
 
-//       @media only screen and (max-width: $md-screen) {
-//         margin-left: 20px !important;
-//         padding: 0;
-//       }
-
+      @media only screen and (max-width: $md-screen) {
+        margin-left: 20px !important;
+        padding: 0;
+      }
 
 
 
-//     }
 
-//     @media only screen and (max-width: $sm-screen) {
-//       height: auto;
-//       align-items: center;
-//       padding: 30px 0 20px 0;
-//     }
-//   }
+    }
 
-//   &-main {
-//     padding: 50px 0 50px 0;
-//     background-color: white;
+    @media only screen and (max-width: $sm-screen) {
+      height: auto;
+      align-items: center;
+      padding: 30px 0 20px 0;
+    }
+  }
 
-//     h1 {
-//       font-size: $text-4xl;
-//       color: $base-color;
-//       background-repeat: no-repeat;
-//       padding: 20px 0;
-//       margin: 0;
-//       font-weight: normal;
-//     }
+  &-main {
+    padding: 50px 0 50px 0;
+    background-color: white;
 
-//     .i-description {
-//       text-align: center;
-//       font-weight: 900;
-//       color: #36417d;
-//       font-size: $text-lg;
-//     }
+    h1 {
+      font-size: $text-4xl;
+      color: $base-color;
+      background-repeat: no-repeat;
+      padding: 20px 0;
+      margin: 0;
+      font-weight: normal;
+    }
 
-
-//     .blocs {
-//       display: flex;
-//       justify-content: center;
-
-//       .item {
-//         color: white;
-//         background-color: #36417d;
-//         text-align: center;
-//         padding: 40px 0 !important;
+    .i-description {
+      text-align: center;
+      font-weight: 900;
+      color: #36417d;
+      font-size: $text-lg;
+    }
 
 
-//       }
-//     }
+    .blocs {
+      display: flex;
+      justify-content: center;
+
+      .item {
+        color: white;
+        background-color: #36417d;
+        text-align: center;
+        padding: 40px 0 !important;
 
 
-//   }
+      }
+    }
 
-//   &-map{
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-evenly    ;
-//     background-color: $light-purple-color;
+
+  }
+
+  &-map{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly    ;
+    background-color: $light-purple-color;
     
-//   }
+  }
 
-//   &-guide{
-//     padding: 50px 0 50px 0;
-//     background-color: #36417d;
-
-
-//     .blocs {
-//       padding: 50px;
-//       display: flex;
-//       justify-content: center;
-
-//       .item {
-//         color: rgb(0, 0, 0);
-//         background-color: #ffffff;
-//         height: 170px;
+  &-guide{
+    padding: 50px 0 50px 0;
+    background-color: #36417d;
 
 
-//       }
-//     }
+    .blocs {
+      padding: 50px;
+      display: flex;
+      justify-content: center;
 
-//   }
-// }
+      .item {
+        color: rgb(0, 0, 0);
+        background-color: #ffffff;
+        height: 170px;
+
+
+      }
+    }
+
+  }
+}
 
 
 .navbar {
@@ -248,4 +242,9 @@ a {
 }
 .cards-container{
   display: flex;
+}
+h2.title.py-4{
+  
+  display: flex;
+  justify-content:center; 
 }

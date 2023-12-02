@@ -33,12 +33,13 @@ export class UniversiteService {
   getGouvernorats(): string[] {
     return this.gouvernorats;
   }
-  addUniversity(body: Universite) {
+  addUniversity(body: FormData) {
+    console.log(body);
     console.log(body);
     return this._http.post(this.url, body);
   }
   
-  updateUniversity(id: number, body: Universite) {
+  updateUniversity(id: number, body: FormData) {
     return this._http.put(this.url + "/" + id, body);
   }
   deleteUniversity(id: number) {

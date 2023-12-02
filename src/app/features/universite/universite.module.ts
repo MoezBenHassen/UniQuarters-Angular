@@ -19,7 +19,7 @@ import { CardModule } from 'primeng/card';
 import { ListUniversiteFilteredComponent } from './list-universite-filtered/list-universite-filtered.component';
 import { UniversiteLocationComponent } from './universite-location/universite-location.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     InputTextModule,
     ToastModule,
     ReactiveFormsModule,
-    CardModule, LeafletModule
+    CardModule, LeafletModule,FileUploadModule
 
   ],
   providers: [DialogService,ConfirmationService, MessageService],

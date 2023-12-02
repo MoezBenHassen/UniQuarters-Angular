@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -18,6 +18,11 @@ export class UniversiteFormComponent implements OnInit {
 
   id: number = 0;
   fbUni: FormGroup = new FormGroup({});
+  fbLogo: FormControl = new FormControl();
+  logoUni!:File;
+  university!: Universite;
+  uni: Universite = new Universite();
+
   gouvernorats: string[] = this.uniService.getGouvernorats();
   map!: Leaflet.Map;
   marker!: Leaflet.Marker;
@@ -36,11 +41,27 @@ export class UniversiteFormComponent implements OnInit {
     private config: DynamicDialogConfig,
     public messageService: MessageService,) { }
 
-   university!: Universite;
+  
 
   ngOnInit(): void {
     this.id = this.config.data?.id;
     console.log(this.id);
+
+    this.fbUni = this.fb.group({
+      nom: ['', [Validators.required, Validators.minLength(3)]],
+      adresse: ['', [Validators.required]],
+
+      foyer: this.fb.group({
+        nom: ['', [Validators.required, Validators.minLength(3)]],
+        capacite: ['', [Validators.required]],
+        lat: ['', Validators.required],
+        lng: ['', Validators.required],
+      }),
+
+    })
+
+    this.fbLogo= this.fb.control('');
+
     if (this.id != undefined) {
       this.uniService.fetchUniById(this.id).subscribe({
 
@@ -48,6 +69,7 @@ export class UniversiteFormComponent implements OnInit {
           this.university = data.data.university;
 
           this.onUniExist(this.university);
+
           this.initMarkers(this.university.foyer.lat,this.university.foyer.lng);
 
         }
@@ -55,27 +77,22 @@ export class UniversiteFormComponent implements OnInit {
       });
 
     }
-    this.fbUni = this.fb.group({
-      nom: ['', [Validators.required, Validators.minLength(3)]],
-      adresse: ['', [Validators.required]],
-      foyer: this.fb.group({
-        nom: ['', [Validators.required, Validators.minLength(3)]],
-        capacite: ['', [Validators.required]],
-        lat: ['', Validators.required],
-        lng: ['', Validators.required],
-      }),
-    })
+    else{
+      this.fbLogo.setValidators([Validators.required]);
+    }
+   
   
   }
 
 
-  uni: Universite = new Universite();
 
   add() {
-
+    const formData=new FormData();
+    formData.append('universite', JSON.stringify(this.fbUni.getRawValue()));
+    formData.append('logo',this.logoUni);
     if (this.id !== undefined) {
       console.log( this.fbUni.getRawValue())
-      this.uniService.updateUniversity(this.id, this.fbUni.getRawValue()).subscribe((data) => {
+      this.uniService.updateUniversity(this.id,formData).subscribe((data) => {
         this.uniService.getAllUniversites().subscribe(
           (response: any) => {
             this.uniService.data = response.data.universities;
@@ -99,7 +116,9 @@ export class UniversiteFormComponent implements OnInit {
 
     }
     else {
-      this.uniService.addUniversity(this.fbUni.getRawValue()).subscribe((data) => {
+    
+     console.log(formData.get('logo'))
+      this.uniService.addUniversity(formData).subscribe((data) => {
         console.log(this.fbUni.getRawValue())
         this.messageService.add({
           severity: 'success',
@@ -138,14 +157,6 @@ export class UniversiteFormComponent implements OnInit {
       lng: uni.foyer.lng
     })
   }
-  // mapClicked(event:any) {
-  //   console.log("clicked")
-  //   const lat = event.latlng.lat;
-  //   const lng = event.latlng.lng;
-  //   console.log(lat, lng)
-
-  
-  // }
 
 
   initMarkers(lat: number, lng: number) {
@@ -180,9 +191,6 @@ export class UniversiteFormComponent implements OnInit {
     const lat = event.latlng.lat;
     const lng = event.latlng.lng;
 
-    console.log('Latitude:', lat);
-    console.log('Longitude:', lng);
-
     this.fbUni.get('foyer')!.patchValue({
       lat: lat,
       lng: lng
@@ -192,28 +200,35 @@ export class UniversiteFormComponent implements OnInit {
 
   }
 
-
+ onUpload(event:any){
+  const file= event.target.files[0];
+  this.logoUni=file;
+ }
 
 
 
 
   get foyerNom() {
-    return this.fbUni.get('foyer.nom')!.value
+    return this.fbUni.get('foyer.nom');
   }
   get foyerLat() {
-    return this.fbUni.get('foyer.lat')!.value
+    return this.fbUni.get('foyer.lat');
   }
   get foyerLng() {
-    return this.fbUni.get('foyer.lng')!.value
+    return this.fbUni.get('foyer.lng');
   }
   get capacite() {
-    return this.fbUni.get('foyer.capacite')!.value
+    return this.fbUni.get('foyer.capacite');
   }
+  
   get foyerCapacite() {
-    return this.fbUni.get('foyer.capacite')!.value
+    return this.fbUni.get('foyer.capacite');
   }
   get nom() {
     return this.fbUni.get('nom');
+  }
+  get logo() {
+    return this.fbUni.get('logo');
   }
   get adresse() {
     return this.fbUni.get('adresse');
