@@ -12,7 +12,7 @@
   <div class="card p-4">
     <p-table
       #dt
-      [value]="reservations"
+      [value]="reservationService.data"
       [rowHover]="true"
       columnResizeMode="expand"
       [rows]="3"

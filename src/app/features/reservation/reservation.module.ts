@@ -16,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
+import { ReservationService } from 'src/app/services/reservation.service';
 
 @NgModule({
   declarations: [ListReservationsComponent, ReservationFormComponent],
@@ -33,6 +34,11 @@ import { TooltipModule } from 'primeng/tooltip';
     DropdownModule,
     TooltipModule,
   ],
-  providers: [DialogService, ConfirmationService, MessageService],
+  providers: [
+    DialogService,
+    ConfirmationService,
+    MessageService,
+    ReservationService,
+  ],
 })
 export class ReservationModule {}

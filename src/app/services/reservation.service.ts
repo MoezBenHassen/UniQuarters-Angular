@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { Reservation } from '../models/reservation';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class ReservationService {
   apiUrl = environment.baseUrl + '/reservations';
   constructor(private _http: HttpClient) {}
+
+  data: Reservation[] = [];
 
   getReservations() {
     return this._http.get(this.apiUrl);

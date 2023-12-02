@@ -15,8 +15,6 @@ import { ReservationFormComponent } from '../reservation-form/reservation-form.c
 export class ListReservationsComponent implements OnInit {
   @ViewChild('dt') table!: Table;
 
-  reservations: Reservation[] = [];
-
   constructor(
     public reservationService: ReservationService,
     private readonly dialogService: DialogService,
@@ -120,9 +118,11 @@ export class ListReservationsComponent implements OnInit {
         });
         console.log('response:', response);
         console.log('parsed', this.parseData(response));
-        this.reservations = this.parseData(response);
-        console.log("🚀 ~ file: list-reservations.component.ts:124 ~ ListReservationsComponent ~ getReservations ~ this.reservations:", this.reservations)
-        console.log(this.checkAffectedToEtudiants(this.reservations[0]));
+        this.reservationService.data = this.parseData(response);
+        console.log('🚀 ~ reservations:', this.reservationService.data);
+        console.log(
+          this.checkAffectedToEtudiants(this.reservationService.data[0])
+        );
       },
       (error) => {
         this.messageService.add({

@@ -112,6 +112,7 @@ export class ReservationFormComponent implements OnInit {
                 summary: 'Success',
                 detail: 'Reservation added successfully',
               });
+              this.getReservations();
             },
             error: (err) => {
               console.log(err);
@@ -129,8 +130,46 @@ export class ReservationFormComponent implements OnInit {
         // Handle validation errors
         console.log('Form has validation errors');
       }
-      this.router.navigate(['/reservations']);
+      console.log("heeeeeeeeeeeey im reloading");
+
       this.dialogRef.close();
     }
+  }
+  private getReservations() {
+    console.log('Getting reservations...');
+    this.reservationService.getReservations().subscribe(
+      (response: any) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Succès',
+          detail: `${response.data.reservations.length} réservations récupérées avec succès.`,
+        });
+        console.log('response:', response);
+        console.log('parsed', this.parseData(response));
+        this.reservationService.data = this.parseData(response);
+        console.log('🚀 ~ reservations:', this.reservationService.data);
+        console.log(
+        );
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erreur',
+          detail:
+            error?.error?.message ||
+            'Une erreur est survenue lors de la validation de la réservation.',
+        });
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+  private parseData(response: any): Reservation[] {
+    response.data.reservations.forEach((reservation: any) => {
+      const chambre = response.data.chambres.find(
+        (chambre: any) => chambre.idReservation === reservation.id
+      );
+      reservation.chambre = chambre;
+    });
+    return response.data.reservations;
   }
 }
