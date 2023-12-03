@@ -16,7 +16,6 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
   declarations: [
     ListBlocComponent,
     BlocFormComponent,
-    SchedulerComponent
   ],
   imports: [
     CommonModule,

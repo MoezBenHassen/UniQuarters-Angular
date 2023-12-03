@@ -5,6 +5,7 @@ import { LayoutComponent } from './features/shared/layout/layout.component';
 import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { RoutePaths } from './models/routepaths';
+import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,12 @@ const routes: Routes = [
       {
         path: `${RoutePaths.BLOC}`,
         loadChildren: () => import('./features/bloc/bloc.module').then((m) => m.BlocModule),
+      },
+      {
+        // scheduler component
+        path: `${RoutePaths.SCHEDULER}`,
+        component: SchedulerComponent,
+
       }
     ]
   }

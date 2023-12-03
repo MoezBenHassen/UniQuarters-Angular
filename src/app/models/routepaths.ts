@@ -7,4 +7,5 @@ export enum RoutePaths{
     RESERVATION='reservation',
     GESTION='gestion',
     BLOC='bloc',
+    SCHEDULER='scheduler',
 }

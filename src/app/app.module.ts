@@ -32,21 +32,24 @@ import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
 import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
 import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
+import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
+import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
 
 @NgModule({
   declarations: [
-    HeaderComponent, 
-    FooterComponent, 
-    NavigationComponent, 
+    HeaderComponent,
+    FooterComponent,
+    NavigationComponent,
     LayoutComponent,
     DashboardComponent,
     AppComponent,
     HomeComponent,
     LoginComponent,
-
+    SchedulerComponent,
   ],
   imports: [
-    
+    DxTagBoxModule,
+    DxSchedulerModule,
     UniversiteModule,
     ChambreModule,
     TagModule,
