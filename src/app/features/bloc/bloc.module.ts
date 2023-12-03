@@ -9,12 +9,14 @@ import { BlocFormComponent } from './bloc-form/bloc-form.component';
 import {FormsModule} from "@angular/forms";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
+import { SchedulerComponent } from './scheduler/scheduler.component';
 
 
 @NgModule({
   declarations: [
     ListBlocComponent,
-    BlocFormComponent
+    BlocFormComponent,
+    SchedulerComponent
   ],
   imports: [
     CommonModule,
