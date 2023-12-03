@@ -24,7 +24,7 @@ export class ListBlocComponent {
     this.blocService.getAllBlocs().subscribe(
       (response: any) => {
         this.blocService.data = response.data.blocs;
-        console.log("BLOCS :::: " + this.blocService.data)
+        console.log("BLOCS :::: " + this.blocService.getData())
       },
       (error) => {
         console.error('Error fetching data:', error);
