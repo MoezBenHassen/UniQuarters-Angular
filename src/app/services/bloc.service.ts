@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
 import {Bloc} from "../models/Bloc";
 import {HttpClient} from "@angular/common/http";
-import {Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
-import {BlockUI} from "primeng/blockui";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlocService {
   data: Bloc[] = [];
-  /*apiUrl = 'http://localhost:8080/blocs';*/
+  /*apiUrl = 'http://localhost:8082/blocs';*/
   apiUrl = environment.uniQuartersUri + '/blocs';
   constructor(
     private _http: HttpClient
   ) { }
 
   getAllBlocs():Observable<Bloc[]> {
-    return this._http.get<Bloc[]>(this.apiUrl).pipe(
-      tap(data => this.setData(data)
-    ));
+    console.log("FETCHING ALL BLOCS service lvl");
+    return this._http.get<Bloc[]>(this.apiUrl);
+  }
+  getAllBlocs2():Observable<Bloc[]> {
+    console.log("FETCHING ALL BLOCS service lvl");
+    return this._http.get<Bloc[]>(this.apiUrl+"/data");
   }
   removeUnderscores(obj: any): any {
     const result: any = {};
@@ -57,12 +59,4 @@ export class BlocService {
     return this._http.get<Bloc>(this.apiUrl +"/"+ id);
   }
 
-  private setData(data: Bloc[]) {
-    this.data = data;
-    console.log(this.data);
-  }
-  //get data
-  public  getData() : Bloc[]{
-    return this.data
-  }
 }

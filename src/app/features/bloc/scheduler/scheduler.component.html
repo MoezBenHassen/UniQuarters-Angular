@@ -1,1 +1,16 @@
-<p>scheduler works!</p>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <label for="locationFilter" class="label">:اختر حسب الموقع</label>
+    <select id="locationFilter" class="select" (change)="onLocationFilterChanged($event)">
+      <option value="">كل المحاكم</option>
+      <option *ngFor="let bloc of ListTravaux" [value]="bloc.id">{{ bloc.text }}</option>
+    </select>
+  </div>
+
+</div>
+<dx-scheduler #scheduler id="scheduler" [dataSource]="store" (onAppointmentFormOpening)="onAppointmentFormCreated($event)">
+  <dxi-resource fieldExpr="bloc" label="Bloc" [dataSource]="ListTravaux">
+  </dxi-resource>
+</dx-scheduler>
