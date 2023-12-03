@@ -29,6 +29,8 @@ export class ServiceschedulerService {
     const updateUrl = `http://localhost:8082/api/schedule/updateAudience/${id}`;
     return this.http.put<any>(updateUrl, updatedAudience);
   }
+
+  //scheduler filtering by location (bloc)
   getFilteredAppointmentsByLocation(location: string): Observable<any[]> {
     const apiUrl = `http://localhost:8082/api/schedule/AudienceByLocation/${location}`;
     return this.http.get<any[]>(apiUrl);

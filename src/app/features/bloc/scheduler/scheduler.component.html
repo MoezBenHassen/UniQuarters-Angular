@@ -1,5 +1,3 @@
-
-
 <div class="row">
   <div class="col-md-6">
     <label for="locationFilter" class="label">:اختر حسب الموقع</label>
@@ -10,7 +8,11 @@
   </div>
 
 </div>
-<dx-scheduler #scheduler id="scheduler" [dataSource]="store" (onAppointmentFormOpening)="onAppointmentFormCreated($event)">
-  <dxi-resource fieldExpr="bloc" label="Bloc" [dataSource]="ListTravaux">
+<dx-scheduler #scheduler id="scheduler" [dataSource]="store"
+              (onAppointmentFormOpening)="onAppointmentFormCreated($event)" >
+  <dxi-resource fieldExpr="bloc" label="Bloc" [dataSource]="ListTravaux"
+  >
+
+
   </dxi-resource>
 </dx-scheduler>
