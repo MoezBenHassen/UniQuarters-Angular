@@ -33,5 +33,10 @@ export const navbarData = [
     icon: 'pi pi-calendar-plus',
     label: 'Réservations',
     routerLink: '/reservations',
+  },
+  {
+    label: 'Front Office, Résa Etudiant',
+    routerLink: 'reservations/etudiant/1',
+    icon: 'pi pi-calendar-plus',
   }
 ];

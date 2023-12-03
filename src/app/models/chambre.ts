@@ -5,7 +5,8 @@ enum ChambreType {
 }
 export interface Chambre {
   id: number;
-  numero: string;
+  numero: number;
   capacite: number;
-  type: ChambreType;
+  type: String;
+  bloc: any;
 }

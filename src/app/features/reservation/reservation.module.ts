@@ -18,9 +18,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ListReservationsEtudiantComponent } from './list-reservations-etudiant/list-reservations-etudiant.component';
 
 @NgModule({
-  declarations: [ListReservationsComponent, ReservationFormComponent],
+  declarations: [ListReservationsComponent, ReservationFormComponent, ListReservationsEtudiantComponent],
   imports: [
     ReservationRoutingModule,
     TableModule,
