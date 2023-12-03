@@ -24,6 +24,11 @@
         </div>
 
       </div>
+      <div>
+        <label for="color">Color:</label>
+        <input type="color" id="color" name="color" [(ngModel)]="bl.color" />
+      </div>
+
     </div>
     <div class="footer-popup mt-4">
       <input type="submit" class="primary-button"  [value]="id!==undefined? 'Update' : 'Add'" [disabled]="f.invalid">
