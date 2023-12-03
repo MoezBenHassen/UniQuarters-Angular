@@ -14,21 +14,21 @@ export class ListBlocComponent {
   @ViewChild('dt') table!: Table;
   nomBloc: string = "";
   constructor(
-    public blocService: BlocService,
-    private readonly dialogService: DialogService,
-    public messageService: MessageService,
-    private confirmationService: ConfirmationService,
+      public blocService: BlocService,
+      private readonly dialogService: DialogService,
+      public messageService: MessageService,
+      private confirmationService: ConfirmationService,
   ) { }
 
   ngOnInit(): void {
     this.blocService.getAllBlocs().subscribe(
-      (response: any) => {
-        this.blocService.data = response.data.blocs;
-        console.log("BLOCS :::: " + this.blocService.data)
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
+        (response: any) => {
+          this.blocService.data = response.data.blocs;
+          console.log("BLOCS :::: " + this.blocService.data)
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+        }
     )
   }
 
@@ -53,13 +53,13 @@ export class ListBlocComponent {
       accept: () => {
         this.blocService.deleteBloc(id).subscribe((data)=>{
           this.blocService.getAllBlocs().subscribe(
-            (response: any) => {
-              this.blocService.data = response.data.blocs;
-              console.log("DELETE BLOC DONE " + response.data.getRawValue())
-            },
-            (error) => {
-              console.error('Error fetching data:', error);
-            }
+              (response: any) => {
+                this.blocService.data = response.data.blocs;
+                console.log("DELETE BLOC DONE " + response.data.getRawValue())
+              },
+              (error) => {
+                console.error('Error fetching data:', error);
+              }
           );
           this.messageService.add({
             severity: 'success',

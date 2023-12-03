@@ -12,7 +12,7 @@ export class BlocService {
   /*apiUrl = 'http://localhost:8082/blocs';*/
   apiUrl = environment.uniQuartersUri + '/blocs';
   constructor(
-    private _http: HttpClient
+      private _http: HttpClient
   ) { }
 
   getAllBlocs():Observable<Bloc[]> {

@@ -29,12 +29,12 @@ export class SchedulerComponent {
 
           return new Promise((resolve, reject) => {
             this.dataService.getAudienceList().subscribe(
-              (audienceList) => {
-                resolve(audienceList);
-              },
-              (error) => {
-                reject(error);
-              }
+                (audienceList) => {
+                  resolve(audienceList);
+                },
+                (error) => {
+                  reject(error);
+                }
             );
           });
         },
@@ -64,12 +64,12 @@ export class SchedulerComponent {
           console.log("ee" + location)
           return new Promise((resolve, reject) => {
             this.dataService.getFilteredAppointmentsByLocation(location).subscribe(
-              (filteredAppointments) => {
-                resolve(filteredAppointments);
-              },
-              (error) => {
-                reject(error);
-              }
+                (filteredAppointments) => {
+                  resolve(filteredAppointments);
+                },
+                (error) => {
+                  reject(error);
+                }
             );
           });
         },
@@ -101,10 +101,10 @@ export class SchedulerComponent {
 
     e.popup.option("showTitle", true);
     e.popup.option(
-      "title",
-      e.appointmentData.text
-        ? e.appointmentData.text
-        :" Ajouter Travaux"    );
+        "title",
+        e.appointmentData.text
+            ? e.appointmentData.text
+            :" Ajouter Travaux"    );
 
     const form = e.form;
     let mainGroupItems = form.itemOption("mainGroup").items;
@@ -124,13 +124,13 @@ export class SchedulerComponent {
     {
       //list travaux
       this.ListTravaux = this.blocService.getAllBlocs2().subscribe(
-        (data) => {
-          this.ListTravaux = data;
-          console.log(this.ListTravaux );
-        },
-        (error) => {
-          console.log(error);
-        }
+          (data) => {
+            this.ListTravaux = data;
+            console.log(this.ListTravaux );
+          },
+          (error) => {
+            console.log(error);
+          }
       );
 
 
@@ -142,13 +142,13 @@ export class SchedulerComponent {
 
           return new Promise((resolve, reject) => {
             dataService.getAudienceList().subscribe(
-              (audienceList) => {
-                resolve(audienceList);
+                (audienceList) => {
+                  resolve(audienceList);
 
-              },
-              (error) => {
-                reject(error);
-              }
+                },
+                (error) => {
+                  reject(error);
+                }
             );
           });
         },

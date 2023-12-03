@@ -15,13 +15,13 @@ export class BlocFormComponent {
   id: number = 0;
 
   constructor(
-    private blocService: BlocService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private readonly dialogService: DynamicDialogRef,
-    private config: DynamicDialogConfig,
-    public messageService: MessageService,
-    private confirmationService: ConfirmationService,
+      private blocService: BlocService,
+      private router: Router,
+      private activatedRoute: ActivatedRoute,
+      private readonly dialogService: DynamicDialogRef,
+      private config: DynamicDialogConfig,
+      public messageService: MessageService,
+      private confirmationService: ConfirmationService,
   ) { }
 
   ngOnInit(): void {
@@ -40,13 +40,13 @@ export class BlocFormComponent {
     if (this.id !== undefined) {
       this.blocService.updateBloc(this.id, this.bl).subscribe((data)=>{
         this.blocService.getAllBlocs().subscribe(
-          (response: any) => {
-            this.blocService.data = response.data.blocs;
-            console.log("UPDATE BLOC DONE " + response.data.getRawValue())
-          },
-          (error) => {
-            console.error('Error fetching data f lvl:', error);
-          }
+            (response: any) => {
+              this.blocService.data = response.data.blocs;
+              console.log("UPDATE BLOC DONE " + response.data.getRawValue())
+            },
+            (error) => {
+              console.error('Error fetching data f lvl:', error);
+            }
         );
         this.dialogService.close();
         f.reset()
@@ -65,13 +65,13 @@ export class BlocFormComponent {
         });
         // auto updating the bloc list
         this.blocService.getAllBlocs().subscribe(
-          (response: any) => {
-            this.blocService.data = response.data.blocs;
-            console.log("ADD BLOC DONE f lvl:", JSON.stringify(this.blocService.data, null, 2));
-          },
-          (error) => {
-            console.error('Error fetching data f lvl:', error);
-          }
+            (response: any) => {
+              this.blocService.data = response.data.blocs;
+              console.log("ADD BLOC DONE f lvl:", JSON.stringify(this.blocService.data, null, 2));
+            },
+            (error) => {
+              console.error('Error fetching data f lvl:', error);
+            }
         );
       });
       this.dialogService.close();
