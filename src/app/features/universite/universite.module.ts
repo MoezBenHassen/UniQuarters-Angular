@@ -20,6 +20,7 @@ import { ListUniversiteFilteredComponent } from './list-universite-filtered/list
 import { UniversiteLocationComponent } from './universite-location/universite-location.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { FileUploadModule } from 'primeng/fileupload';
+import { LatLngToAddressPipe } from 'src/app/pipes/lat-lng-to-address.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     UniversiteFormComponent,
     UniversiteDetailsComponent,
     ListUniversiteFilteredComponent,
-    UniversiteLocationComponent
+    UniversiteLocationComponent, 
+     LatLngToAddressPipe,
   ],
   imports: [
     TableModule,
@@ -41,7 +43,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     InputTextModule,
     ToastModule,
     ReactiveFormsModule,
-    CardModule, LeafletModule,FileUploadModule
+    CardModule, LeafletModule,FileUploadModule,
+   
 
   ],
   providers: [DialogService,ConfirmationService, MessageService],
