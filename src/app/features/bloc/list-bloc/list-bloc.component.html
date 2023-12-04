@@ -15,7 +15,13 @@
 
     </div>
   </div>
-
+  <button type="button" (click)="exportPDF()" class="btn btn-warning" data-toggle="modal" data-target="#bs-example-modal-sm" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+    <i class="fa fa-file-pdf-o" style="font-size:  16px"></i>&nbsp; PDF
+  </button>
+  <button type="button" (click)="exportExcel()" class="btn btn-warning" data-toggle="modal"
+                              data-target="#bs-example-modal-sm" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                              <i class="fa fa-file-excel-o" style="font-size:16px"></i>&nbsp; Excel
+  </button>
   <div class="card p-4">
     <div class="buttonSection">
       <button class="secondary-button scheduler" style="" (click)="goToScheduler()">
