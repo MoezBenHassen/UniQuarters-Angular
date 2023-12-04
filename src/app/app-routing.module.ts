@@ -43,13 +43,14 @@ const routes: Routes = [
       },
       {
         path: `${RoutePaths.BLOC}`,
+        title: 'Blocs',
         loadChildren: () => import('./features/bloc/bloc.module').then((m) => m.BlocModule),
       },
       {
         // scheduler component
         path: `${RoutePaths.SCHEDULER}`,
+        title: 'Schedule',
         component: SchedulerComponent,
-
       }
     ]
   }
