@@ -1,22 +1,42 @@
 <div class="container">
-  <h2 class="title py-4">Gestion Des Blocs
-    <button class="secondary-button" style="float:right" (click)="Add()"> <!--(click)="Add()">-->
-      <span class="pi pi-plus" aria-hidden="true"></span> Ajouter un Bloc
-    </button>
-  </h2>
+  <div class="blocTitle">
+    <h2 class="title py-4">
+      Gestion Des Blocs
+    </h2>
+
+    <div class="input-wrapper">
+      <button class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="25px" width="25px">
+          <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" stroke="#7e4fd4" d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"></path>
+          <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" stroke="#7e4fd4" d="M22 22L20 20"></path>
+        </svg>
+      </button>
+      <input placeholder="search.." class="input" name="text" type="text" [(ngModel)]="nomBloc">
+
+    </div>
+  </div>
 
   <div class="card p-4">
+    <div class="buttonSection">
+      <button class="secondary-button scheduler" style="" (click)="goToScheduler()">
+        <span class="pi pi-calendar " aria-hidden="true"></span> Schedule
+      </button>
+      <button class="secondary-button addButton" style="" (click)="Add()">
+        <span class="pi pi-plus pi-building" aria-hidden="true"></span> Ajouter un Bloc
+      </button>
+    </div>
     <p-table #dt [value]="blocService.data"
              [rowHover]="true" columnResizeMode="expand" [rows]="5" styleClass="p-datatable" [showCurrentPageReport]="true" [paginator]="true"
              currentPageReportTemplate="{totalRecords} Bloc(s)" [filterDelay]="0">
       <!--data table header group , includes search bars -->
       <ng-template pTemplate="headergrouped">
+
         <tr class="bg-white">
           <th>Nom</th>
           <th>Capactie</th>
           <th>Actions</th>
         </tr>
-        <tr class="bg-white">
+       <!-- <tr class="bg-white">
           <th>
               <span class="p-input-icon-right">
                 <i class="pi pi-search"></i>
@@ -30,14 +50,8 @@
               </span>
           </th>
 
-        </tr>
-        <tr>
-          <input
-                  placeholder = "search"
-                  type = "text"
-                  [(ngModel)]="nomBloc"
-          />
-        </tr>
+        </tr>-->
+
       </ng-template>
 
       <ng-template pTemplate="body" let-bl>
@@ -58,7 +72,9 @@
         </tr>
       </ng-template>
     </p-table>
+
     <p-confirmDialog header="Confirmation"></p-confirmDialog>
+
     <p-toast></p-toast>
   </div>
 </div>

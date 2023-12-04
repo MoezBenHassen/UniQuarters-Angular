@@ -4,6 +4,7 @@ import {BlocService} from "../../../services/bloc.service";
 import {DialogService} from "primeng/dynamicdialog";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {BlocFormComponent} from "../bloc-form/bloc-form.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-bloc',
@@ -14,6 +15,7 @@ export class ListBlocComponent {
   @ViewChild('dt') table!: Table;
   nomBloc: string = "";
   constructor(
+      private route: Router,
       public blocService: BlocService,
       private readonly dialogService: DialogService,
       public messageService: MessageService,
@@ -70,5 +72,9 @@ export class ListBlocComponent {
         });
       }
     });
+  }
+
+  goToScheduler() {
+    this.route.navigate(['/gestion/scheduler'])
   }
 }

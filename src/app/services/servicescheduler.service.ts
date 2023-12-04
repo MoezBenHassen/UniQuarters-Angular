@@ -12,18 +12,14 @@ export class ServiceschedulerService {
 
 
   // crud schedule
-/*
+  private url = environment.uniQuartersUri + '/schedule';
   private apiUrl = 'http://localhost:8080/api/schedule/loadData';
-  private addapi="http://localhost:8080/api/schedule/addAudience"
-  private apiUrl2 = 'http://localhost:8080/';*/
-  apiUrl = environment.uniQuartersUri + '/schedule';
-  addapi = environment.uniQuartersUri + '/schedule/addAudience';
-
+  private addapi="http://localhost:8080/api/schedule/addTravaux"
   getAudienceList(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
   addAppointment(newAppointment: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl+'/addTravaux', newAppointment);
+    return this.http.post<any>(this.addapi, newAppointment);
   }
   deleteAudience(id: number): Observable<any> {
     const deleteUrl = `http://localhost:8080/api/schedule/deleteTravaux/${id}`;
