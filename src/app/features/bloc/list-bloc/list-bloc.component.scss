@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   h2{
+    color: $secondary-color;
     display: inline-block;
     margin: 5px;
     margin-right: 20px;
@@ -40,8 +41,25 @@
 
     margin: 5px;
   }
-}
+  .addButton{
+    background-color: $secondary-color;
+    border-color: $secondary-color;
 
+  }
+}
+.exportButtons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+  button{
+    //height should be the default height of the button
+    height: 100%;
+    display: inline-block;
+    margin: 5px;
+  }
+
+}
 // SEARCH BAR STYLES
 $color_1: #000;
 $color_2: #8f8f8f;

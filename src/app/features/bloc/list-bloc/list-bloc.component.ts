@@ -2,10 +2,10 @@ import {Component, ViewChild} from '@angular/core';
 import {Table} from "primeng/table";
 import {BlocService} from "../../../services/bloc.service";
 import {DialogService} from "primeng/dynamicdialog";
-import {ConfirmationService, MessageService} from "primeng/api";
+import {ConfirmationService, MessageService } from "primeng/api";
 import {BlocFormComponent} from "../bloc-form/bloc-form.component";
 import {Router} from "@angular/router";
-
+import {RippleModule} from "primeng/ripple";
 @Component({
   selector: 'app-list-bloc',
   templateUrl: './list-bloc.component.html',
@@ -88,7 +88,7 @@ export class ListBlocComponent {
         const data1 = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = data1;
-        link.download = "blocs.pdf";
+        //link.download = "blocs.pdf";
         link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
         setTimeout(function(){
           window.URL.revokeObjectURL(data1);

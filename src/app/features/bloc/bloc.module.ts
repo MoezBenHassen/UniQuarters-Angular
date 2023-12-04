@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import { SchedulerComponent } from './scheduler/scheduler.component';
+import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
     InputTextModule,
     FormsModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    RippleModule,
   ]
 })
 export class BlocModule { }

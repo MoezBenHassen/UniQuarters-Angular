@@ -17,10 +17,7 @@
     </div>
     <dx-scheduler #scheduler id="scheduler" [dataSource]="store"
                   (onAppointmentFormOpening)="onAppointmentFormCreated($event)" >
-      <dxi-resource fieldExpr="bloc" label="Bloc" [dataSource]="ListTravaux"
-      >
-
-
+      <dxi-resource fieldExpr="bloc" label="Bloc" [dataSource]="ListTravaux">
       </dxi-resource>
     </dx-scheduler>
 

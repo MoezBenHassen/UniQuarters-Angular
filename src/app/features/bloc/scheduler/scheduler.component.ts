@@ -24,11 +24,11 @@ export class SchedulerComponent {
     if (!location) {
       // Load all appointments
       this.store = new CustomStore({
-        key: 'idAudience',
+        key: 'idTravaux ',
         load: (loadOptions) => {
 
           return new Promise((resolve, reject) => {
-            this.dataService.getAudienceList().subscribe(
+            this.dataService.getEventList().subscribe(
                 (audienceList) => {
                   resolve(audienceList);
                 },
@@ -40,14 +40,14 @@ export class SchedulerComponent {
         },
         insert: (values) => {
 
-          return this.dataService.addAppointment(values).toPromise();
+          return this.dataService.addEvent(values).toPromise();
         },
         update: (key, values) => {
 
-          return this.dataService.updateAudience(key, values).toPromise();
+          return this.dataService.updateEvent(key, values).toPromise();
         },
         remove: (key) => {
-          return this.dataService.deleteAudience(key).toPromise().then(() => {
+          return this.dataService.deleteEvent(key).toPromise().then(() => {
 
           }).catch(error => {
             console.log('Error deleting data:', error);
@@ -59,11 +59,11 @@ export class SchedulerComponent {
     } else {
 
       this.store = new CustomStore({
-        key: 'idAudience',
+        key: 'idTravaux',
         load: (loadOptions) => {
           console.log("ee" + location)
           return new Promise((resolve, reject) => {
-            this.dataService.getFilteredAppointmentsByLocation(location).subscribe(
+            this.dataService.getFilteredEventsByLocation(location).subscribe(
                 (filteredAppointments) => {
                   resolve(filteredAppointments);
                 },
@@ -75,15 +75,15 @@ export class SchedulerComponent {
         },
         insert: (values) => {
 
-          return this.dataService.addAppointment(values).toPromise();
+          return this.dataService.addEvent(values).toPromise();
         },
         update: (key, values) => {
 
-          return this.dataService.updateAudience(key, values).toPromise();
+          return this.dataService.updateEvent(key, values).toPromise();
         },
         remove: (key) => {
 
-          return this.dataService.deleteAudience(key).toPromise().then(() => {
+          return this.dataService.deleteEvent(key).toPromise().then(() => {
 
           }).catch(error => {
             console.log('Error deleting data:', error);
@@ -104,7 +104,7 @@ export class SchedulerComponent {
         "title",
         e.appointmentData.text
             ? e.appointmentData.text
-            :" Ajouter Travaux"    );
+            :" Ajouter Event"    );
 
     const form = e.form;
     let mainGroupItems = form.itemOption("mainGroup").items;
@@ -141,7 +141,7 @@ export class SchedulerComponent {
         load: (loadOptions) => {
 
           return new Promise((resolve, reject) => {
-            dataService.getAudienceList().subscribe(
+            dataService.getEventList().subscribe(
                 (audienceList) => {
                   resolve(audienceList);
 
@@ -154,14 +154,14 @@ export class SchedulerComponent {
         },
         insert: (values) => {
 
-          return dataService.addAppointment(values).toPromise();
+          return dataService.addEvent(values).toPromise();
         },
         update: (key, values) => {
 
-          return dataService.updateAudience(key, values).toPromise();
+          return dataService.updateEvent(key, values).toPromise();
         },
         remove: (key) => {
-          return dataService.deleteAudience(key).toPromise().then(() => {
+          return dataService.deleteEvent(key).toPromise().then(() => {
             console.log(key);
           }).catch(error => {
             console.log('Error deleting data:', error);

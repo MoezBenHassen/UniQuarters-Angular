@@ -15,21 +15,21 @@ export class ServiceschedulerService {
   private url = environment.uniQuartersUri + '/schedule';
   private apiUrl = 'http://localhost:8080/api/schedule/loadData';
   private addapi="http://localhost:8080/api/schedule/addTravaux"
-  getAudienceList(): Observable<any[]> {
+  getEventList(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
-  addAppointment(newAppointment: any): Observable<any> {
+  addEvent(newAppointment: any): Observable<any> {
     return this.http.post<any>(this.addapi, newAppointment);
   }
-  deleteAudience(id: number): Observable<any> {
+  deleteEvent(id: number): Observable<any> {
     const deleteUrl = `http://localhost:8080/api/schedule/deleteTravaux/${id}`;
     return this.http.delete<any>(deleteUrl);
   }
-  updateAudience(id: number, updatedAudience: any): Observable<any> {
+  updateEvent(id: number, updatedAudience: any): Observable<any> {
     const updateUrl = `http://localhost:8080/api/schedule/updateTravaux/${id}`;
     return this.http.put<any>(updateUrl, updatedAudience);
   }
-  getFilteredAppointmentsByLocation(location: string): Observable<any[]> {
+  getFilteredEventsByLocation(location: string): Observable<any[]> {
     const apiUrl = `http://localhost:8080/api/schedule/TravauxByLocation/${location}`;
     return this.http.get<any[]>(apiUrl);
   }
