@@ -18,10 +18,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { StepsModule } from 'primeng/steps';
 import { DialogModule } from 'primeng/dialog';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule } from "@angular/forms";
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './features/home/home.component';
 import { LayoutComponent } from './features/shared/layout/layout.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -30,23 +30,28 @@ import { FooterComponent } from './features/shared/footer/footer.component';
 import { HeaderComponent } from './features/shared/header/header.component';
 import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
-import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
-import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
+import { RegisterComponent } from './features/register/register.component';
+import { CardModule } from 'primeng/card';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { CalendarModule } from 'primeng/calendar';
+import { PasswordModule } from 'primeng/password';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
-    HeaderComponent, 
-    FooterComponent, 
-    NavigationComponent, 
+    HeaderComponent,
+    FooterComponent,
+    NavigationComponent,
     LayoutComponent,
     DashboardComponent,
     AppComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
 
   ],
   imports: [
-    
+
     UniversiteModule,
     ChambreModule,
     TagModule,
@@ -68,10 +73,13 @@ import { UniversiteFormComponent } from './features/universite/universite-form/u
     DialogModule,
     FormsModule,
     DividerModule,
-
-
+    CardModule,
+    KeyFilterModule,
+    CalendarModule,
+    PasswordModule,
+    ToastModule,
   ],
-  providers: [DialogService,ConfirmationService, MessageService],
+  providers: [DialogService, ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -5,6 +5,8 @@ import { LayoutComponent } from './features/shared/layout/layout.component';
 import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { RoutePaths } from './models/routepaths';
+import { RegisterComponent } from './features/register/register.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,14 +17,18 @@ const routes: Routes = [
     path: '',
     redirectTo: `${RoutePaths.HOME}`, pathMatch: 'full'
   },
-  
   {
     path: `${RoutePaths.LOGIN}`,
     component: LoginComponent
   },
   {
+    path:`${RoutePaths.REGISTER}`,
+    component: RegisterComponent
+  },
+  {
     path: `${RoutePaths.GESTION}`,
     component: LayoutComponent,
+    canActivate:[AuthGuard],
     children: [
       {
         path: `${RoutePaths.DASHBOARD}`,

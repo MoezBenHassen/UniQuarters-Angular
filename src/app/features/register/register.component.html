@@ -1,0 +1,49 @@
+<p-toast position="bottom-center" key="bc"></p-toast>
+<div class="container card">
+    <form [formGroup]="registerForm" (ngSubmit)="submit()">
+        <div class="formgrid grid p-fluid">
+            <h2 class="title py-4">Inscription</h2>
+            <div class="field col-12">
+                <label for="email">Email</label>
+                <input pInputText id="email" formControlName="email" />
+
+            </div>
+            <div class="field col-6">
+                <label for="password">Password</label>
+                <p-password id="password" formControlName="password"></p-password>
+
+            </div>
+            <div class="field col-6">
+                <label for="password-confirm">Confirmer votre mot de passe</label>
+                <p-password [feedback]="false" id="password-confirm" aria-describedby="password-help"
+                    formControlName="confirmPassword"></p-password>
+                <!-- <small id="password-help">Le mot de passe doit être le même.</small> -->
+            </div>
+            <div class="field col-6">
+                <label for="nom">Nom</label>
+                <input pInputText id="nom" formControlName="nom" />
+
+            </div>
+            <div class="field col-6">
+                <label for="prenom">Prenom</label>
+                <input pInputText id="prenom" formControlName="prenom" />
+
+            </div>
+            <div class="field col-12">
+                <label for="cin">CIN</label>
+                <input pInputText id="cin" formControlName="cin" pKeyFilter="int" [maxLength]="8" />
+
+            </div>
+            <div class="field col-12">
+                <label for="ecole">Ecole</label>
+                <input pInputText id="ecole" formControlName="ecole" />
+
+            </div>
+            <div class="field col-12">
+                <label for="date-naissance">Date de naissance</label>
+                <p-calendar [maxDate]="today" [touchUI]="true" id="date-naissance" formControlName="dateNaissance"></p-calendar>
+            </div>
+            <button class="primary-button" type="submit" [disabled]="registerForm.invalid">Envoyer</button>
+        </div>
+    </form>
+</div>

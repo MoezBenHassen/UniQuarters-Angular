@@ -7,14 +7,20 @@ export class TokenService {
 
   constructor() { }
 
-  getToken() {
-    return sessionStorage.getItem("access token");
+  getAccessToken() {
+    return sessionStorage.getItem("access_token");
   }
-  setToken(token: string) {
-    sessionStorage.setItem("access token", token);
+  getRefreshToken() {
+    return sessionStorage.getItem("refresh_token");
+  }
+  setAccessToken(accessToken:string) {
+    sessionStorage.setItem("access_token", accessToken);
+  }
+  setRefreshToken(accessToken:string) {
+    sessionStorage.setItem("access_token", accessToken);
   }
   removeToken() {
-    sessionStorage.removeItem("access token");
+    sessionStorage.clear();
   }
   
 }
