@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/models/loginUser';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
-import { jwtDecode } from "jwt-decode";
 
 @Component({
   selector: 'app-login',
@@ -25,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.logout().subscribe();
     this.loginForm = this.formBuilder.group(
       {
         email: ["", Validators.required],
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         error: (error) => {
           this.errorMsgs.push({
             severity: "error",
-            detail: "Login invalide",
+            detail: "Email ou mot de passe incorrecte",
           });
         }
       }

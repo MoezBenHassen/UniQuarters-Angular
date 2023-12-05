@@ -28,7 +28,6 @@ export class AuthService {
         this.tokenService.removeToken();
         // sessionStorage.removeItem("permissions");
         // this.permissionService.flushPermissions();
-        // this.router.navigate(["/login"]);
         return this.http.get(uniQuartersUri + "/logout");
     }
 
