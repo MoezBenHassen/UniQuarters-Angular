@@ -7,6 +7,8 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { RoutePaths } from './models/routepaths';
 import { RegisterComponent } from './features/register/register.component';
 import { AuthGuard } from './helpers/auth.guard';
+import { UtilisateurModule } from './features/utilisateur/utilisateur.module';
+import { EtudiantModule } from './features/etudiant/etudiant.module';
 
 const routes: Routes = [
   {
@@ -33,6 +35,14 @@ const routes: Routes = [
       {
         path: `${RoutePaths.DASHBOARD}`,
         component: DashboardComponent
+      },
+      {
+        path: `${RoutePaths.USER}`,
+        loadChildren: () => UtilisateurModule
+      },
+      {
+        path: `${RoutePaths.ETUDIANT}`,
+        loadChildren: () => EtudiantModule
       },
       {
         path: `${RoutePaths.UNIVERSITE}`,
