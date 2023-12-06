@@ -31,8 +31,8 @@ export class AuthService {
         return this.http.get(uniQuartersUri + "/logout");
     }
 
-    refreshToken(){
-        return this.http.post(uniQuartersUri+"/refresh-token",null);
+    refreshToken(refreshToken:string){
+        return this.http.post(uniQuartersUri+"/refresh-token",refreshToken);
     }
   
     register(e:Etudiant): Observable<any> {

@@ -17,7 +17,7 @@ export class TokenService {
     sessionStorage.setItem("access_token", accessToken);
   }
   setRefreshToken(accessToken:string) {
-    sessionStorage.setItem("access_token", accessToken);
+    sessionStorage.setItem("refresh_token", accessToken);
   }
   removeToken() {
     sessionStorage.clear();

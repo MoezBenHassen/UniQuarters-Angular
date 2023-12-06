@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           // this.permissionsService.loadPermissions(
           //   this.authService.getPermissions()
           // );
-          this.router.navigate(["/gestion/chambre"]);
+          this.router.navigate(["/gestion/utilisateur"]);
         },
         error: (error) => {
           this.errorMsgs.push({

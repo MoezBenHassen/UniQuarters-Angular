@@ -21,7 +21,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './features/home/home.component';
 import { LayoutComponent } from './features/shared/layout/layout.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -36,6 +36,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
+import { RequestInterceptorInterceptor } from './helpers/request-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,7 @@ import { ToastModule } from 'primeng/toast';
     PasswordModule,
     ToastModule,
   ],
-  providers: [DialogService, ConfirmationService, MessageService],
+  providers: [DialogService, ConfirmationService, MessageService, {provide: HTTP_INTERCEPTORS,useClass:RequestInterceptorInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
