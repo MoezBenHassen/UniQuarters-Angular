@@ -17,6 +17,22 @@ export class EtudiantService {
     return this.http.post(uniQuartersUri, e, { observe: 'response' }).pipe(retry(3), catchError(this.handleError));
   }
 
+  updateEtudiant(e: Etudiant): Observable<HttpResponse<any>> {
+    return this.http.put(uniQuartersUri, e, { observe: 'response' }).pipe(retry(3), catchError(this.handleError));
+  }
+
+  getEtudiants(): Observable<HttpResponse<any>> {
+    return this.http.get(uniQuartersUri,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
+  }
+
+  getEtudiant(id:number): Observable<HttpResponse<any>> {
+    return this.http.get(uniQuartersUri+"/"+id,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
+  }
+
+  deleteEtudiant(id:number): Observable<HttpResponse<any>> {
+    return this.http.get(uniQuartersUri+"/"+id,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     errorMessage =
