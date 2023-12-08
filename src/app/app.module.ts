@@ -52,7 +52,6 @@ import { RequestInterceptorInterceptor } from './helpers/request-interceptor.int
 
   ],
   imports: [
-
     UniversiteModule,
     ChambreModule,
     TagModule,

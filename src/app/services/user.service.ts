@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Role } from '../models/role';
 
 const uniQuartersUri = environment.uniQuartersUri+"/user";
 
@@ -25,13 +26,18 @@ export class UserService {
     return this.http.get(uniQuartersUri,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
   }
 
+  getUsersByRole(r:Role): Observable<HttpResponse<any>> {
+    return this.http.get(uniQuartersUri+"/role/"+r,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
+  }
+
   getUser(id:number): Observable<HttpResponse<any>> {
     return this.http.get(uniQuartersUri+"/"+id,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
   }
 
   deleteUser(id:number): Observable<HttpResponse<any>> {
-    return this.http.get(uniQuartersUri+"/"+id,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
+    return this.http.delete(uniQuartersUri+"/"+id,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
   }
+
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';

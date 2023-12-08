@@ -3,6 +3,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { UtilisateurFormComponent } from '../utilisateur-form/utilisateur-form.component';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-list-utilisateur',
@@ -20,11 +22,20 @@ export class ListUtilisateurComponent implements OnInit {
     private dialogService: DialogService
   ) { }
   ngOnInit(): void {
-    this.userService.getUsers().subscribe( response => this.usersList = response.body.data);
+    this.userService.getUsersByRole(Role.Admin).subscribe( response => this.usersList = response.body.data.users);
   }
 
-  Add() { }
-  Edit(id: number) { }
-  Delete(id: number) { }
+  Add() { this.dialogService.open(UtilisateurFormComponent, {header:"Ajouter un administrateur"}) }
+  Edit(id: number) { this.dialogService.open(UtilisateurFormComponent, {header:"Modifier les informations d'uilisateur", data: {id}}) }
+  Delete(id: number) { 
+    this.confirmationService.confirm({
+      message:"Êtes-vous sûr de vouloir effectuer cette action ?",
+      acceptLabel:'Supprimer',
+      rejectLabel:'Annuler',
+      accept: () => {
+        this.userService.deleteUser(id).subscribe()
+      }
+    })
+   }
 
 }

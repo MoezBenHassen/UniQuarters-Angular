@@ -30,7 +30,7 @@ export class EtudiantService {
   }
 
   deleteEtudiant(id:number): Observable<HttpResponse<any>> {
-    return this.http.get(uniQuartersUri+"/"+id,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
+    return this.http.delete(uniQuartersUri+"/"+id,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
   }
 
   handleError(error: HttpErrorResponse) {

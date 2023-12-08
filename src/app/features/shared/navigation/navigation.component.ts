@@ -33,11 +33,11 @@ export const navbarData = [
   },
   {
     icon: 'pi pi-user',
-    label: 'Utilisateurs',
+    label: 'Administrateurs',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.USER}`,
   },
   {
-    icon: 'pi pi-user',
+    icon: 'pi pi-users',
     label: 'Etudiants',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.ETUDIANT}`,
   },

@@ -9,6 +9,8 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { PasswordModule } from 'primeng/password';
 
 
 @NgModule({
@@ -22,8 +24,10 @@ import { InputTextModule } from 'primeng/inputtext';
     FormsModule,
     InputTextModule,
     TableModule,
+    DropdownModule,
     CommonModule,
-    UtilisateurRoutingModule
+    PasswordModule,
+    UtilisateurRoutingModule,
   ]
 })
 export class UtilisateurModule { }

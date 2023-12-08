@@ -39,6 +39,10 @@ export class AuthService {
         return this.http.post(uniQuartersUri+"/register",e, { observe: 'response' }).pipe(retry(3), catchError(this.handleError));
     }
 
+    emailExists(email:string){
+        return this.http.get(uniQuartersUri+"/emailAlreadyExists/"+email,{responseType:'text'}).pipe(retry(3), catchError(this.handleError));
+    }
+
 
     handleError(error: HttpErrorResponse) {
         let errorMessage = 'Unknown error!';
