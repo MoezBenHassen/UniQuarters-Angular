@@ -32,6 +32,7 @@
       <ng-template pTemplate="headergrouped">
 
         <tr class="bg-white">
+          <th>Color</th>
           <th>Nom</th>
           <th>Capactie</th>
           <th>Actions</th>
@@ -56,6 +57,11 @@
 
       <ng-template pTemplate="body" let-bl>
         <tr class="p-selectable-row" [hidden]="!(bl.nom.toUpperCase().indexOf(nomBloc.toUpperCase()) != -1)">
+          <td pTooltip="{{bl.color}}" tooltipPosition="left">
+            <div class="blocColor" [ngStyle]="{'background-color' : bl.color}">
+
+            </div>
+          </td>
           <td>{{ bl.nom }}</td>
           <td>{{ bl.capacite }}</td>
           <!--<td>{{ uni.foyer ? uni.foyer.nom : 'N/A' }}</td>-->

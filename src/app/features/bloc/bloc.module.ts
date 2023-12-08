@@ -11,6 +11,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import {RippleModule} from "primeng/ripple";
+import {TooltipModule} from "primeng/tooltip";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {RippleModule} from "primeng/ripple";
     ConfirmDialogModule,
     ToastModule,
     RippleModule,
+    TooltipModule,
   ]
 })
 export class BlocModule { }
