@@ -73,38 +73,10 @@ import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
         DialogModule,
         FormsModule,
         DividerModule,
-
+        CardModule,
 
 
   ],
-  imports: [
-    
-    UniversiteModule,
-    ChambreModule,
-    TagModule,
-    TableModule,
-    ReactiveFormsModule,
-    ProgressBarModule,
-    ProgressSpinnerModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    CommonModule,
-    InputTextModule,
-    BrowserModule,
-    AppRoutingModule,
-    NgSelectModule,
-    ButtonModule,
-    AutoCompleteModule,
-    ConfirmDialogModule,
-    StepsModule,
-    DialogModule,
-    FormsModule,
-    DividerModule,
-    CardModule,
-    
-
-
-    ],
     providers: [DialogService, ConfirmationService, MessageService],
     exports: [
         FooterComponent
