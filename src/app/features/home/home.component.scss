@@ -2,7 +2,7 @@
 
 h1 {
   font-weight: 900;
-  color: #36417d;
+  color: $purple-color;
 }
 
 .container {
@@ -25,7 +25,7 @@ h1 {
   height: auto;
   border-radius: 8px;
 
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: $xxl-screen) {
     display: none
   }
 }
@@ -107,7 +107,7 @@ h1 {
 
       .item {
         color: white;
-        background-color: #36417d;
+        background-color: $purple-color;
         text-align: center;
         padding: 40px 0 !important;
 
@@ -128,7 +128,7 @@ h1 {
 
   &-guide{
     padding: 50px 0 50px 0;
-    background-color: #7e4fd4;
+    background-color: $purple-color;
 
 
     .blocs {

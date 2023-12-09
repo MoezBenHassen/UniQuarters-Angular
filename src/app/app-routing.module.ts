@@ -10,6 +10,7 @@ import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component"
 import { ListUniversiteFilteredComponent } from './features/universite/list-universite-filtered/list-universite-filtered.component';
 
 
+
 const routes: Routes = [
   {
     path: `${RoutePaths.HOME}`,
