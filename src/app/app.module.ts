@@ -34,6 +34,8 @@ import { ListUniversiteComponent } from './features/universite/list-universite/l
 import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
 import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
 import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
+import { CardModule } from 'primeng/card';
+import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
 
 @NgModule({
     declarations: [
@@ -71,6 +73,35 @@ import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
         DialogModule,
         FormsModule,
         DividerModule,
+
+
+
+  ],
+  imports: [
+    
+    UniversiteModule,
+    ChambreModule,
+    TagModule,
+    TableModule,
+    ReactiveFormsModule,
+    ProgressBarModule,
+    ProgressSpinnerModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CommonModule,
+    InputTextModule,
+    BrowserModule,
+    AppRoutingModule,
+    NgSelectModule,
+    ButtonModule,
+    AutoCompleteModule,
+    ConfirmDialogModule,
+    StepsModule,
+    DialogModule,
+    FormsModule,
+    DividerModule,
+    CardModule,
+    
 
 
     ],
