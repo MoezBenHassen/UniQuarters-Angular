@@ -12,12 +12,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class ListChambreComponent implements OnInit {
   @ViewChild('dt') table!: Table;
-  data = [
-    { id: 1, name: 'Item 1', otherProperty: 'Value 1' },
-    { id: 2, name: 'Item 2', otherProperty: 'Value 2' },
-    { id: 3, name: 'Item 3', otherProperty: 'Value 3' },
-  ];
-
 
   constructor(
     public chambreService: ChambreService,
@@ -26,17 +20,30 @@ export class ListChambreComponent implements OnInit {
     private confirmationService: ConfirmationService,
   ) { }
 
-
-
   ngOnInit(): void {
+    this.loadChambres();
   }
-  Add(){
-    this.chambreService.AddOrEditChambreForm.reset()
-     this.dialogService.open(ChambreFormComponent, {
-          header:"Ajouter une nouvelle chambre"
-      })
-  
+
+  loadChambres() {
+    this.chambreService.retrieveChambres().subscribe(
+      (response:any) => {
+        console.log(response.body.data.chambres)
+
+        this.chambreService.chambres = response.body.data.chambres;
+      },
+      (error) => {
+        console.error('Error loading chambres:', error);
+      }
+    );
   }
+
+  Add() {
+    this.chambreService.AddOrEditChambreForm.reset();
+    this.dialogService.open(ChambreFormComponent, {
+      header: "Ajouter une nouvelle chambre"
+    });
+  }
+
   Edit(data: any) {
     this.populateForm(data);
     this.dialogService.open(ChambreFormComponent, {
@@ -44,30 +51,36 @@ export class ListChambreComponent implements OnInit {
       header: "Modifier les informations de la chambre"
     });
   }
+
   Delete(data: any) {
     this.confirmationService.confirm({
-        message: 'Êtes-vous sûr de vouloir effectuer cette action ?',
-        acceptLabel: 'Supprimer',
-        rejectLabel: 'Annuler',
-        accept: () => {
-          const index = this.data.findIndex(item => item.id === data.id);
-          if (index !== -1) {
-            this.data.splice(index, 1);
+      message: 'Êtes-vous sûr de vouloir supprimer cette chambre ?',
+      acceptLabel: 'Supprimer',
+      rejectLabel: 'Annuler',
+      accept: () => {
+        this.chambreService.deleteChambre(data.id).subscribe(
+          (response) => {
+            this.loadChambres();
+
+            this.messageService.add({ severity: 'success', summary: 'Succès', detail: 'Chambre supprimée avec succès' });
+          },
+          (error) => {
+            console.error('Error deleting chambre:', error);
+            this.messageService.add({ severity: 'error', summary: 'Erreur', detail: 'Erreur lors de la suppression de la chambre' });
           }
-
-        }
+        );
+      }
     });
+  }
 
-
-}
   populateForm(d: any) {
     this.chambreService.AddOrEditChambreForm.reset({
       id: d.id,
-      name: d.name,
-      otherProperty: d.otherProperty,
-
+      chambreNumber: d.chambreNumber,
+      capacity: d.capacity,
+      description: d.description,
+      type: d.type,
     });
   }
+  
 }
-
-

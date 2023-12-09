@@ -1,31 +1,48 @@
-<p-progressBar class="top-progress-bar" [style]="{ height: '3px' }" mode="indeterminate"
-    *ngIf="loading"></p-progressBar>
+<p-progressBar class="top-progress-bar" [style]="{ height: '3px' }" mode="indeterminate" *ngIf="loading"></p-progressBar>
+
 <div class="application mt-5">
-    <div [formGroup]="chambreService.AddOrEditChambreForm" class="form">
-        <div class="grid">
+  <div [formGroup]="chambreService.AddOrEditChambreForm" class="form">
+    <div class="grid">
+      <div class="col-12">
+        <label class="label required">Numéro de Chambre </label>
+        <input id="chambreNumber" formControlName="chambreNumber" type="number" class="inputtext-sm full-width"
+          placeholder="Saisir le numéro de chambre" pInputText />
+      </div>
+      <div class="col-12">
+        <label class="label required">Capacité </label>
+        <input id="capacity" formControlName="capacity" type="number" class="inputtext-sm full-width"
+          placeholder="Saisir la capacité" pInputText />
+      </div>
+      <div class="col-12">
+        <label class="label required">Description </label>
+        <textarea id="description" formControlName="description" class="inputtext-sm full-width"
+          placeholder="Saisir la description"></textarea>
+      </div>
+      <div class="col-12">
+        <label class="label required">Type de Chambre </label>
+        <select id="type" formControlName="type" class="inputtext-sm full-width" pInputText>
+          <option value="SIMPLE">Simple</option>
+          <option value="DOUBLE">Double</option>
+          <option value="TRIPLE">Triple</option>
+        </select>
+      </div>
+      <!-- <div class="col-12">
+        <label class="label required">Bloc </label>
+        Assuming 'nomBloc' is a property in your 'Bloc' model 
+        <input id="bloc" formControlName="bloc" type="text" class="inputtext-sm full-width"
+          placeholder="Saisir le nom du bloc" pInputText />
+      </div> -->
 
-            <div class="col-12">
-                <label class="label required">Nom </label>
-                <input id="name" formControlName="name" type="text" class="inputtext-sm full-width"
-                    placeholder="Saisir le nom" pInputText />
-            </div>
-            <div class="col-12">
-                <label class="label required">other Property </label>
-                <input id="otherProperty" formControlName="otherProperty" type="text" class="inputtext-sm full-width"
-                    placeholder="Saisir otherProperty" pInputText />
-            </div>
-        </div>
-        <div class="footer-popup">
-            <button  *ngIf="chambreService.AddOrEditChambreForm.value.id===null" class="primary-button mt-3" [disabled]="loading" [disabled]="!chambreService.AddOrEditChambreForm.valid"  (click)="AddChambre()">
-                Enregistrer
-
-            </button>
-            <button *ngIf="chambreService.AddOrEditChambreForm.value.id!null" class="primary-button" [disabled]="loading" (click)="UpdateChambre()">
-
-                Enregistrer
-
-
-            </button>
-        </div>
     </div>
+    <div class="footer-popup">
+      <button *ngIf="!chambreService.AddOrEditChambreForm.value.id" class="primary-button mt-3"
+        [disabled]="loading || !chambreService.AddOrEditChambreForm.valid" (click)="AddChambre()">
+        Enregistrer
+      </button>
+      <button *ngIf="chambreService.AddOrEditChambreForm.value.id" class="primary-button" [disabled]="loading"
+        (click)="UpdateChambre()">
+        Enregistrer
+      </button>
+    </div>
+  </div>
 </div>
