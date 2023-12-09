@@ -25,8 +25,8 @@ import { PasswordModule } from 'primeng/password';
     InputTextModule,
     TableModule,
     DropdownModule,
-    CommonModule,
     PasswordModule,
+    CommonModule,
     UtilisateurRoutingModule,
   ]
 })

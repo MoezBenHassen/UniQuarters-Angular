@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { UtilisateurFormComponent } from '../utilisateur-form/utilisateur-form.component';
 import { Role } from 'src/app/models/role';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-utilisateur',
@@ -15,6 +16,8 @@ export class ListUtilisateurComponent implements OnInit {
 
   usersList : User[] = [];
 
+  subscription: Subscription = new Subscription;
+
   constructor(
     private userService: UserService,
     private messageService: MessageService,
@@ -22,9 +25,15 @@ export class ListUtilisateurComponent implements OnInit {
     private dialogService: DialogService
   ) { }
   ngOnInit(): void {
-    this.userService.getUsersByRole(Role.Admin).subscribe( response => this.usersList = response.body.data.users);
+    this.getData();
+    this.subscription = this.userService.refresh$.subscribe( () => this.getData())
   }
 
+  getData(){
+    this.userService.getUsersByRole(Role.Admin).subscribe( 
+      response => this.usersList = response.body.data.users
+      );
+  }
   Add() { this.dialogService.open(UtilisateurFormComponent, {header:"Ajouter un administrateur"}) }
   Edit(id: number) { this.dialogService.open(UtilisateurFormComponent, {header:"Modifier les informations d'uilisateur", data: {id}}) }
   Delete(id: number) { 

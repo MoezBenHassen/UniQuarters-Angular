@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Etudiant } from '../models/etudiant';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable, Subject, catchError, retry, tap, throwError } from 'rxjs';
 
 const uniQuartersUri = environment.uniQuartersUri + "/etudiants";
 
@@ -11,15 +11,31 @@ const uniQuartersUri = environment.uniQuartersUri + "/etudiants";
 })
 export class EtudiantService {
 
+  private _refresh$ = new Subject<void>();
+
   constructor(private http: HttpClient) { }
 
-  addEtudiant(e: Etudiant): Observable<HttpResponse<any>> {
-    return this.http.post(uniQuartersUri, e, { observe: 'response' }).pipe(retry(3), catchError(this.handleError));
+  get refresh$() {
+    return this._refresh$;
   }
 
+  addEtudiant(e: Etudiant): Observable<HttpResponse<any>> {
+    return this.http.post(uniQuartersUri, e, { observe: 'response' })
+    .pipe(
+      retry(3), catchError(this.handleError),
+      tap(() => {
+        this._refresh$.next();
+      }));
+}
+
   updateEtudiant(e: Etudiant): Observable<HttpResponse<any>> {
-    return this.http.put(uniQuartersUri, e, { observe: 'response' }).pipe(retry(3), catchError(this.handleError));
-  }
+    return this.http.put(uniQuartersUri, e, { observe: 'response' })
+    .pipe(
+      retry(3), catchError(this.handleError),
+      tap(() => {
+        this._refresh$.next();
+      }));
+}
 
   getEtudiants(): Observable<HttpResponse<any>> {
     return this.http.get(uniQuartersUri,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
@@ -30,8 +46,13 @@ export class EtudiantService {
   }
 
   deleteEtudiant(id:number): Observable<HttpResponse<any>> {
-    return this.http.delete(uniQuartersUri+"/"+id,{ observe: 'response' }).pipe(retry(3), catchError(this.handleError) )
-  }
+    return this.http.delete(uniQuartersUri+"/"+id,{ observe: 'response' })
+    .pipe(
+      retry(3), catchError(this.handleError),
+      tap(() => {
+        this._refresh$.next();
+      }));
+}
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
