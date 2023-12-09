@@ -7,6 +7,14 @@
       <span class="pi pi-plus" aria-hidden="true"></span> Ajouter une
       réservation
     </button>
+    <button
+      class="secondary-button info-button"
+      style="float: right"
+      routerLink="/reservations/reservedChambresStatistics"
+    >
+      <span class="pi pi-chart-pie" aria-hidden="true"></span> Statistiques des
+      réservations des chambres
+    </button>
   </h2>
   <p-progressBar
     *ngIf="reservationService.isLoading || isLoading"
