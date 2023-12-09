@@ -41,46 +41,15 @@
     </div>
     <div class="home-main">
         <h1 class="i-description">No matter where you’re going to, we got you</h1>
+
         <div class="blocs container" *ngFor="let start of [0, 5, 10]">
            
                 <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round" *ngFor="let i of [start, start + 1, start + 2, start + 3]; let j = index">
                   <p class="h3"><a style="text-decoration: none; color:white" [routerLink]="['/filtre',gouvernorats[i]]">{{gouvernorats[i]}}</a></p>
                 </div>
-             
+         </div>  
               
-            <!-- <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"><a>ARIANA</a> </p>
-            </div>
-            <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"><a>BEN AROUS</a></p>
-            </div>
-            <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"><a>BIZERTE</a></p>
-            </div>
-            <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"><a>SOUSSE</a> </p>
-            </div> -->
-        </div>
-         <!-- <div class="blocs container">
-            
-            </div>
-            <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"> <a>SFAX</a></p>
-            </div>
-            <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"> <a>NABEUL</a></p>
-            </div>
-            <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"> <a>TATAOUINE</a></p>
-            </div>
-            <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"> <a>GAFSA</a></p>
-            </div>
-            <div class="item flex-1 align-items-center justify-content-center m-2 px-5 py-3 border-round">
-                <p class="h3"> <a>MAHDIA</a></p>
-            </div>
-        </div> 
-    </div> -->
+           
     <div class="home-map">
         <div>
             <h1 class="into-label">

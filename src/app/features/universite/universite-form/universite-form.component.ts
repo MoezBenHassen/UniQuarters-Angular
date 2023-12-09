@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -9,6 +10,7 @@ import { UniversiteService } from 'src/app/services/universite.service';
 import * as Leaflet from 'leaflet';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
+
 @Component({
   selector: 'app-universite-form',
   templateUrl: './universite-form.component.html',
@@ -96,6 +98,7 @@ export class UniversiteFormComponent implements OnInit {
         this.uniService.getAllUniversites().subscribe(
           (response: any) => {
             this.uniService.data = response.data.universities;
+
           },
           (error) => {
             console.error('Error fetching data:', error);
@@ -233,6 +236,7 @@ export class UniversiteFormComponent implements OnInit {
   get adresse() {
     return this.fbUni.get('adresse');
   }
+
 
 
 

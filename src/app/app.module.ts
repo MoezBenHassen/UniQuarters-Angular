@@ -35,6 +35,7 @@ import { UniversiteFormComponent } from './features/universite/universite-form/u
 import { CardModule } from 'primeng/card';
 import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
 
+
 @NgModule({
   declarations: [
     HeaderComponent, 
@@ -45,8 +46,7 @@ import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
     AppComponent,
     HomeComponent,
     LoginComponent,
-  
-   
+
 
   ],
   imports: [
@@ -74,6 +74,7 @@ import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
     DividerModule,
     CardModule,
     
+
 
 
   ],

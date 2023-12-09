@@ -7,7 +7,9 @@ import { Universite } from 'src/app/models/universite';
 import { ChambreService } from 'src/app/services/chambre.service';
 import { UniversiteService } from 'src/app/services/universite.service';
 import { UniversiteFormComponent } from '../universite-form/universite-form.component';
+
 import { Foyer } from 'src/app/models/foyer';
+
 
 @Component({
   selector: 'app-list-universite',
@@ -44,10 +46,9 @@ export class ListUniversiteComponent   implements OnInit {
         console.error('Error fetching data:', error);
       }
     );
-    this.univ.nom="esprit";
-    this.univ.adresse="Ben Arous";
-    this.univ.foyer=new Foyer();
-    this.univ.foyer.nom="foyer ariana"
+
+  
+
   }
   Add(){
     this.dialogService.open(UniversiteFormComponent, {
@@ -151,5 +152,6 @@ onSearchByFoyer(query: string ) {
   }
 
 }
+
  
 }

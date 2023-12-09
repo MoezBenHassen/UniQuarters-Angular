@@ -8,6 +8,7 @@ import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UniversiteFormComponent } from './universite-form/universite-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -22,6 +23,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { FileUploadModule } from 'primeng/fileupload';
 import { LatLngToAddressPipe } from 'src/app/pipes/lat-lng-to-address.pipe';
 
+
 @NgModule({
   declarations: [
     ListUniversiteComponent,
@@ -30,6 +32,7 @@ import { LatLngToAddressPipe } from 'src/app/pipes/lat-lng-to-address.pipe';
     ListUniversiteFilteredComponent,
     UniversiteLocationComponent, 
      LatLngToAddressPipe,
+
   ],
   imports: [
     TableModule,
@@ -45,6 +48,7 @@ import { LatLngToAddressPipe } from 'src/app/pipes/lat-lng-to-address.pipe';
     ReactiveFormsModule,
     CardModule, LeafletModule,FileUploadModule,
    
+
 
   ],
   providers: [DialogService,ConfirmationService, MessageService],

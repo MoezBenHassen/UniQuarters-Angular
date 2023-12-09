@@ -1,6 +1,8 @@
 import { ViewEncapsulation } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+
 import { UniversiteService } from 'src/app/services/universite.service';
+
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private uniService:UniversiteService) { }
   productTypes = ['Option 1', 'Option 2', 'Option 3'];
   gouvernorats: string[] = this.uniService.getGouvernorats();
+
 
   ngOnInit(): void {
    

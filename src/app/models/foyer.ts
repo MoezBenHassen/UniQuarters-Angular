@@ -6,5 +6,6 @@ export class Foyer {
     idUniversite !: number;
     lat!:number;
     lng!:number;
+
    
 }

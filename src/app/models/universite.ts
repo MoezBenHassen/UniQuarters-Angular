@@ -6,4 +6,5 @@ export class Universite {
     adresse! : string;
     image!:String;
     foyer!:Foyer;
+
 }

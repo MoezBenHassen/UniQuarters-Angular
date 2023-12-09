@@ -4,6 +4,7 @@ import { Universite } from '../models/universite';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -60,5 +61,6 @@ export class UniversiteService {
   }
   search(nom: String,add:String) {
     return this._http.get<Universite>(this.url + "/search/" + nom +"/" +add);
+
   }
 }
