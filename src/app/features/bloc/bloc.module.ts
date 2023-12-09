@@ -12,6 +12,7 @@ import {ToastModule} from "primeng/toast";
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import {RippleModule} from "primeng/ripple";
 import {TooltipModule} from "primeng/tooltip";
+import {AppModule} from "../../app.module";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {TooltipModule} from "primeng/tooltip";
     ToastModule,
     RippleModule,
     TooltipModule,
+
   ]
 })
 export class BlocModule { }

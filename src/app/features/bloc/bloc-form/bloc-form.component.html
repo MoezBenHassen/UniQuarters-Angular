@@ -4,7 +4,7 @@
     <div class="grid">
       <div class="col-12">
         <label class="label required my-2" >Nom</label>
-        <input id="name" name="nom" required minlength="3" #nom="ngModel"
+        <input id="name" name="nom" required minlength="2" #nom="ngModel"
                [(ngModel)]="bl.nom" type="text" class="inputtext-sm full-width"
                placeholder="Saisir le nom" pInputText />
         <div *ngIf="nom.dirty && nom.errors?.['required']" class="invalid-feedback" >
