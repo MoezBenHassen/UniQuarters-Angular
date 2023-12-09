@@ -39,7 +39,7 @@ export class ReservationService {
         console.log('response:', response);
         console.log('parsed', this.parseData(response));
         this.data = this.parseData(response);
-        console.log('🚀 ~ reservations:', this.data);
+        console.log('🚀 ~ reservations from service after parse:', this.data);
       },
       error: (error) => {
         this.messageService.add({

@@ -40,7 +40,11 @@
       </ng-template>
       <ng-template pTemplate="body" let-reservation>
         <tr class="p-selectable-row">
-          <td>{{ reservation.id }}</td>
+          <td>
+            <a (click)="setSelectedReservation(reservation)">{{
+              reservation?.id
+            }}</a>
+          </td>
           <td>{{ reservation.anneeUniversitaire.slice(0, 4) }}</td>
           <td>{{ reservation.estValide ? "Oui" : "Non" }}</td>
 
@@ -103,7 +107,11 @@
               type="button"
               icon="pi pi-check"
               (click)="validate(reservation.id)"
-              [disabled]="reservation.estValide"
+              [disabled]="
+                reservation.estValide ||
+                reservation.etudiants.length === 0 ||
+                reservation.chambre === null
+              "
               class="p-button-success"
             ></button>
 
@@ -119,7 +127,9 @@
               type="button"
               icon="pi pi-times"
               (click)="cancel(reservation.etudiants[0].cin)"
-              [disabled]="reservation.etudiants.length === 0"
+              [disabled]="
+                reservation.etudiants.length === 0 || !reservation.estValide
+              "
               class="p-button-danger"
             ></button>
           </td>
@@ -134,4 +144,7 @@
     </p-table>
     <p-confirmDialog header="Confirmation"></p-confirmDialog>
   </div>
+  <app-reservation-details
+    [reservation]="selectedReservation"
+  ></app-reservation-details>
 </div>

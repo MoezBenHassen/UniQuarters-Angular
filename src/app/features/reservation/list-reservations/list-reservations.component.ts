@@ -16,6 +16,7 @@ export class ListReservationsComponent implements OnInit {
   @ViewChild('dt') table!: Table;
 
   isLoading = false;
+  selectedReservation: any | undefined;
   constructor(
     public reservationService: ReservationService,
     private readonly dialogService: DialogService,
@@ -25,6 +26,10 @@ export class ListReservationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.reservationService.getReservations();
+  }
+
+  setSelectedReservation(reservation: any) {
+    this.selectedReservation = reservation;
   }
 
   add() {
@@ -54,7 +59,9 @@ export class ListReservationsComponent implements OnInit {
             this.messageService.add({
               severity: 'success',
               summary: 'Succès',
-              detail: response.message || 'La réservation a été annulée avec succées.',
+              detail:
+                response.message ||
+                'La réservation a été annulée avec succées.',
             });
 
             this.reservationService.getReservations();

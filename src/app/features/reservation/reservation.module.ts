@@ -18,10 +18,18 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CardModule } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
 import { ListReservationsEtudiantComponent } from './list-reservations-etudiant/list-reservations-etudiant.component';
+import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
 
 @NgModule({
-  declarations: [ListReservationsComponent, ReservationFormComponent, ListReservationsEtudiantComponent],
+  declarations: [
+    ListReservationsComponent,
+    ReservationFormComponent,
+    ListReservationsEtudiantComponent,
+    ReservationDetailsComponent,
+  ],
   imports: [
     ReservationRoutingModule,
     TableModule,
@@ -35,7 +43,9 @@ import { ListReservationsEtudiantComponent } from './list-reservations-etudiant/
     ToastModule,
     DropdownModule,
     TooltipModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    CardModule,
+    PanelModule,
   ],
   providers: [
     DialogService,
