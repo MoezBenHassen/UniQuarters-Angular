@@ -22,6 +22,10 @@ import { CardModule } from 'primeng/card';
 import { PanelModule } from 'primeng/panel';
 import { ListReservationsEtudiantComponent } from './list-reservations-etudiant/list-reservations-etudiant.component';
 import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
+import { ReservedChambresStatisticsComponent } from './reserved-chambres-statistics/reserved-chambres-statistics.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,7 @@ import { ReservationDetailsComponent } from './reservation-details/reservation-d
     ReservationFormComponent,
     ListReservationsEtudiantComponent,
     ReservationDetailsComponent,
+    ReservedChambresStatisticsComponent,
   ],
   imports: [
     ReservationRoutingModule,
@@ -46,6 +51,7 @@ import { ReservationDetailsComponent } from './reservation-details/reservation-d
     ProgressSpinnerModule,
     CardModule,
     PanelModule,
+    ChartModule,
   ],
   providers: [
     DialogService,

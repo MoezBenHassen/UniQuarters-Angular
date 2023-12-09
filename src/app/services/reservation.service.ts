@@ -84,4 +84,8 @@ export class ReservationService {
   getChambres() {
     return this._http.get(environment.baseUrl + '/chambres');
   }
+
+  getChambresReservations() {
+    return this._http.get(this.apiUrl + '/ChambresReservations');
+  }
 }

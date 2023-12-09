@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListReservationsComponent } from './list-reservations/list-reservations.component';
 import { ListReservationsEtudiantComponent } from './list-reservations-etudiant/list-reservations-etudiant.component';
 import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
+import { ReservedChambresStatisticsComponent } from './reserved-chambres-statistics/reserved-chambres-statistics.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,8 @@ const routes: Routes = [
     component: ListReservationsEtudiantComponent,
   },
   {
-    path: ':id',
-    component: ReservationDetailsComponent,
+    path: 'reservedChambresStatistics',
+    component: ReservedChambresStatisticsComponent,
   },
 ];
 
