@@ -12,7 +12,11 @@
           placeholder="Select an etudiant"
           [required]="true"
           #etudiantDropdown="ngModel"
-        ></p-dropdown>
+        >
+          <ng-template let-etudiant pTemplate="item">
+            {{ etudiant.nom }} {{ etudiant.prenom }}, {{ etudiant.cin }}
+          </ng-template>
+        </p-dropdown>
         <div
           *ngIf="etudiantDropdown.touched && !selectedEtudiant"
           class="error-message"
@@ -28,11 +32,16 @@
           [(ngModel)]="selectedChambre"
           name="selectedChambre"
           [options]="chambres"
-          optionLabel="numero"
           placeholder="Select a chambre"
           [required]="true"
+          optionLabel="numero"
           #chambreDropdown="ngModel"
-        ></p-dropdown>
+        >
+          <ng-template let-chambre pTemplate="item">
+            {{ chambre.numero }}, {{ chambre.type }}, bloc:
+            {{ chambre.bloc.nom }} de capacité {{ chambre.bloc.capacite }}
+          </ng-template>
+        </p-dropdown>
 
         <div
           *ngIf="chambreDropdown.touched && !selectedChambre"

@@ -35,6 +35,8 @@ export class ListReservationsComponent implements OnInit {
   add() {
     this.dialogService.open(ReservationFormComponent, {
       header: 'Ajouter une nouvelle réservation',
+      width: '500px', // Set the width as per your requirement
+      height: '400px', // Set the height as per your requirement
     });
   }
 
