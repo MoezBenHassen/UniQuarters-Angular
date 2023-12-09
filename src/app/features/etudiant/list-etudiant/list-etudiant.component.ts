@@ -4,6 +4,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { Etudiant } from 'src/app/models/etudiant';
 import { EtudiantService } from 'src/app/services/etudiant.service';
+import { EtudiantFormComponent } from '../etudiant-form/etudiant-form.component';
 
 @Component({
   selector: 'app-list-etudiant',
@@ -31,15 +32,15 @@ export class ListEtudiantComponent implements OnInit{
       response => this.etudiantsList = response.body.data.etudiants
       );
   }
-  Add() { this.dialogService.open(UtilisateurFormComponent, {header:"Ajouter un administrateur"}) }
-  Edit(id: number) { this.dialogService.open(UtilisateurFormComponent, {header:"Modifier les informations d'uilisateur", data: {id}}) }
+  Add() { this.dialogService.open(EtudiantFormComponent, {header:"Ajouter un etudiant"}) }
+  Edit(id: number) { this.dialogService.open(EtudiantFormComponent, {header:"Modifier les informations d'etudiant", data: {id}}) }
   Delete(id: number) { 
     this.confirmationService.confirm({
       message:"Êtes-vous sûr de vouloir effectuer cette action ?",
       acceptLabel:'Supprimer',
       rejectLabel:'Annuler',
       accept: () => {
-        this.etudiantService.deleteetudiant(id).subscribe()
+        this.etudiantService.deleteEtudiant(id).subscribe()
       }
     })
    }

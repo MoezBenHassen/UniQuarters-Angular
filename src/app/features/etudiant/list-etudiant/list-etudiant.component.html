@@ -1,7 +1,7 @@
 <div class="container">
     <h2 class="title py-4">Gestion Des Etudiants
       <button class="secondary-button" style="float:right" (click)="Add()">
-        <span class="pi pi-plus" aria-hidden="true"></span> Ajouter un administrateur
+        <span class="pi pi-plus" aria-hidden="true"></span> Ajouter un etudiant
       </button>
     </h2>
   
@@ -12,31 +12,28 @@
         <ng-template pTemplate="headergrouped">
           <tr class="bg-white">
             <th>Email </th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>CIN</th>
             <th>Actions</th>
           </tr>
-          <tr class="bg-white">
-            <th>
-              <span class="p-input-icon-right">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" class="p-column-filter" placeholder="Email">
-              </span>
-            </th>
-  
-            <th></th>
-          </tr>
+         
         </ng-template>
-        <ng-template pTemplate="body" let-u>
+        <ng-template pTemplate="body" let-e>
           <tr class="p-selectable-row">
-            <td>{{ u.email }}</td>
+            <td>{{e.user.email}}</td>
+            <td>{{e.nom}}</td>
+            <td>{{e.prenom}}</td>
+            <td>{{e.cin}}</td>
             <td class="action">
-              <img src="../../../../assets/icon/edit.svg" alt="edit" (click)="Edit(u.id)">
-              <img src="../../../../assets/icon/trash.svg" alt="trash" (click)="Delete(u.id)">
+              <img src="../../../../assets/icon/edit.svg" alt="edit" (click)="Edit(e.id)">
+              <img src="../../../../assets/icon/trash.svg" alt="trash" (click)="Delete(e.id)">
             </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="4">Aucune administrateur trouvée.</td>
+            <td colspan="4">Aucune etudiant trouvée.</td>
           </tr>
         </ng-template>
       </p-table>

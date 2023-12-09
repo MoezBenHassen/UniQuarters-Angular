@@ -8,9 +8,11 @@ import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CalendarModule } from 'primeng/calendar';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 
 @NgModule({
@@ -27,7 +29,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     InputTextModule,
     TableModule,
     DropdownModule,
-    PasswordModule
+    PasswordModule,
+    CalendarModule,
+    ReactiveFormsModule,
+    KeyFilterModule
   ]
 })
 export class EtudiantModule { }

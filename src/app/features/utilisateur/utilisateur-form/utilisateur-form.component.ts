@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './utilisateur-form.component.html',
   styleUrls: ['./utilisateur-form.component.scss']
 })
-export class UtilisateurFormComponent implements OnInit{
+export class UtilisateurFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
@@ -21,11 +21,13 @@ export class UtilisateurFormComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    this.id = this.dialogConfig.data.id;
-    this.userService.getUser(this.id).subscribe( response => {
-      this.userToSubmit = response.body.data.user;
-      this.oldEmail = response.body.data.user.email;
-    })
+    if (this.dialogConfig.data) {
+      this.id = this.dialogConfig.data.id;
+      this.userService.getUser(this.id).subscribe(response => {
+        this.userToSubmit = response.body.data.user;
+        this.oldEmail = response.body.data.user.email;
+      })
+    }
   }
 
   userToSubmit = {} as User;
