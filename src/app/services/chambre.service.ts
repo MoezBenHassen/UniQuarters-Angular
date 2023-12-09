@@ -8,38 +8,71 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root'
 })
 export class ChambreService {
+
     constructor(private fb: FormBuilder, public httpClient: HttpClient) { }
+
+    chambres: Chambre[] = [];
+    private apiUrl = `${environment?.uniQuartersUri}/api/chambres`;
     AddOrEditChambreForm = this.fb.group({
         id: [0],
-        name: ['', Validators.required],
-        otherProperty: ['']
-    })
+        chambreNumber: [0, Validators.required],
+        capacity: [0, Validators.required],
+        description: [''],
+        type: ['', Validators.required],
+      });
 
-    getAllChambre(): Observable<HttpResponse<Chambre>> {
-        return this.httpClient.get<Chambre>(`${environment?.uniQuartersUri}/Chambres`,
-            { observe: 'response' }).pipe(retry(3), catchError(this.handleError));
+    retrieveChambres(nomBloc?: string): Observable<HttpResponse<Chambre[]>> {
+        const url = `${this.apiUrl}?nomBloc=${nomBloc || ''}`;
+        return this.httpClient.get<Chambre[]>(url, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
     }
 
-    AddChambre(Chambre: Chambre): Observable<HttpResponse<Chambre>> {
+    addChambre(chambre: Chambre): Observable<HttpResponse<Chambre>> {
         return this.httpClient
-            .post<Chambre>(
-                `${environment?.uniQuartersUri}/Chambres`, Chambre, { observe: 'response' }
-            ).pipe(retry(3), catchError(this.handleError));
+            .post<Chambre>(this.apiUrl, chambre, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
     }
 
-
-    UpdateChambre(id: number, chambre: Chambre): Observable<HttpResponse<Chambre>> {
-        return this.httpClient
-            .put<Chambre>(
-                `${environment?.uniQuartersUri}/Chambres/` + id, chambre, { observe: 'response' }).pipe(retry(3), catchError(this.handleError));
+    updateChambre(id: number, chambre: Chambre): Observable<HttpResponse<Chambre>> {
+        const url = `${this.apiUrl}/${id}`;
+        return this.httpClient.put<Chambre>(url, chambre, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
     }
 
-    DeleteChambre(id: number): Observable<HttpResponse<Chambre>> {
-        return this.httpClient
-            .delete<Chambre>(
-                `${environment?.uniQuartersUri}/Chambres/` + id, { observe: 'response' }).pipe(retry(3), catchError(this.handleError));
+    retrieveChambre(idChambre: number): Observable<HttpResponse<Chambre>> {
+        const url = `${this.apiUrl}/${idChambre}`;
+        return this.httpClient.get<Chambre>(url, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
     }
 
+    affecterChambreABloc(idChambre: number, nomBloc: string): Observable<HttpResponse<Chambre>> {
+        const url = `${this.apiUrl}/affecterABloc/${idChambre}/${nomBloc}`;
+        return this.httpClient.post<Chambre>(url, {}, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
+    }
+
+    getAvailableChambres(): Observable<HttpResponse<Chambre[]>> {
+        const url = `${this.apiUrl}/available`;
+        return this.httpClient.get<Chambre[]>(url, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
+    }
+
+    getChambresByType(type: string): Observable<HttpResponse<Chambre[]>> {
+        const url = `${this.apiUrl}/byType?type=${type}`;
+        return this.httpClient.get<Chambre[]>(url, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
+    }
+
+    getChambresWithReservations(): Observable<HttpResponse<Chambre[]>> {
+        const url = `${this.apiUrl}/withReservations`;
+        return this.httpClient.get<Chambre[]>(url, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
+    }
+    deleteChambre(idChambre: number): Observable<HttpResponse<any>> {
+        const url = `${this.apiUrl}/${idChambre}`;
+        return this.httpClient.delete(url, { observe: 'response' })
+            .pipe(retry(3), catchError(this.handleError));
+    }
     handleError(error: HttpErrorResponse) {
         let errorMessage = 'Unknown error!';
         errorMessage =

@@ -1,8 +1,5 @@
 
-
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,9 +7,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Universite } from 'src/app/models/universite';
 import { UniversiteService } from 'src/app/services/universite.service';
-import * as Leaflet from 'leaflet';
-
-Leaflet.Icon.Default.imagePath = 'assets/';
 import * as Leaflet from 'leaflet';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
@@ -24,34 +18,7 @@ Leaflet.Icon.Default.imagePath = 'assets/';
 })
 export class UniversiteFormComponent implements OnInit {
 
-
   id: number = 0;
-  fbUni: FormGroup = new FormGroup({});
-  fbLogo: FormControl = new FormControl();
-  logoUni!:File;
-  university!: Universite;
-  uni: Universite = new Universite();
-
-  gouvernorats: string[] = this.uniService.getGouvernorats();
-  map!: Leaflet.Map;
-  marker!: Leaflet.Marker;
-  options = {
-    layers: [
-      Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      })
-    ],
-    zoom: 16,
-    center: { lat: 28.626137, lng: 79.821603 }
-  }
-  constructor(private uniService: UniversiteService,
-    private fb: FormBuilder,
-    private readonly dialogService: DynamicDialogRef,
-    private config: DynamicDialogConfig,
-    public messageService: MessageService,) { }
-
-  
-
   fbUni: FormGroup = new FormGroup({});
   fbLogo: FormControl = new FormControl();
   logoUni!:File;
@@ -97,50 +64,7 @@ export class UniversiteFormComponent implements OnInit {
 
     this.fbLogo= this.fb.control('');
 
-
-    this.fbUni = this.fb.group({
-      nom: ['', [Validators.required, Validators.minLength(3)]],
-      adresse: ['', [Validators.required]],
-
-      foyer: this.fb.group({
-        nom: ['', [Validators.required, Validators.minLength(3)]],
-        capacite: ['', [Validators.required]],
-        lat: ['', Validators.required],
-        lng: ['', Validators.required],
-      }),
-
-    })
-
-    this.fbLogo= this.fb.control('');
-
     if (this.id != undefined) {
-      this.uniService.fetchUniById(this.id).subscribe({
-
-        next: (data: any) => {
-          this.university = data.data.university;
-
-          this.onUniExist(this.university);
-
-          this.initMarkers(this.university.foyer.lat,this.university.foyer.lng);
-
-        }
-
-      });
-
-    }
-    else{
-      this.fbLogo.setValidators([Validators.required]);
-    }
-   
-  
-  }
-
-
-
-  add() {
-    const formData=new FormData();
-    formData.append('universite', JSON.stringify(this.fbUni.getRawValue()));
-    formData.append('logo',this.logoUni);
       this.uniService.fetchUniById(this.id).subscribe({
 
         next: (data: any) => {
@@ -171,18 +95,14 @@ export class UniversiteFormComponent implements OnInit {
     if (this.id !== undefined) {
       console.log( this.fbUni.getRawValue())
       this.uniService.updateUniversity(this.id,formData).subscribe((data) => {
-      console.log( this.fbUni.getRawValue())
-      this.uniService.updateUniversity(this.id,formData).subscribe((data) => {
         this.uniService.getAllUniversites().subscribe(
           (response: any) => {
             this.uniService.data = response.data.universities;
-
 
           },
           (error) => {
             console.error('Error fetching data:', error);
           }
-
 
 
         );
@@ -192,14 +112,7 @@ export class UniversiteFormComponent implements OnInit {
           detail: 'Successfully Updated ',
           life: 5000,
         });
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Yessss',
-          detail: 'Successfully Updated ',
-          life: 5000,
-        });
         this.dialogService.close();
-        this.fbUni.reset();
         this.fbUni.reset();
       });
 
@@ -226,28 +139,8 @@ export class UniversiteFormComponent implements OnInit {
           (error) => {
             console.error('Error fetching data:', error);
           }
-    }
-    else {
-    
-     console.log(formData.get('logo'))
-      this.uniService.addUniversity(formData).subscribe((data) => {
-        console.log(this.fbUni.getRawValue())
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Yessss',
-          detail: 'Successfully Added ',
-          life: 5000,
-        });
-
-        this.uniService.getAllUniversites().subscribe(
-          (response: any) => {
-            this.uniService.data = response.data.universities;
-            console.log(this.uniService.data)
-          },
-          (error) => {
-            console.error('Error fetching data:', error);
-          }
         );
+
 
       });
       this.dialogService.close();
@@ -276,6 +169,7 @@ export class UniversiteFormComponent implements OnInit {
     {
       position: { lat: lat, lng: lng },
       draggable: true
+
     }
 
       

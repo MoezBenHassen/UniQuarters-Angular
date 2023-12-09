@@ -27,18 +27,18 @@ export class NavigationComponent {
 
 export const navbarData = [
   {
-    icon: 'pi pi-home',
+    icon: 'pi pi-chart-bar',
     label: 'Dashboard',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.DASHBOARD}`,
   },
   {
-    icon: 'pi pi-calendar-plus',
+    icon: 'pi pi-map',
     label: 'Universités',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.UNIVERSITE}`,
   },
 
   {
-    icon: 'pi pi-calendar-plus',
+    icon: 'pi pi-home',
     label: 'Chambres',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.CHAMBRE}`,
   },
