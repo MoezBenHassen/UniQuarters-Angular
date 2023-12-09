@@ -41,5 +41,10 @@ export const navbarData = [
     icon: 'pi pi-calendar-plus',
     label: 'Chambres',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.CHAMBRE}`,
+  },
+  {
+    icon: 'pi pi-building',
+    label: 'Blocs',
+    routeLink: `/${RoutePaths.GESTION}/${RoutePaths.BLOC}`,
   }
 ];

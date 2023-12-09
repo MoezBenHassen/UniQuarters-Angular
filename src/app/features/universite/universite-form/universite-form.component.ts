@@ -130,6 +130,7 @@ export class UniversiteFormComponent implements OnInit {
           life: 5000,
         });
 
+
         this.uniService.getAllUniversites().subscribe(
           (response: any) => {
             this.uniService.data = response.data.universities;
@@ -139,6 +140,7 @@ export class UniversiteFormComponent implements OnInit {
             console.error('Error fetching data:', error);
           }
         );
+
 
       });
       this.dialogService.close();
@@ -167,6 +169,7 @@ export class UniversiteFormComponent implements OnInit {
     {
       position: { lat: lat, lng: lng },
       draggable: true
+
     }
 
       

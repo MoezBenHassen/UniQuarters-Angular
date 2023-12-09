@@ -5,6 +5,7 @@ import { LayoutComponent } from './features/shared/layout/layout.component';
 import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { RoutePaths } from './models/routepaths';
+import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
 
 import { ListUniversiteFilteredComponent } from './features/universite/list-universite-filtered/list-universite-filtered.component';
 
@@ -46,6 +47,17 @@ const routes: Routes = [
       {
         path: `${RoutePaths.RESERVATION}`,
         loadChildren: () => import('./features/reservation/reservation.module').then((m) => m.ReservationModule),
+      },
+      {
+        path: `${RoutePaths.BLOC}`,
+        title: 'Blocs',
+        loadChildren: () => import('./features/bloc/bloc.module').then((m) => m.BlocModule),
+      },
+      {
+        // scheduler component
+        path: `${RoutePaths.SCHEDULER}`,
+        title: 'Schedule',
+        component: SchedulerComponent,
       }
     ]
   }
