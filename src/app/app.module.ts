@@ -32,6 +32,9 @@ import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
 import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
 import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
+import { CardModule } from 'primeng/card';
+import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { UniversiteFormComponent } from './features/universite/universite-form/u
     AppComponent,
     HomeComponent,
     LoginComponent,
+
 
   ],
   imports: [
@@ -68,6 +72,9 @@ import { UniversiteFormComponent } from './features/universite/universite-form/u
     DialogModule,
     FormsModule,
     DividerModule,
+    CardModule,
+    
+
 
 
   ],

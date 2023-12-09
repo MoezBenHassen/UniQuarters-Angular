@@ -6,6 +6,9 @@ import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { RoutePaths } from './models/routepaths';
 
+import { ListUniversiteFilteredComponent } from './features/universite/list-universite-filtered/list-universite-filtered.component';
+
+
 const routes: Routes = [
   {
     path: `${RoutePaths.HOME}`,
@@ -15,6 +18,10 @@ const routes: Routes = [
     path: '',
     redirectTo: `${RoutePaths.HOME}`, pathMatch: 'full'
   },
+
+  //pour le moment pour le front office
+  {path:'filtre/:address', component:ListUniversiteFilteredComponent},
+
   
   {
     path: `${RoutePaths.LOGIN}`,
