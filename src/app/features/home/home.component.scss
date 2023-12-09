@@ -123,12 +123,12 @@ h1 {
     align-items: center;
     justify-content: space-evenly    ;
     background-color: $light-purple-color;
-    
+
   }
 
   &-guide{
     padding: 50px 0 50px 0;
-    background-color: #36417d;
+    background-color: #7e4fd4;
 
 
     .blocs {
@@ -208,7 +208,7 @@ h1 {
       margin: 0px 10px;
       font-size: 15px;
   }
- 
+
   &:hover {
       border-bottom: 3px solid #33cc99;
   }

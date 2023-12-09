@@ -32,53 +32,55 @@ import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
 import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
 import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
+import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
+import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
 import { CardModule } from 'primeng/card';
 import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
 
-
 @NgModule({
-  declarations: [
-    HeaderComponent, 
-    FooterComponent, 
-    NavigationComponent, 
-    LayoutComponent,
-    DashboardComponent,
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
+    declarations: [
+        HeaderComponent,
+        FooterComponent,
+        NavigationComponent,
+        LayoutComponent,
+        DashboardComponent,
+        AppComponent,
+        HomeComponent,
+        LoginComponent,
+        SchedulerComponent,
+    ],
+    imports: [
+        DxTagBoxModule,
+        DxSchedulerModule,
+        UniversiteModule,
+        ChambreModule,
+        TagModule,
+        TableModule,
+        ReactiveFormsModule,
+        ProgressBarModule,
+        ProgressSpinnerModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        CommonModule,
+        InputTextModule,
+        BrowserModule,
+        AppRoutingModule,
+        NgSelectModule,
+        ButtonModule,
+        AutoCompleteModule,
+        ConfirmDialogModule,
+        StepsModule,
+        DialogModule,
+        FormsModule,
+        DividerModule,
+        CardModule,
 
 
   ],
-  imports: [
-    
-    UniversiteModule,
-    ChambreModule,
-    TagModule,
-    TableModule,
-    ReactiveFormsModule,
-    ProgressBarModule,
-    ProgressSpinnerModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    CommonModule,
-    InputTextModule,
-    BrowserModule,
-    AppRoutingModule,
-    NgSelectModule,
-    ButtonModule,
-    AutoCompleteModule,
-    ConfirmDialogModule,
-    StepsModule,
-    DialogModule,
-    FormsModule,
-    DividerModule,
-    CardModule,
-    
-
-
-
-  ],
-  providers: [DialogService,ConfirmationService, MessageService],
-  bootstrap: [AppComponent]
+    providers: [DialogService, ConfirmationService, MessageService],
+    exports: [
+        FooterComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
