@@ -5,10 +5,16 @@ import { LayoutComponent } from './features/shared/layout/layout.component';
 import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { RoutePaths } from './models/routepaths';
+import { RegisterComponent } from './features/register/register.component';
+import { AuthGuard } from './helpers/auth.guard';
+import { UtilisateurModule } from './features/utilisateur/utilisateur.module';
+import { EtudiantModule } from './features/etudiant/etudiant.module';
+import { Role } from './models/role';
+import { RoleGuard } from './helpers/role.guard';
+import { PasswordResetModule } from './features/password-reset/password-reset.module';
 import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
 
 import { ListUniversiteFilteredComponent } from './features/universite/list-universite-filtered/list-universite-filtered.component';
-
 
 
 const routes: Routes = [
@@ -20,22 +26,37 @@ const routes: Routes = [
     path: '',
     redirectTo: `${RoutePaths.HOME}`, pathMatch: 'full'
   },
-
   //pour le moment pour le front office
   {path:'filtre/:address', component:ListUniversiteFilteredComponent},
-
-
   {
     path: `${RoutePaths.LOGIN}`,
     component: LoginComponent
   },
   {
+    path:`${RoutePaths.REGISTER}`,
+    component: RegisterComponent
+  },
+  {
+    path:`${RoutePaths.PASSWORD}`,
+    loadChildren: () => PasswordResetModule
+  },
+  {
     path: `${RoutePaths.GESTION}`,
     component: LayoutComponent,
+    canActivate:[AuthGuard,RoleGuard],
+    data:{role:Role.Admin},
     children: [
       {
         path: `${RoutePaths.DASHBOARD}`,
         component: DashboardComponent
+      },
+      {
+        path: `${RoutePaths.USER}`,
+        loadChildren: () => UtilisateurModule
+      },
+      {
+        path: `${RoutePaths.ETUDIANT}`,
+        loadChildren: () => EtudiantModule
       },
       {
         path: `${RoutePaths.UNIVERSITE}`,

@@ -18,10 +18,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { StepsModule } from 'primeng/steps';
 import { DialogModule } from 'primeng/dialog';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule } from "@angular/forms";
-import {  HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './features/home/home.component';
 import { LayoutComponent } from './features/shared/layout/layout.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -30,6 +30,7 @@ import { FooterComponent } from './features/shared/footer/footer.component';
 import { HeaderComponent } from './features/shared/header/header.component';
 import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
+
 import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
 import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
 import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
@@ -37,6 +38,10 @@ import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
 import { CardModule } from 'primeng/card';
 import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
 import { ToastModule } from 'primeng/toast';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { CalendarModule } from 'primeng/calendar';
+import { PasswordModule } from 'primeng/password';
+import { RequestInterceptorInterceptor } from './helpers/request-interceptor.interceptor';
 
 @NgModule({
     declarations: [
@@ -48,6 +53,7 @@ import { ToastModule } from 'primeng/toast';
         AppComponent,
         HomeComponent,
         LoginComponent,
+        RegisterComponent,
         SchedulerComponent,
     ],
     imports: [
@@ -76,11 +82,14 @@ import { ToastModule } from 'primeng/toast';
         DividerModule,
         CardModule,
         ToastModule,
+        KeyFilterModule,
+        CalendarModule,
+        PasswordModule,
   ],
-    providers: [DialogService, ConfirmationService, MessageService],
+    providers: [DialogService, ConfirmationService, MessageService,{provide: HTTP_INTERCEPTORS,useClass:RequestInterceptorInterceptor,multi:true}],
     exports: [
         FooterComponent
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

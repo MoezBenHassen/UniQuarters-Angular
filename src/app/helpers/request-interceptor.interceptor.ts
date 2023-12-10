@@ -22,20 +22,23 @@ export class RequestInterceptorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let authReq = request;
-    let token = this.tokenService.getToken();
-    if (token != null) {
-      authReq = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
+    let accessToken = this.tokenService.getAccessToken();
+    let refreshToken = this.tokenService.getRefreshToken();
+    if (accessToken != null) {
+      authReq = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + accessToken) });
     }
     return next.handle(authReq).pipe(catchError((error: HttpErrorResponse) => {
       console.log(error);
       if (error.status == 401 || error.status == 403) {
         // handling unauthorized errors or token expired
-        if (token != null) {
-          this.authService.logout();
+        if (accessToken != null && refreshToken != null) {
+          this.authService.refreshToken(refreshToken).subscribe(
+            response => {
+              this.tokenService.setAccessToken(response.data.newToken);
+            }
+          );
         } else {
           this.tokenService.removeToken();
-          // sessionStorage.removeItem("permissions");
-          // this.permissionService.flushPermissions();
           this.router.navigate(["/login"]);
         }
       }
