@@ -1,11 +1,13 @@
-enum ChambreType {
-  SINGLE = 'SINGLE',
-  DOUBLE = 'DOUBLE',
-  TRIPLE = 'TRIPLE',
-}
+import { Bloc } from "./Bloc";
+
 export interface Chambre {
-  id: number;
-  numero: string;
-  capacite: number;
-  type: ChambreType;
+  id: number
+  numero: number
+  capacity: number
+  description: string
+  type: string
+  bloc: Bloc;
+  available:boolean
+  // reservations: Reservation[];
 }
+

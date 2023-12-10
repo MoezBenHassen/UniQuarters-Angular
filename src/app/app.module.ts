@@ -30,56 +30,66 @@ import { FooterComponent } from './features/shared/footer/footer.component';
 import { HeaderComponent } from './features/shared/header/header.component';
 import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
-import { RegisterComponent } from './features/register/register.component';
+
+import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
+import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
+import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
+import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
 import { CardModule } from 'primeng/card';
+import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
+import { ToastModule } from 'primeng/toast';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
 import { PasswordModule } from 'primeng/password';
-import { ToastModule } from 'primeng/toast';
 import { RequestInterceptorInterceptor } from './helpers/request-interceptor.interceptor';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    NavigationComponent,
-    LayoutComponent,
-    DashboardComponent,
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-
+    declarations: [
+        HeaderComponent,
+        FooterComponent,
+        NavigationComponent,
+        LayoutComponent,
+        DashboardComponent,
+        AppComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent,
+        SchedulerComponent,
+    ],
+    imports: [
+        DxTagBoxModule,
+        DxSchedulerModule,
+        UniversiteModule,
+        ChambreModule,
+        TagModule,
+        TableModule,
+        ReactiveFormsModule,
+        ProgressBarModule,
+        ProgressSpinnerModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        CommonModule,
+        InputTextModule,
+        BrowserModule,
+        AppRoutingModule,
+        NgSelectModule,
+        ButtonModule,
+        AutoCompleteModule,
+        ConfirmDialogModule,
+        StepsModule,
+        DialogModule,
+        FormsModule,
+        DividerModule,
+        CardModule,
+        ToastModule,
+        KeyFilterModule,
+        CalendarModule,
+        PasswordModule,
   ],
-  imports: [
-    UniversiteModule,
-    ChambreModule,
-    TagModule,
-    TableModule,
-    ReactiveFormsModule,
-    ProgressBarModule,
-    ProgressSpinnerModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    CommonModule,
-    InputTextModule,
-    BrowserModule,
-    AppRoutingModule,
-    NgSelectModule,
-    ButtonModule,
-    AutoCompleteModule,
-    ConfirmDialogModule,
-    StepsModule,
-    DialogModule,
-    FormsModule,
-    DividerModule,
-    CardModule,
-    KeyFilterModule,
-    CalendarModule,
-    PasswordModule,
-    ToastModule,
-  ],
-  providers: [DialogService, ConfirmationService, MessageService, {provide: HTTP_INTERCEPTORS,useClass:RequestInterceptorInterceptor,multi:true}],
-  bootstrap: [AppComponent]
+    providers: [DialogService, ConfirmationService, MessageService,{provide: HTTP_INTERCEPTORS,useClass:RequestInterceptorInterceptor,multi:true}],
+    exports: [
+        FooterComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

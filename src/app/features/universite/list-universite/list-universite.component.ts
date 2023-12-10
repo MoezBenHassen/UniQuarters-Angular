@@ -8,6 +8,9 @@ import { ChambreService } from 'src/app/services/chambre.service';
 import { UniversiteService } from 'src/app/services/universite.service';
 import { UniversiteFormComponent } from '../universite-form/universite-form.component';
 
+import { Foyer } from 'src/app/models/foyer';
+
+
 @Component({
   selector: 'app-list-universite',
   templateUrl: './list-universite.component.html',
@@ -16,7 +19,7 @@ import { UniversiteFormComponent } from '../universite-form/universite-form.comp
 export class ListUniversiteComponent   implements OnInit {
  
    
-  
+
   @ViewChild('dt') table!: Table;
   
 
@@ -26,7 +29,11 @@ export class ListUniversiteComponent   implements OnInit {
     private readonly dialogService: DialogService,
     public messageService: MessageService,
     private confirmationService: ConfirmationService,
-  ) { }
+  ) { 
+}
+    univ=new Universite();
+   
+
 
   
   ngOnInit(): void {
@@ -39,6 +46,9 @@ export class ListUniversiteComponent   implements OnInit {
         console.error('Error fetching data:', error);
       }
     );
+
+  
+
   }
   Add(){
     this.dialogService.open(UniversiteFormComponent, {
@@ -85,6 +95,63 @@ export class ListUniversiteComponent   implements OnInit {
 //  verifId(id:number){
 //   console.log(id);
 //  }
+onSearchByNom(query: string ) {
+  if (query === '') {
+    this.uniService.getAllUniversites().subscribe(
+      (response: any) => {
+        this.uniService.data = response.data.universities;
+        console.log(this.uniService.data)
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  } else {
+    this.uniService.fetchUnisByName(query).subscribe((data:any)=>
+    this.uniService.data=data.data.universities);
+
+
+  }
+
+}
+onSearchByAddress(query: string ) {
+  if (query === '') {
+    this.uniService.getAllUniversites().subscribe(
+      (response: any) => {
+        this.uniService.data = response.data.universities;
+        console.log(this.uniService.data)
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  } else {
+    this.uniService.fetchUnisByAddress(query).subscribe((data:any)=>
+    this.uniService.data=data.data.universities);
+
+
+  }
+
+}
+onSearchByFoyer(query: string ) {
+  if (query === '') {
+    this.uniService.getAllUniversites().subscribe(
+      (response: any) => {
+        this.uniService.data = response.data.universities;
+        console.log(this.uniService.data)
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  } else {
+    this.uniService.fetchUnisByFoyer(query).subscribe((data:any)=>
+    this.uniService.data=data.data.universities);
+
+
+  }
+
+}
 
  
 }

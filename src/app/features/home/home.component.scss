@@ -2,7 +2,7 @@
 
 h1 {
   font-weight: 900;
-  color: #36417d;
+  color: $purple-color;
 }
 
 .container {
@@ -25,7 +25,7 @@ h1 {
   height: auto;
   border-radius: 8px;
 
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: $xxl-screen) {
     display: none
   }
 }
@@ -107,7 +107,7 @@ h1 {
 
       .item {
         color: white;
-        background-color: #36417d;
+        background-color: $purple-color;
         text-align: center;
         padding: 40px 0 !important;
 
@@ -123,12 +123,12 @@ h1 {
     align-items: center;
     justify-content: space-evenly    ;
     background-color: $light-purple-color;
-    
+
   }
 
   &-guide{
     padding: 50px 0 50px 0;
-    background-color: #36417d;
+    background-color: $purple-color;
 
 
     .blocs {
@@ -208,7 +208,7 @@ h1 {
       margin: 0px 10px;
       font-size: 15px;
   }
- 
+
   &:hover {
       border-bottom: 3px solid #33cc99;
   }

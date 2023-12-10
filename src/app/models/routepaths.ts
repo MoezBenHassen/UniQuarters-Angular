@@ -9,5 +9,7 @@ export enum RoutePaths{
     GESTION='gestion',
     USER='utilisateur',
     ETUDIANT='etudiant',
-    PASSWORD='password-reset'
+    PASSWORD='password-reset',
+    BLOC='bloc',
+    SCHEDULER='scheduler',
 }

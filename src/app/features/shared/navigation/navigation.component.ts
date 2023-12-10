@@ -22,12 +22,12 @@ import { RoutePaths } from 'src/app/models/routepaths';
 export class NavigationComponent {
   @Input() active!: boolean;
   navData = navbarData;
-  routes=RoutePaths
+  routes = RoutePaths;
 }
 
 export const navbarData = [
   {
-    icon: 'pi pi-home',
+    icon: 'pi pi-chart-bar',
     label: 'Dashboard',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.DASHBOARD}`,
   },
@@ -42,14 +42,24 @@ export const navbarData = [
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.ETUDIANT}`,
   },
   {
-    icon: 'pi pi-calendar-plus',
+    icon: 'pi pi-map',
     label: 'Universités',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.UNIVERSITE}`,
   },
-
   {
-    icon: 'pi pi-calendar-plus',
+    icon: 'pi pi-home',
     label: 'Chambres',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.CHAMBRE}`,
-  }
+  },
+  {
+    icon: 'pi pi-building',
+    label: 'Blocs',
+    routeLink: `/${RoutePaths.GESTION}/${RoutePaths.BLOC}`,
+  },
+  // reservation
+  {
+    icon: 'pi pi-calendar',
+    label: 'Réservations',
+    routeLink: `/${RoutePaths.GESTION}/${RoutePaths.RESERVATION}`,
+  },
 ];

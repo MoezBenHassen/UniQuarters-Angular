@@ -1,75 +1,45 @@
 <div class="container">
-
     <h2 class="title py-4">Gestion Des Chambres
-        <button class="secondary-button " style="float:right"(click)="Add()">
-            <span class="pi pi-plus" aria-hidden="true"></span> Ajouter une chambre
-        </button>
+      <button class="secondary-button" style="float:right" (click)="Add()">
+        <span class="pi pi-plus" aria-hidden="true"></span> Ajouter une chambre
+      </button>
     </h2>
-    
-
-    <div class="card p-4">
   
-        <!-- <p-table #dt [value]="chambreService.data" chambreService.dataKey="id" styleClass="p-chambreService.datatable"
-        [rowHover]="true" columnResizeMode="expand" [rows]="4" [showCurrentPageReport]="true" [paginator]="true"
-        currentPageReportTemplate="{totalRecords} chambre(s)" [filterDelay]="0">
-        <ng-template pTemplate="headergrouped">
-            <tr class="bg-white">
-                <th>One  </th>
-                <th>Two</th>
-                <th>Three</th>
-
-                <th> 
-                </th>
-            </tr>
-            <tr class="bg-white">
-                <th>
-
-                    <span class="p-input-icon-right">
-                        <i class="pi pi-search"></i>
-                    <input pInputText type="text" 
-                        class="p-column-filter" placeholder="Placeholder">
-                        </span>
-                    </th>
-                <th>
-                    <span class="p-input-icon-right">
-                        <i class="pi pi-search"></i>
-                    <input pInputText type="text" 
-                        class="p-column-filter" placeholder="Placeholder"></span>
-                </th>
-                <th>
-                    <span class="p-input-icon-right">
-                        <i class="pi pi-search"></i>
-                    <input pInputText type="text" 
-                        class="p-column-filter" placeholder="Placeholder"></span>
-                </th>
-        
-                <th></th>
-            </tr>
+    <div class="card p-4">
+      <p-table #dt [value]="chambreService.chambres" dataKey="id" styleClass="p-datatable" [rowHover]="true"
+        columnResizeMode="expand" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [filterDelay]="0">
+        <ng-template pTemplate="header">
+          <tr class="bg-white">
+            <th>ID</th>
+            <th>Numéro de Chambre</th>
+            <th>Capacité</th>
+            <th>Description</th>
+            <th>Type de Chambre</th>
+            <th>Disponible</th>
+            <th>Actions</th>
+          </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
-            <tr class="p-selectable-row">
-                <td>{{data.id}} </td>
-                <td>{{data.name}} </td>
-
-                  
-                  
-                <td>
-                    <p-tag >{{data.otherProperty }}</p-tag>
-                  </td>
-          
-                <td class="action">
-                    <img src="../../../../assets/icon/edit.svg" alt="edit"  (click)="Edit(data)">
-                    <img src="../../../../assets/icon/trash.svg" alt="trash" (click)="Delete(data)">
-                </td>
-            </tr>
+          <tr >
+            <td>{{data.id}}</td>
+            <td>{{data.numero}}</td>
+            <td>{{data.capacity}}</td>
+            <td>{{data.description}}</td>
+            <td>{{data.type}}</td>
+            <td>{{data.available ? 'Oui' : 'Non'}}</td>
+            <td class="action">
+              <button pButton type="button" icon="pi pi-pencil" (click)="Edit(data)" label="Modifier"></button>
+              <button pButton type="button" icon="pi pi-trash" (click)="Delete(data)" label="Supprimer"></button>
+            </td>
+          </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="8">application.dashboard.table.noApplications</td>
-            </tr>
+          <tr>
+            <td colspan="8">Aucune chambre trouvée</td>
+          </tr>
         </ng-template>
-    </p-table> -->
-    <p-confirmDialog header="Confirmation"></p-confirmDialog>
-
+      </p-table>
+      <p-confirmDialog header="Confirmation"></p-confirmDialog>
     </div>
-</div>
+  </div>
+  

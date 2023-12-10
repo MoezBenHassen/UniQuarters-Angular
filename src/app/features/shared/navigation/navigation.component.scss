@@ -15,22 +15,23 @@
             background: linear-gradient(0deg, #33cc99, #33cc99) no-repeat right bottom / 0 var(--bg-h);
             transition: background-size 350ms;
             --bg-h: 100%;
-          }
-          
-          :where(:hover, :focus-visible) {
+        }
+
+        :where(:hover, :focus-visible) {
             a {
-              background-size: 100% var(--bg-h);
-              background-position-x: left;
+                background-size: 100% var(--bg-h);
+                background-position-x: left;
             }
-          }
-          
+        }
+
         .navigation-link-text {
 
             text-decoration: none;
-            color: black;
+            color: $purple-color;
         }
+
         width: 100%;
-        margin-bottom: 0.625rem;
+        margin-bottom: 1.625rem;
 
         .navigation-nav-link {
             display: flex;
@@ -40,11 +41,13 @@
             transition: all .3s ease;
 
             .navigation-link-icon {
-                font-size: 15px;
+                font-size: 18px;
                 width: 2rem;
                 min-width: 2rem;
                 margin: 0 0.5rem;
                 text-align: center;
+                color: $purple-color;
+
             }
 
             .navigation-link-text {
@@ -52,13 +55,26 @@
                 white-space: nowrap;
 
             }
+
+            &.active {
+                background-color: $primary-color !important;
+
+                .navigation-link-icon,
+                .navigation-link-text {
+                    color:$white-color; 
+                }
+            }
+
+            &:hover {
+                .navigation-link-text {
+                    color: $white-color; 
+                }
+            }
+
         }
     }
 
-    .active {
-        background-color:$primary-color!important;
-        .a{color: white !important;}
-    }
+
 
     .navigation-nav-item:hover {
         .navigation-nav-link {
@@ -68,6 +84,3 @@
 
     }
 }
-
-
-

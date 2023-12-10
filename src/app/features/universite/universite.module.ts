@@ -7,19 +7,32 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UniversiteFormComponent } from './universite-form/universite-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
+import { UniversiteDetailsComponent } from './universite-details/universite-details.component';
+import { CardModule } from 'primeng/card';
+import { ListUniversiteFilteredComponent } from './list-universite-filtered/list-universite-filtered.component';
+import { UniversiteLocationComponent } from './universite-location/universite-location.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { FileUploadModule } from 'primeng/fileupload';
+import { LatLngToAddressPipe } from 'src/app/pipes/lat-lng-to-address.pipe';
 
 
 @NgModule({
   declarations: [
     ListUniversiteComponent,
-    UniversiteFormComponent
+    UniversiteFormComponent,
+    UniversiteDetailsComponent,
+    ListUniversiteFilteredComponent,
+    UniversiteLocationComponent, 
+     LatLngToAddressPipe,
+
   ],
   imports: [
     TableModule,
@@ -32,6 +45,10 @@ import { ToastModule } from 'primeng/toast';
     DialogModule,
     InputTextModule,
     ToastModule,
+    ReactiveFormsModule,
+    CardModule, LeafletModule,FileUploadModule,
+   
+
 
   ],
   providers: [DialogService,ConfirmationService, MessageService],

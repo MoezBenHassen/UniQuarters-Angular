@@ -1,4 +1,3 @@
-
 <div class="application">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form">
     <div class="grid">
@@ -12,14 +11,20 @@
           optionLabel="nom"
           placeholder="Select an etudiant"
           [required]="true"
-        ></p-dropdown>
+          #etudiantDropdown="ngModel"
+        >
+          <ng-template let-etudiant pTemplate="item">
+            {{ etudiant.nom }} {{ etudiant.prenom }}, {{ etudiant.cin }}
+          </ng-template>
+        </p-dropdown>
         <div
-          *ngIf="f.controls['selectedEtudiant'].hasError('required')"
+          *ngIf="etudiantDropdown.touched && !selectedEtudiant"
           class="error-message"
         >
           Etudiant is required.
         </div>
       </div>
+
       <div class="col-12">
         <label class="label required">Chambre</label>
         <p-dropdown
@@ -27,12 +32,21 @@
           [(ngModel)]="selectedChambre"
           name="selectedChambre"
           [options]="chambres"
-          optionLabel="numero"
           placeholder="Select a chambre"
           [required]="true"
-        ></p-dropdown>
+          optionLabel="numero"
+          #chambreDropdown="ngModel"
+        >
+          <ng-template let-chambre pTemplate="item">
+            {{ chambre.numero }}, {{ chambre.type }}, bloc:
+            <span *ngIf="chambre.bloc">{{ chambre.bloc.nom }} de capacité {{ chambre.bloc.capacite }} </span> 
+            <span *ngIf="!chambre.bloc">No blocs</span> 
+
+          </ng-template>
+        </p-dropdown>
+
         <div
-          *ngIf="f.controls['selectedChambre'].hasError('required')"
+          *ngIf="chambreDropdown.touched && !selectedChambre"
           class="error-message"
         >
           Chambre is required.
@@ -40,7 +54,11 @@
       </div>
     </div>
     <div class="footer-popup">
-      <button type="submit" class="primary-button" [disabled]="f.invalid">
+      <button
+        type="submit"
+        class="primary-button"
+        [disabled]="!selectedChambre || !selectedEtudiant"
+      >
         Submit
       </button>
     </div>

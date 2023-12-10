@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 
 <div class="container">
   <h2 class="title py-4">
@@ -6,15 +7,28 @@
       <span class="pi pi-plus" aria-hidden="true"></span> Ajouter une
       réservation
     </button>
+    <button
+      class="secondary-button info-button"
+      style="float: right"
+      routerLink="/gestion/reservation/reservedChambresStatistics"
+    >
+      <span class="pi pi-chart-pie" aria-hidden="true"></span> Statistiques des
+      réservations des chambres
+    </button>
   </h2>
+  <p-progressBar
+    *ngIf="reservationService.isLoading || isLoading"
+    mode="indeterminate"
+    [style]="{ height: '6px' }"
+  ></p-progressBar>
 
   <div class="card p-4">
     <p-table
       #dt
-      [value]="reservations"
+      [value]="reservationService.data"
       [rowHover]="true"
       columnResizeMode="expand"
-      [rows]="3"
+      [rows]="10"
       styleClass="p-datatable"
       [showCurrentPageReport]="true"
       [paginator]="true"
@@ -27,64 +41,109 @@
           <th>Année Universitaire</th>
           <th>Est Valide</th>
           <th>Etudiants</th>
+          <th>Chambre</th>
+          <th>Bloc</th>
           <th>Actions</th>
         </tr>
-        <!-- <tr class="bg-white">
-                  <th>
-                      <span class="p-input-icon-right">
-                          <i class="pi pi-search"></i>
-                          <input pInputText type="text" class="p-column-filter" placeholder="ID">
-                      </span>
-                  </th>
-                  <th>
-                      <span class="p-input-icon-right">
-                          <i class="pi pi-search"></i>
-                          <input pInputText type="text" class="p-column-filter" placeholder="Année Universitaire">
-                      </span>
-                  </th>
-                  <th>
-                      <span class="p-input-icon-right">
-                          <i class="pi pi-search"></i>
-                          <input pInputText type="text" class="p-column-filter" placeholder="Est Valide">
-                      </span>
-                  </th>
-                  <th></th>
-                  <th></th>
-              </tr> -->
       </ng-template>
       <ng-template pTemplate="body" let-reservation>
         <tr class="p-selectable-row">
-          <td>{{ reservation.id }}</td>
-          <td>{{ reservation.anneeUniversitaire }}</td>
-          <td>{{ reservation.estValide ? "Oui" : "Non" }}</td>
-          <td *ngIf="reservation.etudiants.length > 0" class="etudiant-column">
-            <!-- Display CIN and Full Name for each student -->
-            <div *ngFor="let etudiant of reservation.etudiants">
-              <div>{{ etudiant.cin }}</div>
-              <div>{{ etudiant.nom }} {{ etudiant.prenom }}</div>
-            </div>
-            <!-- if no etudiants. print someting -->
+          <td>
+            <a (click)="setSelectedReservation(reservation)">{{
+              reservation?.id
+            }}</a>
           </td>
-          <td *ngIf="reservation.etudiants.length == 0">Aucun étudiant</td>
-          <td class="action">
-            <!-- Add your edit and delete actions here -->
-            <!-- Example: -->
+          <td>{{ reservation.anneeUniversitaire.slice(0, 4) }}</td>
+          <td>{{ reservation.estValide ? "Oui" : "Non" }}</td>
+
+          <!-- Etudiant column -->
+          <td *ngIf="reservation.etudiants.length > 0" class="etudiant-column">
+            <div *ngFor="let etudiant of reservation.etudiants">
+              <div
+                [pTooltip]="
+                  'id: ' +
+                  etudiant.id +
+                  ', Cin: ' +
+                  etudiant.cin +
+                  ', Ecole: ' +
+                  etudiant.ecole +
+                  ', Date Naissance: ' +
+                  etudiant.dateNaissance
+                "
+              >
+                {{ etudiant.nom }} {{ etudiant.prenom }}
+              </div>
+            </div>
+          </td>
+          <td *ngIf="reservation.etudiants.length === 0">Aucun étudiant</td>
+          <td>
+            <div
+              *ngIf="reservation?.chambre"
+              [pTooltip]="
+                'id: ' +
+                reservation.chambre.id +
+                ', Type: ' +
+                reservation.chambre.type
+              "
+            >
+              {{ reservation.chambre.numero }}
+            </div>
+            <div *ngIf="!reservation.chambre">Aucune chambre</div>
+          </td>
+          <td>
+            <div
+              *ngIf="reservation.chambre?.bloc"
+              [pTooltip]="
+                'id: ' +
+                reservation.chambre.bloc.id +
+                ', Capacité: ' +
+                reservation.chambre.bloc.capacite +
+                ', foyer: ' +
+                reservation.chambre.bloc.foyer
+              "
+            >
+              {{ reservation.chambre.bloc.nom }}
+            </div>
+            <div *ngIf="!reservation.chambre?.bloc">Aucun bloc</div>
+          </td>
+          <!-- Action column -->
+          <td class="button-column">
+            <!-- Edit button -->
+
             <button
+              pButton
+              type="button"
+              icon="pi pi-check"
+              (click)="validate(reservation.id)"
+              [disabled]="
+                reservation.estValide ||
+                reservation.etudiants.length === 0 ||
+                reservation.chambre === null
+              "
+              class="p-button-success"
+            ></button>
+
+            <!-- <button
               pButton
               type="button"
               icon="pi pi-pencil"
               (click)="edit(reservation.id)"
-            ></button>
+            ></button> -->
+
             <button
               pButton
               type="button"
-              icon="pi pi-trash"
+              icon="pi pi-times"
               (click)="cancel(reservation.etudiants[0].cin)"
-              [disabled]="reservation.etudiants.length === 0"
+              [disabled]="
+                reservation.etudiants.length === 0 || !reservation.estValide
+              "
+              class="p-button-danger"
             ></button>
           </td>
         </tr>
       </ng-template>
+
       <ng-template pTemplate="emptymessage">
         <tr>
           <td colspan="5">Aucune réservation trouvée.</td>
@@ -92,7 +151,8 @@
       </ng-template>
     </p-table>
     <p-confirmDialog header="Confirmation"></p-confirmDialog>
-    <p-toast></p-toast>
-
   </div>
+  <app-reservation-details
+    [reservation]="selectedReservation"
+  ></app-reservation-details>
 </div>
