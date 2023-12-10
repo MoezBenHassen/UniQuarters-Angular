@@ -76,7 +76,7 @@ export class ListChambreComponent implements OnInit {
   populateForm(d: any) {
     this.chambreService.AddOrEditChambreForm.reset({
       id: d.id,
-      chambreNumber: d.chambreNumber,
+      numero: d.numero,
       capacity: d.capacity,
       description: d.description,
       type: d.type,

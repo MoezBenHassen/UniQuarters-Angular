@@ -12,10 +12,10 @@ export class ChambreService {
     constructor(private fb: FormBuilder, public httpClient: HttpClient) { }
 
     chambres: Chambre[] = [];
-    private apiUrl = `${environment?.uniQuartersUri}/api/chambres`;
+    private apiUrl = `${environment?.uniQuartersUri}/chambres`;
     AddOrEditChambreForm = this.fb.group({
         id: [0],
-        chambreNumber: [0, Validators.required],
+        numero: [0, Validators.required],
         capacity: [0, Validators.required],
         description: [''],
         type: ['', Validators.required],
