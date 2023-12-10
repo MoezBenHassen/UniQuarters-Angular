@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ReservationRoutingModule } from './reservation-routing.module';
 import { ListReservationsComponent } from './list-reservations/list-reservations.component';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -14,10 +15,26 @@ import { ReservationFormComponent } from './reservation-form/reservation-form.co
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
+import { ReservationService } from 'src/app/services/reservation.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CardModule } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
+import { ListReservationsEtudiantComponent } from './list-reservations-etudiant/list-reservations-etudiant.component';
+import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
+import { ReservedChambresStatisticsComponent } from './reserved-chambres-statistics/reserved-chambres-statistics.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
-  declarations: [ListReservationsComponent, ReservationFormComponent],
+  declarations: [
+    ListReservationsComponent,
+    ReservationFormComponent,
+    ListReservationsEtudiantComponent,
+    ReservationDetailsComponent,
+    ReservedChambresStatisticsComponent,
+  ],
   imports: [
     ReservationRoutingModule,
     TableModule,
@@ -30,8 +47,17 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     ToastModule,
     DropdownModule,
-    InputTextModule
+    TooltipModule,
+    ProgressSpinnerModule,
+    CardModule,
+    PanelModule,
+    ChartModule,
   ],
-  providers: [DialogService, ConfirmationService, MessageService],
+  providers: [
+    DialogService,
+    ConfirmationService,
+    MessageService,
+    ReservationService,
+  ],
 })
-export class ReservationModule { }
+export class ReservationModule {}

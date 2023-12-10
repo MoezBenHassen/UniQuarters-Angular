@@ -1,42 +1,16 @@
-/* list-reservations.component.scss */
-
-.etudiant-column {
+@import '../../../styles/variables.scss';
+.button-column {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  div {
-    margin-bottom: 5px;
-    /* Add more styling for individual items within the column */
-  }
+  gap: 8px; /* Adjust the gap value as needed */
 }
 
-/* Add additional styles as needed */
-// Import the PrimeNG button styles
+/* YourComponent.css */
+a:hover {
+  opacity: 0.7; /* Change the opacity value based on your preference */
+  transition: opacity 0.3s ease; /* Adjust the duration and timing function */
+}
 
-// Your existing styles...
-
-.action {
-  button {
-    // Adjust styles for the PrimeNG buttons
-    &.p-button {
-      background-color: #fff; // Set background color for the button
-      border: 1px solid #c8c8c8; // Set border color
-      color: #007bff; // Set text color
-      margin-right: 5px; // Adjust spacing between buttons
-
-      &:hover {
-        background-color: #e0e0e0; // Set background color on hover
-        border-color: #007bff; // Set border color on hover
-        color: #0056b3; // Set text color on hover
-      }
-    }
-
-    // Adjust styles for the PrimeNG icons inside the buttons
-    &.p-button-icon-only {
-      .pi {
-        font-size: 1.2rem; // Adjust icon size
-      }
-    }
-  }
+.info-button {
+  background-color: $grey-color-dark;
+  margin-right: 10px;
 }

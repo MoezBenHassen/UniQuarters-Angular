@@ -24,7 +24,7 @@ const routes: Routes = [
   //pour le moment pour le front office
   {path:'filtre/:address', component:ListUniversiteFilteredComponent},
 
-  
+
   {
     path: `${RoutePaths.LOGIN}`,
     component: LoginComponent

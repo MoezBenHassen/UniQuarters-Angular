@@ -18,8 +18,8 @@ export class ReservationFormComponent implements OnInit {
 
   reservation: Reservation = {} as Reservation;
 
-  selectedEtudiant: Etudiant = {} as Etudiant;
-  selectedChambre: Chambre = {} as Chambre;
+  selectedEtudiant: Etudiant | null = null;
+  selectedChambre: Chambre | null = null;
   chambres: Chambre[] = [];
   etudiants: Etudiant[] = [];
   constructor(
@@ -45,10 +45,7 @@ export class ReservationFormComponent implements OnInit {
     this.reservationService.getEtudiants().subscribe({
       next: (response: any) => {
         this.etudiants = response.data.etudiants as Etudiant[];
-        console.log(
-          '🚀 ~ file: reservation-form.component.ts:42 ~ ReservationFormComponent ~ this.reservationService.getEtudiants ~ this.etudiants:',
-          this.etudiants
-        );
+        console.log('🚀 ~  this.etudiants:', this.etudiants);
       },
       error: (err) => {
         console.log(err);
@@ -64,10 +61,7 @@ export class ReservationFormComponent implements OnInit {
     this.reservationService.getChambres().subscribe({
       next: (response: any) => {
         this.chambres = response.data.chambres as Chambre[];
-        console.log(
-          '🚀 ~ file: reservation-form.component.ts:53 ~ ReservationFormComponent ~ this.reservationService.getChambres ~ this.chambres:',
-          this.chambres
-        );
+        console.log('🚀 ~ this.chambres:', this.chambres);
       },
       error: (err) => {
         console.log(err);
@@ -80,6 +74,9 @@ export class ReservationFormComponent implements OnInit {
     this.getEtudiants();
     this.getChambres();
 
+    console.log('selectedEtudiant', this.selectedEtudiant);
+    console.log('selectedChambre', this.selectedChambre);
+
     if (this.getMode() === 'Edit') {
       this.getReservation(this.id);
     }
@@ -89,11 +86,12 @@ export class ReservationFormComponent implements OnInit {
     return this.id ? 'Edit' : 'Add';
   }
   onSubmit(form: NgForm) {
+    console.log(form);
+
     if (this.getMode() === 'Edit') {
       this.reservationService.updateReservation(this.id);
     } else {
       if (form.valid) {
-        // Process the form data
         const {
           selectedChambre: { id: chambreId },
           selectedEtudiant: { cin: etudiantCin },
@@ -103,15 +101,13 @@ export class ReservationFormComponent implements OnInit {
           .addReservation(chambreId, etudiantCin)
           .subscribe({
             next: (response: any) => {
-              console.log(
-                '🚀 ~ file: reservation-form.component.ts:82 ~ ReservationFormComponent ~ this.reservationService.addReservation ~ response',
-                response
-              );
+              console.log('🚀 ~ response', response);
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
-                detail: 'Reservation added successfully',
+                detail: response.message || 'Reservation added successfully',
               });
+              this.reservationService.getReservations();
             },
             error: (err) => {
               console.log(err);
@@ -131,5 +127,17 @@ export class ReservationFormComponent implements OnInit {
       }
       this.dialogRef.close();
     }
+  }
+
+  isFormControlInvalid(form: NgForm, controlName: string): boolean {
+    const control = form.controls[controlName];
+    console.log('🚀 ~ control:', control);
+    //return control && control.invalid && (control.dirty || control.touched);
+    const result = control && control.invalid && control.touched;
+    console.log('control.invalid', control.invalid);
+    console.log('control.touched', control.touched);
+
+    console.log('🚀 ~ result:', result);
+    return result;
   }
 }
