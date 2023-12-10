@@ -15,8 +15,8 @@ import { ReservationFormComponent } from '../reservation-form/reservation-form.c
 export class ListReservationsComponent implements OnInit {
   @ViewChild('dt') table!: Table;
 
-  reservations: Reservation[] = [];
-
+  isLoading = false;
+  selectedReservation: any | undefined;
   constructor(
     public reservationService: ReservationService,
     private readonly dialogService: DialogService,
@@ -25,12 +25,18 @@ export class ListReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getReservations();
+    this.reservationService.getReservations();
+  }
+
+  setSelectedReservation(reservation: any) {
+    this.selectedReservation = reservation;
   }
 
   add() {
     this.dialogService.open(ReservationFormComponent, {
       header: 'Ajouter une nouvelle réservation',
+      width: '500px', // Set the width as per your requirement
+      height: '400px', // Set the height as per your requirement
     });
   }
 
@@ -43,28 +49,70 @@ export class ListReservationsComponent implements OnInit {
 
   cancel(id: number) {
     this.confirmationService.confirm({
-      message: 'Êtes-vous sûr de vouloir effectuer cette action ?',
-      acceptLabel: 'Cancel',
+      message: 'Êtes-vous sûr de vouloir annuler la réservation ?',
+      acceptLabel: 'Cancel Reservation',
       rejectLabel: 'Annuler',
       accept: () => {
+        this.isLoading = true;
         this.reservationService.cancelReservation(id).subscribe(
-          () => {
+          (response: any) => {
+            this.isLoading = false;
             console.log('Reservation cancelled successfully.');
             this.messageService.add({
               severity: 'success',
               summary: 'Succès',
-              detail: 'La réservation a été annulée avec succès.',
+              detail:
+                response.message ||
+                'La réservation a été annulée avec succées.',
             });
 
-            this.getReservations();
+            this.reservationService.getReservations();
           },
           (error) => {
+            this.isLoading = false;
             console.error('Error cancelling reservation:', error);
             this.messageService.add({
               severity: 'error',
               summary: 'Erreur',
               detail:
+                error?.error?.message ||
                 "Une erreur est survenue lors de l'annulation de la réservation.",
+            });
+          }
+        );
+      },
+    });
+  }
+
+  validate(id: String) {
+    this.confirmationService.confirm({
+      message: 'Êtes-vous sûr de valider la réservation ?',
+      acceptLabel: 'Valider',
+      rejectLabel: 'Annuler',
+      accept: () => {
+        this.isLoading = true;
+        this.reservationService.validateReservation(id).subscribe(
+          (response: any) => {
+            this.isLoading = false;
+            console.log('Reservation validated successfully.');
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Succès',
+              detail:
+                response.message || 'La réservation a été validée avec succès.',
+            });
+
+            this.reservationService.getReservations();
+          },
+          (error) => {
+            this.isLoading = false;
+            console.error('Error validating reservation:', error);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erreur',
+              detail:
+                error?.error?.message ||
+                'Une erreur est survenue lors de la validation de la réservation.',
             });
           }
         );
@@ -74,19 +122,5 @@ export class ListReservationsComponent implements OnInit {
 
   checkAffectedToEtudiants(reservation: Reservation): boolean {
     return reservation.etudiants.length > 0;
-  }
-
-  private getReservations() {
-    console.log("Getting reservations...");
-    this.reservationService.getReservations().subscribe(
-      (response: any) => {
-        this.reservations = response.data.reservations;
-        console.log(this.reservations);
-
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
   }
 }

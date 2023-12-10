@@ -36,6 +36,7 @@ import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component"
 import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
 import { CardModule } from 'primeng/card';
 import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     declarations: [
@@ -74,8 +75,7 @@ import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
         FormsModule,
         DividerModule,
         CardModule,
-
-
+        ToastModule,
   ],
     providers: [DialogService, ConfirmationService, MessageService],
     exports: [

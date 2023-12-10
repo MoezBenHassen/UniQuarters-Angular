@@ -23,6 +23,7 @@
     "devextreme-angular": "23.1.6",
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^2.4.0",
+    "chart.js": "^4.4.1",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primeng": "^15.4.1",
