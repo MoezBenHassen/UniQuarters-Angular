@@ -42,6 +42,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
 import { PasswordModule } from 'primeng/password';
 import { RequestInterceptorInterceptor } from './helpers/request-interceptor.interceptor';
+import { RegisterComponent } from './features/register/register.component';
 
 @NgModule({
     declarations: [

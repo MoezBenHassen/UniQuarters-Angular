@@ -44,7 +44,7 @@ export class ReservedChambresStatisticsComponent implements OnInit {
         this.isSuccess = true;
         response.data.chambresReservations.forEach((chambre: any) => {
           // Add a new dataset for each chambre
-          this.data.datasets.push({
+          this.data.datasets!.push({
             data: [chambre.freePlaces, chambre.reservationsCount],
             backgroundColor: ['#00B14A', 'red'],
             label: `Chambre ${chambre.chambre.numero}`,
