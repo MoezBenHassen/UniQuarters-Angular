@@ -61,7 +61,7 @@ export class ReservationFormComponent implements OnInit {
     this.reservationService.getChambres().subscribe({
       next: (response: any) => {
         this.chambres = response.data.chambres as Chambre[];
-        console.log('🚀 ~ this.chambres:', this.chambres);
+        console.log('🚀 ~ this.chambres:', this.chambres); 
       },
       error: (err) => {
         console.log(err);
