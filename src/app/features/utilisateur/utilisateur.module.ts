@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { PasswordModule } from 'primeng/password';
+import { TagModule } from 'primeng/tag';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { PasswordModule } from 'primeng/password';
     PasswordModule,
     CommonModule,
     UtilisateurRoutingModule,
+    TagModule,
+    SelectButtonModule
   ]
 })
 export class UtilisateurModule { }

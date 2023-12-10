@@ -24,16 +24,25 @@ export class UtilisateurFormComponent implements OnInit {
     if (this.dialogConfig.data) {
       this.id = this.dialogConfig.data.id;
       this.userService.getUser(this.id).subscribe(response => {
-        this.userToSubmit = response.body.data.user;
         this.oldEmail = response.body.data.user.email;
+        this.userToSubmit = {
+          id: response.body.data.user.id,
+          email: response.body.data.user.email,
+          password: response.body.data.user.password,
+          enabled: response.body.data.user.enabled,
+          role: response.body.data.user.role
+        }
+        
       })
-    }
+    } else 
+    this.userToSubmit.enabled = true;
   }
 
   userToSubmit = {} as User;
   oldEmail!: string;
   id!: number;
   mailExists = false;
+  stateOptions = [{ label: "Active", value: true }, { label: "Desactivé", value: false }];
 
   submit(f: NgForm) {
     // Add user

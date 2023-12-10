@@ -12,16 +12,22 @@
       <ng-template pTemplate="headergrouped">
         <tr class="bg-white">
           <th>Email </th>
+          <th>Etat</th>
           <th>Actions</th>
         </tr>
-       
+
       </ng-template>
       <ng-template pTemplate="body" let-u>
         <tr class="p-selectable-row">
           <td>{{ u.email }}</td>
+          <td>
+            <p-tag *ngIf="u.enabled" severity="success" value="Active"></p-tag>
+            <p-tag *ngIf="!u.enabled" severity="danger" value="Desactivé"></p-tag>
+          </td>
           <td class="action">
             <img src="../../../../assets/icon/edit.svg" alt="edit" (click)="Edit(u.id)">
             <img src="../../../../assets/icon/trash.svg" alt="trash" (click)="Delete(u.id)">
+            <img src="../../../../assets/icon/settings.svg" alt="reset" (click)="Reset(u.email)">
           </td>
         </tr>
       </ng-template>

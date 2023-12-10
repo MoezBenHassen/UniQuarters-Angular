@@ -18,7 +18,7 @@
             </div>
             <div class="col-12">
                 <label class="label required mt-2">Mot de passe</label>
-                <input class="inputtext-sm full-width" id="password" required minlength="8" name="passowrd" #password="ngModel"
+                <input [disabled]="id!=undefined" class="inputtext-sm full-width" id="password" required minlength="8" name="passowrd" #password="ngModel"
                     [(ngModel)]="userToSubmit.password" type="password" pInputText />
                 <div *ngIf="password.dirty && password.errors?.['required']" class="invalid-feedback">
                     Le mot de passe est obligatoire
@@ -26,6 +26,9 @@
                 <div *ngIf="password.dirty && password.errors?.['minlength']" class="invalid-feedback">
                     Le mot de passe doit contenir au moins 8 caractéres
                 </div>
+            </div>
+            <div class="col-12">
+                <p-selectButton name="enabled" [options]="stateOptions" [(ngModel)]="userToSubmit.enabled" optionLabel="label" optionValue="value"></p-selectButton>
             </div>
            
         </div>

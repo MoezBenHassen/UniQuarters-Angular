@@ -6,6 +6,7 @@ import { Observable, catchError, retry, throwError } from 'rxjs';
 import { TokenService } from './token.service';
 import { environment } from 'src/environments/environment';
 import { Etudiant } from '../models/etudiant';
+import { Role } from '../models/role';
 
 const uniQuartersUri = environment.uniQuartersUri+"/auth";
 
@@ -17,8 +18,24 @@ export class AuthService {
         private http: HttpClient, 
         private router: Router,
         private tokenService: TokenService,
-        // private permissionService: NgxPermissionsService
         ) {}
+
+    roleAs?:Role;
+
+    getRole() {
+        return sessionStorage.getItem("ROLE");
+    }
+    setRole(role:Role){
+        sessionStorage.setItem("ROLE",role);
+    }
+
+    getLoggedInUser():Observable<any>{
+        return this.http.get(uniQuartersUri+"/userByToken/"+this.tokenService.getAccessToken);
+    }
+
+    getLoggedInEtudiant():Observable<any>{
+        return this.http.get(uniQuartersUri+"/etudiantByToken/"+this.tokenService.getAccessToken);
+    }
 
     login(u: LoginUser): Observable<any> {
         return this.http.post(uniQuartersUri + "/authenticate", u);
@@ -26,12 +43,10 @@ export class AuthService {
 
     logout() {
         this.tokenService.removeToken();
-        // sessionStorage.removeItem("permissions");
-        // this.permissionService.flushPermissions();
         return this.http.get(uniQuartersUri + "/logout");
     }
 
-    refreshToken(refreshToken:string){
+    refreshToken(refreshToken:string):Observable<any>{
         return this.http.post(uniQuartersUri+"/refresh-token",refreshToken);
     }
   

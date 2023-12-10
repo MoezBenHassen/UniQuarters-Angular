@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/models/loginUser';
+import { Role } from 'src/app/models/role';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -45,11 +46,11 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           this.tokenService.setAccessToken(response.access_token);
           this.tokenService.setRefreshToken(response.refresh_token);
-          // this.authService.savePermissions(response.role);
-          // this.permissionsService.loadPermissions(
-          //   this.authService.getPermissions()
-          // );
-          this.router.navigate(["/gestion/utilisateur"]);
+          this.authService.setRole(response.role);
+          if(response.role == Role.Admin)
+          this.router.navigate(["/gestion/dashboard"]);
+          if(response.role == Role.Etudiant)
+          this.router.navigate(["/"]);
         },
         error: (error) => {
           this.errorMsgs.push({

@@ -9,6 +9,9 @@ import { RegisterComponent } from './features/register/register.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { UtilisateurModule } from './features/utilisateur/utilisateur.module';
 import { EtudiantModule } from './features/etudiant/etudiant.module';
+import { Role } from './models/role';
+import { RoleGuard } from './helpers/role.guard';
+import { PasswordResetModule } from './features/password-reset/password-reset.module';
 
 const routes: Routes = [
   {
@@ -28,9 +31,14 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path:`${RoutePaths.PASSWORD}`,
+    loadChildren: () => PasswordResetModule
+  },
+  {
     path: `${RoutePaths.GESTION}`,
     component: LayoutComponent,
-    canActivate:[AuthGuard],
+    canActivate:[AuthGuard,RoleGuard],
+    data:{role:Role.Admin},
     children: [
       {
         path: `${RoutePaths.DASHBOARD}`,

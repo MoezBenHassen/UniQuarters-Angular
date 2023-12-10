@@ -3,9 +3,9 @@ import { AbstractControlOptions, FormBuilder, NgForm, Validators } from '@angula
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Etudiant } from 'src/app/models/etudiant';
 import { Role } from 'src/app/models/role';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { EtudiantService } from 'src/app/services/etudiant.service';
-import { passwordMatchValidator } from '../../shared/validators/passwordMatch.validator';
 
 @Component({
   selector: 'app-etudiant-form',
@@ -43,6 +43,12 @@ export class EtudiantFormComponent implements OnInit {
       { type: 'required', message: 'Ce champ est obligatoire.' }
     ]
   }
+  etudiantToSubmit = {} as Etudiant;
+  userToSubmit = {} as User;
+  oldEmail!: string;
+  id!: number;
+  mailExists = false;
+  stateOptions = [{ label: "Active", value: true }, { label: "Desactivé", value: false }];
 
   etudiantForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -51,13 +57,10 @@ export class EtudiantFormComponent implements OnInit {
     prenom: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/), Validators.minLength(3)]],
     cin: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
     ecole: ['', [Validators.required, Validators.minLength(3)]],
-    dateNaissance: ['', [Validators.required]]
+    dateNaissance: ['', [Validators.required]],
+    enabled: [this.stateOptions[0].value,[Validators.required]]
   }
   )
-  etudiantToSubmit = {} as Etudiant;
-  oldEmail!: string;
-  id!: number;
-  mailExists = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -73,23 +76,38 @@ export class EtudiantFormComponent implements OnInit {
       this.etudiantService.getEtudiant(this.id).subscribe(response => {
         this.etudiantToSubmit = response.body.data.etudiant;
         this.oldEmail = response.body.data.etudiant.user.email;
+        this.userToSubmit = {
+          id: response.body.data.etudiant.user.id,
+          email: response.body.data.etudiant.user.email,
+          password: response.body.data.etudiant.user.password,
+          enabled: response.body.data.etudiant.user.enabled,
+          role: response.body.data.etudiant.user.role
+        }
         // mapping etudiant to form
-        this.etudiantForm.controls.email.setValue(this.etudiantToSubmit.user!.email);
+        this.etudiantForm.controls.email.setValue(this.userToSubmit.email);
         this.etudiantForm.controls.password.disable();
-        this.etudiantForm.controls.password.setValue(this.etudiantToSubmit.user!.password);
+        this.etudiantForm.controls.password.setValue(this.userToSubmit.password);
         this.etudiantForm.controls.nom.setValue(this.etudiantToSubmit.nom!);
         this.etudiantForm.controls.prenom.setValue(this.etudiantToSubmit.prenom!);
         this.etudiantForm.controls.ecole.setValue(this.etudiantToSubmit.ecole!);
         this.etudiantForm.controls.cin.setValue(this.etudiantToSubmit.cin!.toString());
         this.etudiantForm.controls.dateNaissance.setValue(this.etudiantToSubmit.dateNaissance!);
+        this.etudiantForm.controls.enabled.setValue(this.userToSubmit.enabled)
       })
     }
   }
 
 
   submit() {
-    const user = { email: this.etudiantForm.value.email, password: this.etudiantForm.value.password, role: Role.Etudiant };
+    const user = {
+      id: this.userToSubmit.id,
+      email: this.etudiantForm.value.email,
+      password: this.etudiantForm.getRawValue().password,
+      enabled: this.etudiantForm.value.enabled,
+      role:  Role.Etudiant
+    };
     const etudiant = {
+      id: this.etudiantToSubmit.id,
       nom: this.etudiantForm.value.nom,
       prenom: this.etudiantForm.value.prenom,
       cin: this.etudiantForm.value.cin,
@@ -111,6 +129,7 @@ export class EtudiantFormComponent implements OnInit {
     }
     // Update etudiant 
     else {
+
       this.authService.emailExists(user.email!).subscribe(response => {
         if (response && response != this.oldEmail) {
           this.mailExists = true;

@@ -33,15 +33,12 @@ export class RequestInterceptorInterceptor implements HttpInterceptor {
         // handling unauthorized errors or token expired
         if (accessToken != null && refreshToken != null) {
           this.authService.refreshToken(refreshToken).subscribe(
-            data => {
-              // this.tokenService.setAccessToken(data.toString());
-              console.log(data);
+            response => {
+              this.tokenService.setAccessToken(response.data.newToken);
             }
           );
         } else {
           this.tokenService.removeToken();
-          // sessionStorage.removeItem("permissions");
-          // this.permissionService.flushPermissions();
           this.router.navigate(["/login"]);
         }
       }

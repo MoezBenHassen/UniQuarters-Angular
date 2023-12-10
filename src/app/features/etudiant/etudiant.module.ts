@@ -13,6 +13,8 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CalendarModule } from 'primeng/calendar';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { TagModule } from 'primeng/tag';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     PasswordModule,
     CalendarModule,
     ReactiveFormsModule,
-    KeyFilterModule
+    KeyFilterModule,
+    TagModule,
+    SelectButtonModule
   ]
 })
 export class EtudiantModule { }

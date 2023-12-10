@@ -64,7 +64,7 @@
                     </div>
                 </ng-container>
             </div>
-            <div class="field col-12">
+            <div class="field col-6">
                 <label>Date de naissance</label>
                 <p-calendar [appendTo]="'body'" [maxDate]="today" [touchUI]="true" id="dateNaissance"
                     formControlName="dateNaissance"></p-calendar>
@@ -74,6 +74,10 @@
                         {{validation.message}}
                     </div>
                 </ng-container>
+            </div>
+            <div class="field col-6">
+                <label >Etat</label>
+                <p-selectButton formControlName="enabled" [options]="stateOptions" optionLabel="label" optionValue="value"></p-selectButton>
             </div>
             <div class="footer-popup mt-4">
                 <input type="submit" class="primary-button" value="Confirmer" [disabled]="etudiantForm.invalid">

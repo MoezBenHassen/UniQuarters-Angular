@@ -11,14 +11,13 @@
                         <label class="w-6rem">Mot de passe</label>
                         <input formControlName="password" pInputText id="password" type="password" class="w-12rem" />
                     </div>
+                    <a routerLink="/password-reset/request/email">Mot de passe oublié ?</a>
                     <div *ngIf="errorMsgs.length > 0" class="p-message p-message-error p-component" style="width: 30%">
                         <div class="p-message-wrapper p-d-flex p-flex-row p-ai-center">
                             <span class="p-message-icon pi pi-times-circle"></span>
-                            <ul>
-                                <li *ngFor="let error of errorMsgs">
-                                    {{ error.detail }}
-                                </li>
-                            </ul>
+                            <div *ngFor="let error of errorMsgs">
+                                {{ error.detail }}
+                            </div>
                         </div>
                     </div>
                     <p-button type="submit" label="Login" icon="pi pi-user" styleClass="w-10rem mx-auto"></p-button>
