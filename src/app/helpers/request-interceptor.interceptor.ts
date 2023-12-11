@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { TokenService } from '../services/token.service';
@@ -13,36 +13,43 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class RequestInterceptorInterceptor implements HttpInterceptor {
-
   constructor(
     private tokenService: TokenService,
     private router: Router,
     private authService: AuthService
-  ) { }
+  ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
     let authReq = request;
     let accessToken = this.tokenService.getAccessToken();
     let refreshToken = this.tokenService.getRefreshToken();
     if (accessToken != null) {
-      authReq = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + accessToken) });
+      authReq = request.clone({
+        headers: request.headers.set('Authorization', 'Bearer ' + accessToken),
+      });
     }
-    return next.handle(authReq).pipe(catchError((error: HttpErrorResponse) => {
-      console.log(error);
-      if (error.status == 401 || error.status == 403) {
-        // handling unauthorized errors or token expired
-        if (accessToken != null && refreshToken != null) {
-          this.authService.refreshToken(refreshToken).subscribe(
-            response => {
-              this.tokenService.setAccessToken(response.data.newToken);
-            }
-          );
-        } else {
-          this.tokenService.removeToken();
-          this.router.navigate(["/login"]);
+    return next.handle(authReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.log(error);
+        if (error.status == 401 || error.status == 403) {
+          // handling unauthorized errors or token expired
+          if (accessToken != null && refreshToken != null) {
+            this.authService
+              .refreshToken(refreshToken)
+              .subscribe((response) => {
+                this.tokenService.setAccessToken(response.data.newToken);
+              });
+          } else {
+            this.tokenService.removeToken();
+            this.router.navigate(['/login']);
+          }
         }
-      }
-      return throwError(() => new Error('Authentication error'));
-    }));
+        // return throwError(() => new Error('Authentication error'));
+        return throwError(error);
+      })
+    );
   }
 }

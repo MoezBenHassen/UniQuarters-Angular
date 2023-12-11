@@ -91,7 +91,8 @@ export class ListReservationsComponent implements OnInit {
       rejectLabel: 'Annuler',
       accept: () => {
         this.isLoading = true;
-        this.reservationService.validateReservation(id).subscribe(
+        this.reservationService.validateReservation(id)
+        /*.subscribe(
           (response: any) => {
             this.isLoading = false;
             console.log('Reservation validated successfully.');
@@ -101,12 +102,12 @@ export class ListReservationsComponent implements OnInit {
               detail:
                 response.message || 'La réservation a été validée avec succès.',
             });
-
             this.reservationService.getReservations();
           },
           (error) => {
+            console.log('Error validating resa: ', error);
+
             this.isLoading = false;
-            console.error('Error validating reservation:', error);
             this.messageService.add({
               severity: 'error',
               summary: 'Erreur',
@@ -115,7 +116,32 @@ export class ListReservationsComponent implements OnInit {
                 'Une erreur est survenue lors de la validation de la réservation.',
             });
           }
-        );
+        );*/
+        .subscribe({
+          next: (response: any) => {
+            this.isLoading = false;
+            console.log('Reservation validated successfully.');
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Succès',
+              detail:
+                response.message || 'La réservation a été validée avec succès.',
+            });
+            this.reservationService.getReservations();
+          },
+          error: (error) => {
+            console.log('Error validating resa: ', error);
+
+            this.isLoading = false;
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erreur',
+              detail:
+                error?.error?.message ||
+                'Une erreur est survenue lors de la validation de la réservation.',
+            });
+          },
+        });
       },
     });
   }
