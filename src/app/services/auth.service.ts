@@ -30,11 +30,12 @@ export class AuthService {
     }
 
     getLoggedInUser():Observable<any>{
-        return this.http.get(uniQuartersUri+"/userByToken/"+this.tokenService.getAccessToken);
+        console.log(this.tokenService.getAccessToken());
+        return this.http.get(uniQuartersUri+"/userByToken/"+this.tokenService.getAccessToken());
     }
 
     getLoggedInEtudiant():Observable<any>{
-        return this.http.get(uniQuartersUri+"/etudiantByToken/"+this.tokenService.getAccessToken);
+        return this.http.get(uniQuartersUri+"/etudiantByToken/"+this.tokenService.getAccessToken());
     }
 
     login(u: LoginUser): Observable<any> {

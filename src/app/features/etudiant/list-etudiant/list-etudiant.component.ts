@@ -6,6 +6,7 @@ import { Etudiant } from 'src/app/models/etudiant';
 import { EtudiantService } from 'src/app/services/etudiant.service';
 import { EtudiantFormComponent } from '../etudiant-form/etudiant-form.component';
 import { PasswordResetService } from 'src/app/services/password-reset.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-list-etudiant',
@@ -22,7 +23,7 @@ export class ListEtudiantComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private dialogService: DialogService,
-    private passwordResetService: PasswordResetService
+    private passwordResetService: PasswordResetService,
   ) { }
   ngOnInit(): void {
     this.getData();
