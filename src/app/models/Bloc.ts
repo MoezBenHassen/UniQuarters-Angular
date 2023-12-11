@@ -4,6 +4,7 @@ export class Bloc {
    nom!: string;
    capacite!: number;
    color !: string;
+   foyerId!: number;
 }
 
 

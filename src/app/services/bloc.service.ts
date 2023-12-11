@@ -11,6 +11,7 @@ export class BlocService {
   data: Bloc[] = [];
   /*apiUrl = 'http://localhost:8082/blocs';*/
   apiUrl = environment.uniQuartersUri + '/blocs';
+  apifoyer='http://localhost:8080/blocs'
   constructor(
       private _http: HttpClient
   ) { }
@@ -68,5 +69,14 @@ export class BlocService {
     return this._http.get("http://localhost:8080/export-to-excel", {responseType: 'blob'});
   }
 
+
+  getAllFoyers(): Observable<any[]> {
+    console.log("FETCHING ALL FOYERS service lvl");
+    return this._http.get<any[]>("http://localhost:8080/blocs/datafoyer");
+  }
+  addBlocWithFoyer(bloc: Bloc, foyerId: number): Observable<any> {
+    const url = `${this.apifoyer}/${foyerId}`;
+    return this._http.post(url, bloc);
+  }
 
 }
