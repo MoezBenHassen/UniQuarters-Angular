@@ -61,7 +61,9 @@ export class ListUniversiteComponent   implements OnInit {
    
     this.dialogService.open(UniversiteFormComponent, {
       data: { id },
-      header: "Modifier les informations de la chambre"
+      header: "Modifier les informations de la chambre",
+      width: '70%', 
+      height: 'auto'
     });
   }
   Delete(id:number) {
