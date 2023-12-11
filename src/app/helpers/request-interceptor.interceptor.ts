@@ -32,10 +32,10 @@ export class RequestInterceptorInterceptor implements HttpInterceptor {
       if (error.status == 401 || error.status == 403) {
         // handling unauthorized errors or token expired
         if (accessToken != null && refreshToken != null) {
-          this.authService.refreshToken(refreshToken).subscribe(
-            response => {
-              this.tokenService.setAccessToken(response.data.newToken);
-            }
+          this.authService.refreshToken(refreshToken).subscribe({
+            next: (response) => { this.tokenService.setAccessToken(response.data.newToken); },
+            error: (error) => { this.tokenService.removeToken(); }
+          }
           );
         } else {
           this.tokenService.removeToken();
