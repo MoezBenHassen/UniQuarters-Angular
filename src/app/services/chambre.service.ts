@@ -15,12 +15,22 @@ export class ChambreService {
     private apiUrl = `${environment?.uniQuartersUri}/chambres`;
     AddOrEditChambreForm = this.fb.group({
         id: [0],
-        numero: [0, Validators.required],
-        capacity: [0, Validators.required],
-        description: [''],
+        numero: ['', [Validators.required, Validators.pattern(/^[0-9]{3,}$/)]],
+        capacity: [0],
+        description: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^[a-zA-Z0-9\s]*$/)]],
         type: ['', Validators.required],
-      });
-
+        wifi: [false],
+        airConditioning: [false],
+        privateBathroom: [false],
+        balcony: [false],
+        workspace: [false],
+        kitchenette: [false],
+        petFriendly: [false],
+        travaux: [false],
+    });
+    blocForm = this.fb.group({
+        selectedBloc: ['', Validators.required],
+    });
     retrieveChambres(nomBloc?: string): Observable<HttpResponse<Chambre[]>> {
         const url = `${this.apiUrl}?nomBloc=${nomBloc || ''}`;
         return this.httpClient.get<Chambre[]>(url, { observe: 'response' })

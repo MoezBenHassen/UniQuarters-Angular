@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit ,ViewEncapsulation} from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { ChambreService } from 'src/app/services/chambre.service';
@@ -8,7 +8,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-list-chambre',
   templateUrl: './list-chambre.component.html',
-  styleUrls: ['./list-chambre.component.scss']
+  styleUrls: ['./list-chambre.component.scss'],
+  encapsulation:ViewEncapsulation.None
 })
 export class ListChambreComponent implements OnInit {
   @ViewChild('dt') table!: Table;
@@ -38,6 +39,7 @@ export class ListChambreComponent implements OnInit {
   }
 
   Add() {
+    this.chambreService.blocForm.reset();
     this.chambreService.AddOrEditChambreForm.reset();
     this.dialogService.open(ChambreFormComponent, {
       header: "Ajouter une nouvelle chambre"
@@ -46,6 +48,7 @@ export class ListChambreComponent implements OnInit {
 
   Edit(data: any) {
     this.populateForm(data);
+    console.log(this.chambreService.AddOrEditChambreForm.value)
     this.dialogService.open(ChambreFormComponent, {
       data: { data },
       header: "Modifier les informations de la chambre"
@@ -80,6 +83,14 @@ export class ListChambreComponent implements OnInit {
       capacity: d.capacity,
       description: d.description,
       type: d.type,
+      wifi: d.wifi,
+      airConditioning: d.airConditioning ,
+      privateBathroom: d.privateBathroom,
+      balcony: d.balcony,
+      workspace: d.workspace,
+      kitchenette: d.kitchenette ,
+      petFriendly: d.petFriendly ,
+      travaux: d.travaux
     });
   }
   
