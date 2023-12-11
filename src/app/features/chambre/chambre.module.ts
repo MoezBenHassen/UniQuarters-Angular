@@ -10,6 +10,12 @@ import { ListChambreComponent } from './list-chambre/list-chambre.component';
 import { ChambreFormComponent } from './chambre-form/chambre-form.component';
 import { ChambreRoutingModule } from './chambre-routing.module';
 import { InputTextModule } from 'primeng/inputtext';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -18,7 +24,13 @@ import { InputTextModule } from 'primeng/inputtext';
         ChambreFormComponent
     ],
     imports: [
+        ChipModule,
+        SelectButtonModule,
+        InputTextareaModule,
+        RadioButtonModule,
         TableModule,
+        InputNumberModule,
+        NgSelectModule,
         TagModule,
         ConfirmDialogModule,
         CommonModule,
