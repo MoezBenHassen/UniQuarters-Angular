@@ -42,12 +42,13 @@ export class ListReservationsEtudiantComponent implements OnInit {
           console.log('🚀 ~ reservations:', this.reservations);
         },
         error: (error) => {
+          console.log('error:', error);
           this.messageService.add({
             severity: 'error',
             summary: 'Erreur',
             detail:
               error?.error?.message ||
-              'Une erreur est survenue lors de la validation de la réservation.',
+              'Une erreur est survenue lors de la récupération des réservations',
           });
           console.error('Error fetching data:', error);
         },

@@ -52,14 +52,18 @@ export class ListUniversiteComponent   implements OnInit {
   }
   Add(){
     this.dialogService.open(UniversiteFormComponent, {
-      header:"Ajouter une nouvelle université"
+      header:"Ajouter une nouvelle université",
+      width: '70%', 
+      height: 'auto'
   })
   }
   Edit(id:number) {
    
     this.dialogService.open(UniversiteFormComponent, {
       data: { id },
-      header: "Modifier les informations de la chambre"
+      header: "Modifier les informations de la chambre",
+      width: '70%', 
+      height: 'auto'
     });
   }
   Delete(id:number) {

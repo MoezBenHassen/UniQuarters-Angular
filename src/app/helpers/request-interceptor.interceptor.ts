@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { TokenService } from '../services/token.service';
@@ -13,12 +13,11 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class RequestInterceptorInterceptor implements HttpInterceptor {
-
   constructor(
     private tokenService: TokenService,
     private router: Router,
     private authService: AuthService
-  ) { }
+  ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let authReq = request;
@@ -42,7 +41,8 @@ export class RequestInterceptorInterceptor implements HttpInterceptor {
           this.router.navigate(["/login"]);
         }
       }
-      return throwError(() => new Error('Authentication error'));
+      //return throwError(() => new Error('Authentication error'));
+      return throwError(error);
     }));
   }
 }
