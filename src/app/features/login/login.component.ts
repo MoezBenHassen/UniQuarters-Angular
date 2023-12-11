@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           if(response.role == Role.Admin)
           this.router.navigate(["/gestion/dashboard"]);
           if(response.role == Role.Etudiant)
-          this.router.navigate(["/"]);
+          this.router.navigate(["/home"]);
         },
         error: (error) => {
           this.errorMsgs.push({
