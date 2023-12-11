@@ -41,7 +41,8 @@ export class RequestInterceptorInterceptor implements HttpInterceptor {
           this.router.navigate(["/login"]);
         }
       }
-      return throwError(() => new Error('Authentication error'));
+      //return throwError(() => new Error('Authentication error'));
+      return throwError(error);
     }));
   }
 }
