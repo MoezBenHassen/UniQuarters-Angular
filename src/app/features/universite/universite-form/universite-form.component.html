@@ -5,7 +5,7 @@
     <form [formGroup]="fbUni" (ngSubmit)="add()" class="form">
         <div class="grid">
 
-            <div class="col-12">
+            <div class="col-6">
                 <label class="label required mt-2">Nom </label>
                 <input id="name" name="nom" required formControlName="nom" type="text" class="inputtext-sm full-width"
                     placeholder="Saisir le nom" pInputText />
@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <label class="label required mt-2">Adresse </label>
                 <select id="otherProperty" required name="adresse" formControlName="adresse"
                     class="inputtext-sm full-width" placeholder="Saisir adresse" pInputText>
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 justify-center">
                 <label  class="label required mt-2" for="logo">Logo:</label>
                 <div *ngIf="university">
                     <img alt="Card"  src="../../../../assets/img/{{university.image}}" height="150px" width="300px" />
@@ -39,8 +39,9 @@
                 </div>
             </div>
 
-            <div formGroupName="foyer">
-                <div class="col-12 ">
+            <div formGroupName="foyer" class="col-12">
+                <div class="grid">
+                <div class="col-12">
                     <label class="label required mt-2">Nom Foyer </label>
                     <input id="otherProperty"  name="nom" formControlName="nom" type="text"
                         class="inputtext-sm full-width" placeholder="Saisir le nom du foyer" pInputText />
@@ -62,9 +63,11 @@
 
                     </div>
                 </div>
+            </div>
                 <div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" >
                 </div>
-                <div class="col-12">
+                <div class="grid">
+                <div class="col-6">
                     <label  class="label required mt-2" for="latitude">Latitude:</label>
                     <input  class="inputtext-sm full-width" type="text" name="lat" formControlName="lat" readonly pInputText>
                     <div class="invalid-feedback" *ngIf="foyerLat!.invalid  &&  foyerLat!.dirty ">
@@ -72,7 +75,7 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-6">
                     <label  class="label required mt-2" for="longitude">Longitude:</label>
                     <input  class="inputtext-sm full-width"type="text" name="lng" formControlName="lng" readonly pInputText>
                     <div class="invalid-feedback" *ngIf="foyerLng!.invalid  &&  foyerLng!.dirty">
@@ -80,6 +83,7 @@
 
                     </div>
                 </div>
+            </div>
 
             </div>
         </div>
