@@ -99,7 +99,7 @@ export class BlocFormComponent {
   add(f: NgForm) {
     const blocData = { ...this.bl, foyerId: this.selectedFoyerId };
     if (this.id !== undefined) {
-      this.blocService.updateBloc(this.id, this.bl).subscribe((data)=>{
+      this.blocService.addBlocWithFoyer( blocData, this.selectedFoyerId).subscribe((data)=>{
         this.blocService.getAllBlocs().subscribe(
           (response: any) => {
             this.blocService.data = response.data.blocs;
