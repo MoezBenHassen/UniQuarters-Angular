@@ -23,14 +23,17 @@
           La capacite est obligatoire !
         </div>
 
-        <div class="col-12">
-          <label class="label required mt-2">Foyer</label>
-          <select name="selectedFoyerId" [(ngModel)]="selectedFoyerId" class="inputtext-sm full-width" pInputText>
-            <option *ngFor="let foyer of foyers" [value]="foyer.id">{{ foyer.nom }}</option>
-          </select>
-        </div>
+
 
       </div>
+
+      <div class="col-12">
+        <label class="label required mt-2">Foyer</label>
+        <select name="selectedFoyerId" [(ngModel)]="selectedFoyerId" class="inputtext-sm full-width" pInputText>
+          <option *ngFor="let foyer of foyers" [value]="foyer.id">{{ foyer.nom }}</option>
+        </select>
+      </div>
+
       <div class="col-12">
         <label class="label required mt-2" for="color">Color:</label> <br>
         <input class="style1" type="color" id="color" ngModel #color="ngModel" name="color" [(ngModel)]="bl.color"  required/>
