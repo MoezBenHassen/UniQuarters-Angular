@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home.component';
+import { HomeComponent } from './features/home/home-layout/home.component';
 import { LayoutComponent } from './features/shared/layout/layout.component';
 import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -12,39 +12,31 @@ import { EtudiantModule } from './features/etudiant/etudiant.module';
 import { Role } from './models/role';
 import { RoleGuard } from './helpers/role.guard';
 import { PasswordResetModule } from './features/password-reset/password-reset.module';
-import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
+import { SchedulerComponent } from "./features/bloc/scheduler/scheduler.component";
 
 import { ListUniversiteFilteredComponent } from './features/universite/list-universite-filtered/list-universite-filtered.component';
 
 
 const routes: Routes = [
-  {
-    path: `${RoutePaths.HOME}`,
-    component: HomeComponent
-  },
-  {
-    path: '',
-    redirectTo: `${RoutePaths.HOME}`, pathMatch: 'full'
-  },
-  //pour le moment pour le front office
-  {path:'filtre/:address', component:ListUniversiteFilteredComponent},
+
+
   {
     path: `${RoutePaths.LOGIN}`,
     component: LoginComponent
   },
   {
-    path:`${RoutePaths.REGISTER}`,
+    path: `${RoutePaths.REGISTER}`,
     component: RegisterComponent
   },
   {
-    path:`${RoutePaths.PASSWORD}`,
+    path: `${RoutePaths.PASSWORD}`,
     loadChildren: () => PasswordResetModule
   },
   {
     path: `${RoutePaths.GESTION}`,
     component: LayoutComponent,
-    canActivate:[AuthGuard,RoleGuard],
-    data:{role:Role.Admin},
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: Role.Admin },
     children: [
       {
         path: `${RoutePaths.DASHBOARD}`,
@@ -82,8 +74,21 @@ const routes: Routes = [
         component: SchedulerComponent,
       }
     ]
-  }
-];
+  },
+  {
+    path: 'loggedIn',
+    component: HomeComponent,
+    data: { role: Role.Etudiant },
+    canActivate: [AuthGuard, RoleGuard],
+    children: [
+      {
+        path: `home`,
+        loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
+      },
+  ]
+  }  ];
+ 
+
 
 @NgModule({
   imports: [
@@ -91,4 +96,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

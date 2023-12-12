@@ -16,14 +16,25 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { ChipModule } from 'primeng/chip';
-
+import { ChambrePublicReservationComponent } from './chambre-public-reservation/chambre-public-reservation.component';
+import { SkeletonModule } from 'primeng/skeleton';
+import { ChambreCardComponent } from './chambre-card/chambre-card.component';
+import { ChambreReviewComponent } from './chambre-review/chambre-review.component';
+import { RatingModule } from 'primeng/rating';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     declarations: [
         ListChambreComponent,
-        ChambreFormComponent
+        ChambreFormComponent,
+        ChambrePublicReservationComponent,
+        ChambreCardComponent,
+        ChambreReviewComponent
     ],
     imports: [
+        ToastModule,
+        RatingModule,
+        SkeletonModule,
         ChipModule,
         SelectButtonModule,
         InputTextareaModule,

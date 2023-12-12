@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Universite } from '../models/universite';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Foyer } from '../models/foyer';
 
 
 @Injectable({
@@ -28,8 +29,14 @@ export class UniversiteService {
   ];
   constructor(private _http: HttpClient) { }
   url = environment.uniQuartersUri + "/universites";
+  urlFoyer = environment.uniQuartersUri + "/foyers";
+
   getAllUniversites(): Observable<Universite[]> {
     return this._http.get<Universite[]>(this.url);
+  }
+
+  getAllFoyers(): Observable<Foyer[]> {
+    return this._http.get<Foyer[]>(this.urlFoyer);
   }
   getGouvernorats(): string[] {
     return this.gouvernorats;

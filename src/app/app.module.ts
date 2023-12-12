@@ -22,7 +22,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './features/home/home.component';
+import { HomeComponent } from './features/home/home-layout/home.component';
 import { LayoutComponent } from './features/shared/layout/layout.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { NavigationComponent } from './features/shared/navigation/navigation.component';
@@ -30,19 +30,17 @@ import { FooterComponent } from './features/shared/footer/footer.component';
 import { HeaderComponent } from './features/shared/header/header.component';
 import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
-
-import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
-import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
 import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
 import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
 import { CardModule } from 'primeng/card';
-import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
 import { ToastModule } from 'primeng/toast';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
 import { PasswordModule } from 'primeng/password';
 import { RequestInterceptorInterceptor } from './helpers/request-interceptor.interceptor';
 import { RegisterComponent } from './features/register/register.component';
+import { HomeNavigationComponent } from './features/home/home-navigation/home-navigation.component';
+import { HomePageComponent } from './features/home/home-page/home-page.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +54,8 @@ import { RegisterComponent } from './features/register/register.component';
         LoginComponent,
         RegisterComponent,
         SchedulerComponent,
+        HomeNavigationComponent,
+        HomePageComponent,
     ],
     imports: [
         DxTagBoxModule,

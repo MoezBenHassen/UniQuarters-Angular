@@ -19,10 +19,10 @@
 
   <div class="card p-4">
     <div class="buttonSection">
-      <button pRipple class=" secondary-button scheduler" style="" (click)="goToScheduler()">
+      <button pRipple class=" secondary-button scheduler" (click)="goToScheduler()">
         <span class="pi pi-calendar " aria-hidden="true"></span> Schedule
       </button>
-      <button pRipple class="secondary-button addButton" style="" (click)="Add()">
+      <button pRipple class="secondary-button addButton" (click)="Add()">
         <span class="pi pi-plus pi-building" aria-hidden="true"></span> Ajouter un Bloc
       </button>
     </div>
@@ -36,6 +36,8 @@
           <th>Color</th>
           <th>Nom</th>
           <th>Capactie</th>
+          <th>Foyer</th>
+
           <th>Actions</th>
         </tr>
        <!-- <tr class="bg-white">
@@ -65,7 +67,7 @@
           </td>
           <td>{{ bl.nom }}</td>
           <td>{{ bl.capacite }} </td>
-          <td>CHOSE ::: {{bl.foyerId}}</td>
+          <td>{{bl.foyer.nom}}</td>
           <!--<td>{{ uni.foyer ? uni.foyer.nom : 'N/A' }}</td>-->
           <td class="action">
             <img src="../../../../assets/icon/edit.svg" alt="edit"(click)="Edit(bl.id)">
