@@ -11,8 +11,9 @@ import { ReservationService } from 'src/app/services/reservation.service';
   styleUrls: ['./chambre-public-reservation.component.scss']
 })
 export class ChambrePublicReservationComponent {
-  chambres: any[] = [];
+  chambres!: any[] ;
   foyerId!: number;
+  showSkeleton: boolean = true;
 
   constructor(
     private reservationService :ReservationService,
@@ -26,65 +27,53 @@ export class ChambrePublicReservationComponent {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.foyerId = params['foyerId'];
-      this.fetchChambres();
-    });
+      setTimeout(() => {
+        this.fetchChambres();
+      }, 2000);    });
   }
-  addReservation(idChambre: number) {
-    this.authService.getLoggedInEtudiant().subscribe({
-      next: (response: any) => {
-        console.log('logged in etudiant response', response);
-        const etudiantCin = response?.data?.etudiant.cin;
-        this.reservationService.addReservation(idChambre, etudiantCin).subscribe({
-          next: (response: any) => {
-            console.log('🚀 ~ response', response);
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: response.message || 'Reservation added successfully',
-            });
-            this.reservationService.getReservations();
-          },
-          error: err => {
-            console.log(err);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: err?.error?.message || 'Something went wrong',
-            });
-          },
-          complete: () => {
-            console.log('completed');
-          },
-        });
-      },
-      error: error => {
-        console.log('error:', error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: error?.error?.message || 'Something went wrong Getting logged in etudiant',
-        });
-      },
-    });
-  }
-  fetchChambres(): void {
-    this.chambreService.retrieveChambres().subscribe(
-      (response: any) => {
 
+  fetchChambres(): void {
+    this.chambreService.getAvailableChambres().subscribe(
+      (response: any) => {
         const allChambres: any[] = response.body.data.chambres;
-        console.log(allChambres)
+        console.log(allChambres);
+  
         // Filter chambres based on foyerName
         this.chambres = allChambres.filter(
           (chambre) => chambre.bloc.foyer.id == this.foyerId
-          
         );
-        console.log(this.chambres,this.foyerId)
-
+  
+        // Calculate and set review property for each chambre
+        this.chambres.forEach((chambre) => {
+          const booleansToAverage = [
+            chambre.wifi,
+            chambre.airConditioning,
+            chambre.privateBathroom,
+            chambre.balcony,
+            chambre.workspace,
+            chambre.kitchenette,
+            chambre.petFriendly,
+          ];
+  
+          const moyenne = this.calculateMoyenne(booleansToAverage);
+          // Map the percentage moyenne to a 0-5 scale
+          chambre.review = (moyenne / 20); // Assuming you want increments of 20 for each star
+        });
+  
+        console.log(this.chambres, this.foyerId);
       },
       (error) => {
         console.error('Error loading chambres:', error);
       }
     );
   }
+  
+  calculateMoyenne(booleans: boolean[]): number {
+    const trueCount = booleans.filter((bool) => bool).length;
+    const moyenne = (trueCount / booleans.length) * 100; // Assuming you want a percentage
+    return moyenne;
+  }
+  
+  
 
 }

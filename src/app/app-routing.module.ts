@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home.component';
+import { HomeComponent } from './features/home/home-layout/home.component';
 import { LayoutComponent } from './features/shared/layout/layout.component';
 import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -18,15 +18,8 @@ import { ListUniversiteFilteredComponent } from './features/universite/list-univ
 
 
 const routes: Routes = [
-  {
-    path: `${RoutePaths.HOME}`,
-    component: HomeComponent
-  },
-  {
-    path: '',
-    redirectTo: `${RoutePaths.HOME}`, pathMatch: 'full'
-  },
-  { path: 'filtre/:address', component: ListUniversiteFilteredComponent },
+
+
   {
     path: `${RoutePaths.LOGIN}`,
     component: LoginComponent
@@ -81,8 +74,21 @@ const routes: Routes = [
         component: SchedulerComponent,
       }
     ]
-  }
-];
+  },
+  {
+    path: 'loggedIn',
+    component: HomeComponent,
+    data: { role: Role.Etudiant },
+    canActivate: [AuthGuard, RoleGuard],
+    children: [
+      {
+        path: `home`,
+        loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
+      },
+  ]
+  }  ];
+ 
+
 
 @NgModule({
   imports: [

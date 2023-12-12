@@ -24,7 +24,7 @@ export class UniversiteDetailsComponent {
 
   goToChambreList(): void {
     // Navigate to another route with the foyerName as a parameter
-    this.router.navigate(['/GetChambresByFoyer', { foyerId: this.uni.foyer.id }]);
+    this.router.navigate(['/loggedIn/home/GetChambresByFoyer', { foyerId: this.uni.foyer.id }]);
   }
 
 }

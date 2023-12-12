@@ -22,7 +22,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './features/home/home.component';
+import { HomeComponent } from './features/home/home-layout/home.component';
 import { LayoutComponent } from './features/shared/layout/layout.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { NavigationComponent } from './features/shared/navigation/navigation.component';
@@ -39,6 +39,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { PasswordModule } from 'primeng/password';
 import { RequestInterceptorInterceptor } from './helpers/request-interceptor.interceptor';
 import { RegisterComponent } from './features/register/register.component';
+import { HomeNavigationComponent } from './features/home/home-navigation/home-navigation.component';
+import { HomePageComponent } from './features/home/home-page/home-page.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +54,8 @@ import { RegisterComponent } from './features/register/register.component';
         LoginComponent,
         RegisterComponent,
         SchedulerComponent,
+        HomeNavigationComponent,
+        HomePageComponent,
     ],
     imports: [
         DxTagBoxModule,

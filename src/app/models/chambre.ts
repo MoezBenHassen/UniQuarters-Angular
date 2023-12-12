@@ -19,4 +19,5 @@ export interface Chambre {
   petFriendly: boolean;
   travaux: boolean;
   available: boolean;
+  picture:string;
 }
