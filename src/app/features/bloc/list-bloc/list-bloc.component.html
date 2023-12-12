@@ -36,6 +36,7 @@
           <th>Color</th>
           <th>Nom</th>
           <th>Capactie</th>
+          <th>Foyer</th>
           <th>Actions</th>
         </tr>
        <!-- <tr class="bg-white">
@@ -65,7 +66,7 @@
           </td>
           <td>{{ bl.nom }}</td>
           <td>{{ bl.capacite }} </td>
-          <td>CHOSE ::: {{bl.foyerId}}</td>
+          <td>{{bl.foyer.nom}}</td>
           <!--<td>{{ uni.foyer ? uni.foyer.nom : 'N/A' }}</td>-->
           <td class="action">
             <img src="../../../../assets/icon/edit.svg" alt="edit"(click)="Edit(bl.id)">
