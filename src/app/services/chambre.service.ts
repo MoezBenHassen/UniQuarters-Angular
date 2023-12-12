@@ -28,8 +28,6 @@ export class ChambreService {
         petFriendly: [false],
         travaux: [false],
     });
-
-    
     blocForm = this.fb.group({
         selectedBloc: ['', Validators.required],
     });
