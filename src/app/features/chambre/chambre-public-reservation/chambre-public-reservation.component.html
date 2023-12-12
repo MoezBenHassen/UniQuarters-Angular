@@ -1,0 +1,22 @@
+<!-- chambre-list.component.html -->
+<div *ngIf="chambres.length > 0; else noChambres">
+    <h2>List of Chambres for {{ foyerId }}</h2>
+    <div *ngFor="let chambre of chambres">
+      <div class="chambre-item">
+        <h3>Chambre {{ chambre.numero }}</h3>
+        <p>Capacity: {{ chambre.capacity }}</p>
+        <p>Description: {{ chambre.description }}</p>
+        <!-- Add other chambre properties as needed -->
+        <button class="primary-button" (click)="addReservation(chambre.id)">
+            View Details
+          </button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noChambres>
+    <p>No chambres available for {{ foyerId }}</p>
+  </ng-template>
+  
+
+  

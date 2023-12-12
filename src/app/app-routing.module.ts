@@ -12,7 +12,7 @@ import { EtudiantModule } from './features/etudiant/etudiant.module';
 import { Role } from './models/role';
 import { RoleGuard } from './helpers/role.guard';
 import { PasswordResetModule } from './features/password-reset/password-reset.module';
-import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
+import { SchedulerComponent } from "./features/bloc/scheduler/scheduler.component";
 
 import { ListUniversiteFilteredComponent } from './features/universite/list-universite-filtered/list-universite-filtered.component';
 
@@ -26,25 +26,24 @@ const routes: Routes = [
     path: '',
     redirectTo: `${RoutePaths.HOME}`, pathMatch: 'full'
   },
-  //pour le moment pour le front office
-  {path:'filtre/:address', component:ListUniversiteFilteredComponent},
+  { path: 'filtre/:address', component: ListUniversiteFilteredComponent },
   {
     path: `${RoutePaths.LOGIN}`,
     component: LoginComponent
   },
   {
-    path:`${RoutePaths.REGISTER}`,
+    path: `${RoutePaths.REGISTER}`,
     component: RegisterComponent
   },
   {
-    path:`${RoutePaths.PASSWORD}`,
+    path: `${RoutePaths.PASSWORD}`,
     loadChildren: () => PasswordResetModule
   },
   {
     path: `${RoutePaths.GESTION}`,
     component: LayoutComponent,
-    canActivate:[AuthGuard,RoleGuard],
-    data:{role:Role.Admin},
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: Role.Admin },
     children: [
       {
         path: `${RoutePaths.DASHBOARD}`,
@@ -91,4 +90,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

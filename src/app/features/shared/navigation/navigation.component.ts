@@ -46,18 +46,17 @@ export const navbarData = [
     label: 'Universités',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.UNIVERSITE}`,
   },
-  {
-    icon: 'pi pi-home',
-    label: 'Chambres',
-    routeLink: `/${RoutePaths.GESTION}/${RoutePaths.CHAMBRE}`,
-  },
+
   {
     icon: 'pi pi-building',
     label: 'Blocs',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.BLOC}`,
   },
-  // reservation
   {
+    icon: 'pi pi-home',
+    label: 'Chambres',
+    routeLink: `/${RoutePaths.GESTION}/${RoutePaths.CHAMBRE}`,
+  },  {
     icon: 'pi pi-calendar',
     label: 'Réservations',
     routeLink: `/${RoutePaths.GESTION}/${RoutePaths.RESERVATION}`,

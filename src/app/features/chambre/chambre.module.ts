@@ -16,12 +16,14 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { ChipModule } from 'primeng/chip';
+import { ChambrePublicReservationComponent } from './chambre-public-reservation/chambre-public-reservation.component';
 
 
 @NgModule({
     declarations: [
         ListChambreComponent,
-        ChambreFormComponent
+        ChambreFormComponent,
+        ChambrePublicReservationComponent
     ],
     imports: [
         ChipModule,

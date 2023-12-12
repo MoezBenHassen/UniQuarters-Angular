@@ -30,13 +30,9 @@ import { FooterComponent } from './features/shared/footer/footer.component';
 import { HeaderComponent } from './features/shared/header/header.component';
 import { LoginComponent } from './features/login/login.component';
 import { ChambreModule } from './features/chambre/chambre.module';
-
-import { ListUniversiteComponent } from './features/universite/list-universite/list-universite.component';
-import { UniversiteFormComponent } from './features/universite/universite-form/universite-form.component';
 import {SchedulerComponent} from "./features/bloc/scheduler/scheduler.component";
 import {DxSchedulerModule, DxTagBoxModule} from "devextreme-angular";
 import { CardModule } from 'primeng/card';
-import { LatLngToAddressPipe } from './pipes/lat-lng-to-address.pipe';
 import { ToastModule } from 'primeng/toast';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
