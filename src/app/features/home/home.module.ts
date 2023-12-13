@@ -19,10 +19,17 @@ import { PanelModule } from 'primeng/panel';
 import { ChartModule } from 'primeng/chart';
 import { HomeRoutingModule } from './home-module.routing';
 
+import { EspaceEtudiantComponent } from './espace-etudiant/espace-etudiant.component';
+
+
 @NgModule({
     declarations: [
 
-    ],
+
+    
+    EspaceEtudiantComponent
+  ],
+
     imports: [
         HomeRoutingModule,
         TableModule,
